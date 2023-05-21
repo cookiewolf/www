@@ -11,7 +11,7 @@ t : Key -> String
 t key =
     case key of
         SiteUrl ->
-            "https://[cCc]"
+            "https://cookiewolf.org"
 
         SiteTitle ->
             "Cookiewolf"
@@ -23,10 +23,16 @@ t key =
         IndexPageMetaDescription ->
             "Cookiewolf builds digital tools."
 
-        WhatWeDo ->
+        WhatWeDoH2 ->
+            "What we do"
+
+        WhatWeDoP ->
             "We work with small organisations and people to discover, design and build the digital tools they need."
 
-        WhoWeAre ->
+        WhoWeAreH2 ->
+            "Who we are"
+
+        WhoWeAreP ->
             "We have over 15 years experience helping small groups of people and individuals use tech to deliver the services they know people and things they care about need."
 
         WhatWeBelieve ->
