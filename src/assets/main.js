@@ -1,5 +1,7 @@
 import "./reset.css";
 import { Elm } from "../Main.elm";
+import '@fontsource/chau-philomene-one';
+import '@fontsource/sono';
 
 if (process.env.NODE_ENV === "development") {
     const ElmDebugTransform = await import("elm-debug-transformer")

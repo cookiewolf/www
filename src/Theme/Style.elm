@@ -62,11 +62,11 @@ globalStyles =
             [ backgroundColor white
 
             --, color
-            , fontFamilies [ "covik-sans", sansSerif.value ]
+            , fontFamilies [ "sono", sansSerif.value ]
             , fontWeight (int 400)
             ]
         , typeSelector "h1"
-            [--color blue
+            [ fontFamilies [ "Chau Philomene One", sansSerif.value ]
             ]
         , typeSelector "h2"
             [--color blue
