@@ -1,9 +1,9 @@
-# www.cookiewolf.co
+# www.cookiewolf.org
 
 ## Website for cookiewolf ltd
 
 -  Staging URL: https://cookiewolf.netlify.app
--  Production URL: https://cookiewolf.co
+-  Production URL: https://cookiewolf.org
 
 # Development
 
@@ -11,7 +11,6 @@
 
 - [node](https://nodejs.org/)
 - [nvm for macOS & Linux](https://github.com/nvm-sh/nvm) or [nvm for Windows](https://github.com/coreybutler/nvm-windows)
-- [yarn](https://yarnpkg.com/lang/en/docs/install)
 
 ## Setup & install instructions
 
@@ -20,38 +19,39 @@
 
 ## Build
 
-- `yarn start` to start a dev server on http://localhost:3000
-- `yarn build` generate a production build in `dist/`
+- `npm run dev` to start a dev server on http://localhost:5173
+- `npm run build` generate a production build in `dist/`
 
 ## Formatting
 
 We recommend integrating `elm-format@0.8.3` into your code editor, but if you don't...
-- Please run `yarn format` to format `.elm` files in `src` before committing code.
+- Please run `npm run format` to format `.elm` files in `src` before committing code.
 
 ## Testing
 
 We're using elm-test-rs(https://github.com/mpizenberg/elm-test-rs) to run [elm tests](https://github.com/elm-explorations/test/)
 
--  run tests with `yarn test`
+-  run tests with `npm test`
 
 ## Code & configs
 
-### This site is built with `elm-pages`
+### This site is built with `Elm` and bundled by `Vite`
 
-- [Documentation site](https://elm-pages.com)
-- [Elm Package docs](https://package.elm-lang.org/packages/dillonkearns/elm-pages/latest/)
-- [`elm-pages` blog](https://elm-pages.com/blog)
+- [Elm's official homepage](https://elm-lang.org/).
+- [Elm Package docs](https://package.elm-lang.org/)
+- [Vite's official documentation.](https://vitejs.dev/)
+- [Vite static asset handling](https://package.elm-lang.org/packages/hmsk/elm-vite-plugin-helper/latest/)
 
 ### What it's for
 
 - `elm.json` for elm packages used for site
 - `elm-tooling.json` for elm packages used for code
 - `package.json` for node scripts and packages
-- `yarn.lock` for current versions of node packages
+- `package-lock.json` for current versions of node packages
 - `.nvmrc` contains project node version
+- `vite.config.js` for build config
 - `.netlify.toml` for deploy config
 - `tests/*` contains test files
-- `public/*` contains static files to be copied direct to build
 - `src/*` contains app source files
 
 ### Content & Pages
