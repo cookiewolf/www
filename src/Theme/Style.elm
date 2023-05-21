@@ -1,4 +1,4 @@
-module Theme.Style exposing (containerContent, containerPage, generateId, globalStyles, gridStyle, maxMobile, oneColumn, pageHeadingStyle, threeColumn, twoColumn, verticalSpacing, white, withMediaDesktop, withMediaLargeDevice, withMediaTablet)
+module Theme.Style exposing (containerContent, globalStyles, gridStyle, maxMobile, oneColumn, pageHeadingStyle, threeColumn, twoColumn, verticalSpacing, white, withMediaDesktop, withMediaLargeDevice, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)
@@ -97,15 +97,6 @@ globalStyles =
         ]
 
 
-containerPage : String -> List (Html msg) -> Html msg
-containerPage pageTitle content =
-    div
-        [ id ("page-" ++ generateId pageTitle)
-        , css [ margin2 zero auto, maxWidth (px 1200), width (pct 100) ]
-        ]
-        content
-
-
 containerContent : List (Html msg) -> Html msg
 containerContent children =
     div [ css [ margin2 zero auto, maxWidth (px 800), width (pct 100) ] ] children
@@ -162,12 +153,3 @@ pageHeadingStyle =
         , withMediaDesktop
             [ fontSize (rem 2.5) ]
         ]
-
-
-
--- Helpers
-
-
-generateId : String -> String
-generateId input =
-    String.trim (String.replace " " "-" (String.toLower input))

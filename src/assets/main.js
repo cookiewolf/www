@@ -1,5 +1,5 @@
 import "./style.css";
-import { Elm } from "./src/Main.elm";
+import { Elm } from "../Main.elm";
 
 if (process.env.NODE_ENV === "development") {
     const ElmDebugTransform = await import("elm-debug-transformer")

@@ -83,4 +83,4 @@ view : Model -> Html Msg
 view model =
     case model.page of
         Index ->
-            Theme.View.viewPageWrapper (Page.Index.view model)
+            Theme.View.viewPageWrapper SiteTitle (Page.Index.view model)
