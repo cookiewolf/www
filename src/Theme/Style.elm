@@ -1,4 +1,4 @@
-module Theme.Style exposing (containerContent, globalStyles, gridStyle, maxMobile, oneColumn, pageHeadingStyle, threeColumn, twoColumn, verticalSpacing, white, withMediaDesktop, withMediaLargeDevice, withMediaTablet)
+module Theme.Style exposing (globalStyles, gridStyle, maxMobile, oneColumn, threeColumn, twoColumn, verticalSpacing, white, withMediaLargeDevice, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)
@@ -17,8 +17,6 @@ white =
 
 
 
--- Accent colours
--- Text and background colours
 -- Breakpoints
 
 
@@ -29,17 +27,12 @@ maxMobile =
 
 withMediaTablet : List Style -> Style
 withMediaTablet =
-    withMedia [ only screen [ Media.minWidth (px maxMobile), Media.maxWidth (px maxTablet) ] ]
+    withMedia [ only screen [ Media.minWidth (px maxMobile) ] ]
 
 
 maxTablet : Float
 maxTablet =
     769
-
-
-withMediaDesktop : List Style -> Style
-withMediaDesktop =
-    withMedia [ only screen [ Media.minWidth (px maxTablet) ] ]
 
 
 maxLargeDevice : Float
@@ -66,13 +59,17 @@ globalStyles =
             , fontWeight (int 400)
             ]
         , typeSelector "h1"
-            [ fontFamilies [ "Chau Philomene One", sansSerif.value ]
+            [ fontFamilies
+                [ "Chau Philomene One", sansSerif.value ]
+            , fontSize (rem 3)
             ]
         , typeSelector "h2"
-            [--color blue
+            [ --color blue
+              fontSize (rem 2.2)
             ]
         , typeSelector "h3"
-            [--color blue
+            [ --color blue
+              fontSize (rem 1.8)
             ]
         , typeSelector "h4"
             [--color blue
@@ -95,11 +92,6 @@ globalStyles =
                 ]
             ]
         ]
-
-
-containerContent : List (Html msg) -> Html msg
-containerContent children =
-    div [ css [ margin2 zero auto, maxWidth (px 800), width (pct 100) ] ] children
 
 
 gridStyle : Style
@@ -137,19 +129,3 @@ threeColumn =
 verticalSpacing : Float -> Html msg
 verticalSpacing num =
     div [ css [ margin2 (rem num) zero ] ] []
-
-
-{-| For a top header, likely an h1
--}
-pageHeadingStyle : Style
-pageHeadingStyle =
-    batch
-        [ fontSize (rem 1.8)
-        , outline none
-        , padding2 (rem 2) zero
-        , textAlign center
-        , withMediaTablet
-            [ fontSize (rem 2.5) ]
-        , withMediaDesktop
-            [ fontSize (rem 2.5) ]
-        ]
