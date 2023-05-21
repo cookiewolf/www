@@ -1,4 +1,4 @@
-module Theme exposing (containerContent, containerPage, generateId, globalStyles, gridStyle, maxMobile, oneColumn, pageHeadingStyle, threeColumn, twoColumn, verticalSpacing, white, withMediaDesktop, withMediaLargeDevice, withMediaTablet)
+module Theme.Style exposing (containerContent, containerPage, generateId, globalStyles, gridStyle, maxMobile, oneColumn, pageHeadingStyle, threeColumn, twoColumn, verticalSpacing, white, withMediaDesktop, withMediaLargeDevice, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)

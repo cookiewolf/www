@@ -1,30 +1,26 @@
-module View exposing (View, map, placeholder)
+module HelloWorld exposing (helloWorld)
 
-import Html.Styled exposing (Html, div, h1, text)
-import Html.Styled.Attributes exposing (css, id)
-import Theme
-
-
-type alias View msg =
-    { title : String
-    , body : List (Html msg)
-    }
+import Html exposing (Html, a, button, code, div, h1, p, text)
+import Html.Attributes exposing (href)
+import Html.Events exposing (onClick)
+import Msg exposing (Msg(..))
 
 
-map : (msg1 -> msg2) -> View msg1 -> View msg2
-map fn doc =
-    { title = doc.title
-    , body = List.map (Html.Styled.map fn) doc.body
-    }
-
-
-placeholder : String -> View msg
-placeholder moduleName =
-    { title = "Placeholder - " ++ moduleName
-    , body =
-        [ h1
-            [ css [ Theme.pageHeadingStyle ]
+helloWorld : Int -> Html Msg
+helloWorld model =
+    div []
+        [ h1 [] [ text "Hello, Vite + Elm!" ]
+        , p []
+            [ a [ href "https://vitejs.dev/guide/features.html" ] [ text "Vite Documentation" ]
+            , text " | "
+            , a [ href "https://guide.elm-lang.org/" ] [ text "Elm Documentation" ]
             ]
-            [ text moduleName ]
+        , button [ onClick Increment ] [ text "+" ]
+        , text <| "Count is: " ++ String.fromInt model
+        , button [ onClick Decrement ] [ text "-" ]
+        , p []
+            [ text "Edit "
+            , code [] [ text "src/Main.elm" ]
+            , text " to test auto refresh"
+            ]
         ]
-    }
