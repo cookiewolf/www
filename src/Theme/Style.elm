@@ -1,4 +1,4 @@
-module Theme.Style exposing (globalStyles, gridStyle, maxMobile, oneColumn, threeColumn, twoColumn, verticalSpacing, white, withMediaLargeDevice, withMediaTablet)
+module Theme.Style exposing (blue, globalStyles, gridStyle, maxMobile, oneColumn, threeColumn, twoColumn, verticalSpacing, white, withMediaLargeDevice, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)
@@ -13,7 +13,27 @@ import Html.Styled.Attributes exposing (css, id)
 
 white : Color
 white =
-    hex "FFFFFF"
+    hex "EDF7F6"
+
+
+brown : { light : Color, dark : Color }
+brown =
+    { light = hex "DED6D1", dark = hex "483b33" }
+
+
+pink : Color
+pink =
+    hex "EEC6CA"
+
+
+blue : { light : Color, dark : Color }
+blue =
+    { light = hex "2660A4", dark = hex "0D1B3E" }
+
+
+orange : Color
+orange =
+    hex "F19953"
 
 
 
@@ -53,19 +73,22 @@ globalStyles =
     global
         [ typeSelector "body"
             [ backgroundColor white
-
-            --, color
+            , color brown.dark
             , fontFamilies [ "sono", sansSerif.value ]
             , fontWeight (int 400)
             ]
         , typeSelector "h1"
-            [ fontFamilies
+            [ color blue.light
+            , fontFamilies
                 [ "Chau Philomene One", sansSerif.value ]
             , fontSize (rem 3)
             ]
         , typeSelector "h2"
-            [ --color blue
-              fontSize (rem 2.2)
+            [ color blue.light
+            , fontFamilies
+                [ "Chau Philomene One", sansSerif.value ]
+            , fontSize (rem 2.2)
+            , paddingTop (rem 2)
             ]
         , typeSelector "h3"
             [ --color blue

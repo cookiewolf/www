@@ -7,7 +7,10 @@ type Key
       --- Site Meta
     | IndexPageMetaTitle
     | IndexPageMetaDescription
-    | WhatWeDo
-    | WhoWeAre
+    | Strapline
+    | WhatWeDoH2
+    | WhatWeDoP
+    | WhoWeAreH2
+    | WhoWeAreP
     | WhatWeBelieve
     | HowToContactUs

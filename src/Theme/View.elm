@@ -6,7 +6,7 @@ import Css exposing (..)
 import Html.Styled exposing (Html, div, h1, img, text)
 import Html.Styled.Attributes exposing (css, id, src, style)
 import Msg exposing (Msg)
-import Theme.Style exposing (globalStyles, withMediaTablet)
+import Theme.Style exposing (blue, globalStyles, withMediaTablet)
 import VitePluginHelper
 
 
@@ -23,7 +23,10 @@ viewPageHeader : Html Msg
 viewPageHeader =
     div [ css [ pageHeaderStyle ] ]
         [ img [ src <| VitePluginHelper.asset "/src/assets/logo.png", css [ logoImageStyle ] ] []
-        , h1 [ css [ headingStyle ] ] [ text (t SiteTitle) ]
+        , div []
+            [ h1 [ css [ headingStyle ] ] [ text (t SiteTitle) ]
+            , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
+            ]
         ]
 
 
@@ -50,19 +53,28 @@ pageHeaderStyle =
 headingStyle : Style
 headingStyle =
     batch
-        [ fontSize (rem 3)
+        [ color blue.dark
+        , fontSize (rem 2.6)
         , outline none
-        , padding2 (rem 2) zero
+        , padding zero
         , textAlign center
         , withMediaTablet
             [ fontSize (rem 4.2) ]
         ]
 
 
+straplineStyle : Style
+straplineStyle =
+    batch
+        [ fontWeight bold
+        , textAlign center
+        ]
+
+
 logoImageStyle : Style
 logoImageStyle =
     batch
-        [ width (px 110)
+        [ width (px 140)
         , withMediaTablet [ width (px 150) ]
         ]
 
