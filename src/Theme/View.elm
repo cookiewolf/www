@@ -23,7 +23,10 @@ viewPageHeader : Html Msg
 viewPageHeader =
     div [ css [ pageHeaderStyle ] ]
         [ img [ src <| VitePluginHelper.asset "/src/assets/logo.png", css [ logoImageStyle ] ] []
-        , h1 [ css [ headingStyle ] ] [ text (t SiteTitle) ]
+        , div []
+            [ h1 [ css [ headingStyle ] ] [ text (t SiteTitle) ]
+            , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
+            ]
         ]
 
 
@@ -51,19 +54,27 @@ headingStyle : Style
 headingStyle =
     batch
         [ color blue.dark
-        , fontSize (rem 3)
+        , fontSize (rem 2.6)
         , outline none
-        , padding2 (rem 2) zero
+        , padding zero
         , textAlign center
         , withMediaTablet
             [ fontSize (rem 4.2) ]
         ]
 
 
+straplineStyle : Style
+straplineStyle =
+    batch
+        [ fontWeight bold
+        , textAlign center
+        ]
+
+
 logoImageStyle : Style
 logoImageStyle =
     batch
-        [ width (px 110)
+        [ width (px 140)
         , withMediaTablet [ width (px 150) ]
         ]
 

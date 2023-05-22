@@ -88,6 +88,7 @@ globalStyles =
             , fontFamilies
                 [ "Chau Philomene One", sansSerif.value ]
             , fontSize (rem 2.2)
+            , paddingTop (rem 2)
             ]
         , typeSelector "h3"
             [ --color blue

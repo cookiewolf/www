@@ -23,6 +23,9 @@ t key =
         IndexPageMetaDescription ->
             "Cookiewolf builds digital tools."
 
+        Strapline ->
+            "Building useful stuff online, together"
+
         WhatWeDoH2 ->
             "What we do"
 
