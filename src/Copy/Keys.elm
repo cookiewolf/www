@@ -12,5 +12,9 @@ type Key
     | WhatWeDoP
     | WhoWeAreH2
     | WhoWeAreP
-    | WhatWeBelieve
-    | HowToContactUs
+    | WhatWeBelieveH2
+    | WhatWeBelieveP
+    | HowMuchWeCostH2
+    | HowMuchWeCostP
+    | HowToContactUsH2
+    | HowToContactUsP
