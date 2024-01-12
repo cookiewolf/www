@@ -42,7 +42,7 @@ t key =
             "What we believe"
 
         WhatWeBelieveP ->
-            "Collaboration and training is at the core of what we deliver.We work with you to feel confident about maintaining the tools we build together. We are founders of [Code Reading Club](https://codereading.club), putting reading skills at the forefront of a professional programmer's priorities. We foster a learning culture, allowing for everyone to do things at their own pace and with the support they need."
+            "Collaboration and training is at the core of what we deliver. We work with you to feel confident about maintaining the tools we build together. We are founders of [Code Reading Club](https://codereading.club), putting reading skills at the forefront of a professional programmer's priorities. We foster a learning culture, allowing for everyone to do things at their own pace and with the support they need."
 
         HowMuchWeCostH2 ->
             "What we cost"
