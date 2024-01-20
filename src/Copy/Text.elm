@@ -11,7 +11,7 @@ t : Key -> String
 t key =
     case key of
         SiteUrl ->
-            "https://cookiewolf.org"
+            "https://cookiewolf.co.uk"
 
         SiteTitle ->
             "Cookiewolf"
@@ -48,10 +48,18 @@ t key =
             "What we cost"
 
         HowMuchWeCostP ->
-            "We charge £350 for a day of our time. We are happy to negotiate if your job is very small or very big."
+            "We work with you to make the most of your budget."
+
+        HowMuchWeCostUl ->
+            """
+- up to £1,000
+- £5,000
+- £20,000
+- £60,000 +
+            """
 
         HowToContactUsH2 ->
             "How to contact us"
 
         HowToContactUsP ->
-            "[hello@cookiewolf.org](mailto:hello@cookiewolf.org)"
+            "[hello@cookiewolf.co.uk](mailto:hello@cookiewolf.co.uk)"

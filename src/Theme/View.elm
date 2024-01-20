@@ -1,10 +1,11 @@
-module Theme.View exposing (viewPageWrapper)
+module Theme.View exposing (markdownToHtml, viewPageWrapper)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
 import Html.Styled exposing (Html, div, h1, img, text)
 import Html.Styled.Attributes exposing (css, id, src, style)
+import Markdown
 import Msg exposing (Msg)
 import Theme.Style exposing (blue, globalStyles, withMediaTablet)
 import VitePluginHelper
@@ -33,7 +34,7 @@ viewPageHeader =
 pagewrapperStyle : Style
 pagewrapperStyle =
     batch
-        [ margin2 zero auto
+        [ margin4 zero auto (px 50) auto
         , maxWidth (px 800)
         , width (pct 100)
         ]
@@ -96,3 +97,9 @@ containerStyle =
 generateId : String -> String
 generateId input =
     String.trim (String.replace " " "-" (String.toLower input))
+
+
+markdownToHtml : String -> Html msg
+markdownToHtml text =
+    Markdown.toHtml [] text
+        |> Html.Styled.fromUnstyled

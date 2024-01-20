@@ -16,5 +16,6 @@ type Key
     | WhatWeBelieveP
     | HowMuchWeCostH2
     | HowMuchWeCostP
+    | HowMuchWeCostUl
     | HowToContactUsH2
     | HowToContactUsP
