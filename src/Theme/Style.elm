@@ -97,6 +97,15 @@ globalStyles =
         , typeSelector "h4"
             [--color blue
             ]
+        , typeSelector "a"
+            [ borderBottom3 (px 2) solid orange
+            , color blue.dark
+            , textDecoration none
+            , hover
+                [ color blue.light
+                , fontWeight (int 700)
+                ]
+            ]
         , typeSelector "b"
             [ fontWeight (int 700)
             ]
