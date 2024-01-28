@@ -4,7 +4,7 @@ import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
 import Html.Styled exposing (Html, div, h1, img, text)
-import Html.Styled.Attributes exposing (css, id, src, style)
+import Html.Styled.Attributes exposing (alt, css, id, src, style)
 import Markdown
 import Msg exposing (Msg)
 import Theme.Style exposing (blue, globalStyles, withMediaTablet)
@@ -17,13 +17,19 @@ viewPageWrapper pageTitle pageContent =
         [ globalStyles
         , viewPageHeader
         , div [ css [ containerStyle ] ] [ pageContent ]
+        , viewPageFooter
         ]
 
 
 viewPageHeader : Html Msg
 viewPageHeader =
     div [ css [ pageHeaderStyle ] ]
-        [ img [ src <| VitePluginHelper.asset "/src/assets/logo.png", css [ logoImageStyle ] ] []
+        [ img
+            [ src (VitePluginHelper.asset "/src/assets/logo.png")
+            , alt ""
+            , css [ logoImageStyle ]
+            ]
+            []
         , div []
             [ h1 [ css [ headingStyle ] ] [ text (t SiteTitle) ]
             , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
@@ -31,10 +37,15 @@ viewPageHeader =
         ]
 
 
+viewPageFooter : Html Msg
+viewPageFooter =
+    div [ css [ footerStyle ] ] [ text "Cookiewolf Ltd is registered in England & Wales (No. 13865007)" ]
+
+
 pagewrapperStyle : Style
 pagewrapperStyle =
     batch
-        [ margin4 zero auto (px 50) auto
+        [ margin4 zero auto (rem 0.5) auto
         , maxWidth (px 800)
         , width (pct 100)
         ]
@@ -87,6 +98,15 @@ containerStyle =
         , maxWidth (px 800)
         , padding2 zero (rem 1)
         , width (pct 100)
+        ]
+
+
+footerStyle : Style
+footerStyle =
+    batch
+        [ fontSize (rem 0.75)
+        , paddingTop (rem 2)
+        , textAlign center
         ]
 
 
