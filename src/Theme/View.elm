@@ -39,7 +39,7 @@ viewPageHeader =
 
 viewPageFooter : Html Msg
 viewPageFooter =
-    div [ css [ footerStyle ] ] [ text "Cookiewolf Ltd is registered in England & Wales (No. 13865007)" ]
+    div [ css [ footerStyle ] ] [ text (t SiteFooter) ]
 
 
 pagewrapperStyle : Style

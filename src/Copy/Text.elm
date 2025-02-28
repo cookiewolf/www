@@ -11,17 +11,20 @@ t : Key -> String
 t key =
     case key of
         SiteUrl ->
-            "https://cookiewolf.co.uk"
+            "https://cookiewolf.coop"
 
         SiteTitle ->
-            "Cookiewolf"
+            "Cookiewolf Co-op"
+
+        SiteFooter ->
+            "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
 
         --- Site Meta
         IndexPageMetaTitle ->
             "Home"
 
         IndexPageMetaDescription ->
-            "Cookiewolf builds digital tools in collaboration with you."
+            "Cookiewolf Co-op builds digital tools in collaboration with you."
 
         Strapline ->
             "Building useful stuff online, together"
@@ -66,4 +69,4 @@ We are founders of [Code Reading Club CIC](https://codereading.club), putting re
             "How to contact us"
 
         HowToContactUsP ->
-            "[hello@cookiewolf.co.uk](mailto:hello@cookiewolf.co.uk)"
+            "[hello@cookiewolf.coop](mailto:hello@cookiewolf.coop)"

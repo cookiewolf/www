@@ -4,6 +4,7 @@ module Copy.Keys exposing (Key(..))
 type Key
     = SiteTitle
     | SiteUrl
+    | SiteFooter
       --- Site Meta
     | IndexPageMetaTitle
     | IndexPageMetaDescription
