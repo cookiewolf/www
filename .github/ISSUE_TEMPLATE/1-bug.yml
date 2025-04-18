@@ -6,8 +6,7 @@ projects: ["cookiewolf/projects/2"]
 body:
   - type: markdown
     attributes:
-      value: |
-        Thanks for letting us know you noticed something unexpected
+      value: Thanks for letting us know you noticed something unexpected
   - type: input
     id: contact
     attributes:
