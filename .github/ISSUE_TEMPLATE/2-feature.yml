@@ -1,6 +1,5 @@
 name: Feature request
 description: Request a new feature
-title: ""
 labels: ["triage","backlog"]
 body:
   - type: markdown
