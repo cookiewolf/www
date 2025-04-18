@@ -19,4 +19,4 @@ body:
     attributes:
       label: Acceptance Criteria
       description: Make a list of what done would look like
-      value: "- [] I can... "
+      value: "- [ ] I can... "
