@@ -13,7 +13,6 @@ body:
       label: User story
       description: Let us know what you need to be able to do and why
       placeholder: And show us what you mean with an image if you can
-      value: ""
     validations:
       required: true
   - type: textarea
