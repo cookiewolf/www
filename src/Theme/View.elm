@@ -4,7 +4,7 @@ import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
 import Html.Styled exposing (Html, div, h1, img, text)
-import Html.Styled.Attributes exposing (alt, css, id, src, style)
+import Html.Styled.Attributes exposing (alt, css, id, src)
 import Markdown
 import Msg exposing (Msg)
 import Theme.Style exposing (blue, globalStyles, withMediaTablet)
