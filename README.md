@@ -1,9 +1,9 @@
-# www.cookiewolf.org
+# www.cookiewolf.coop
 
 ## Website for cookiewolf ltd
 
--  Staging URL: https://cookiewolf.netlify.app
--  Production URL: https://cookiewolf.org
+-  Staging URL: https://staging--cookiewolf.netlify.app
+-  Production URL: https://cookiewolf.coop
 
 # Development
 
@@ -67,7 +67,8 @@ We're using elm-test-rs(https://github.com/mpizenberg/elm-test-rs) to run [elm t
 Deploys to Netlify
 
 -  code is tested and linted automatically before deploy
--  when a pull request is created, a preview site is deployed
+-  when code is merged to `staging` it is deployed on [staging](https://staging--cookiewolf.netlify.app)
+-  when a pull request is created against `main`, a preview site is deployed
 -  when a pull request is merged into `main`, the production site is deployed
 
 ## Development workflow
