@@ -3,7 +3,7 @@ module Theme.View exposing (markdownToHtml, viewPageWrapper)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, div, h1, img, text)
+import Html.Styled exposing (Html, div, h1, h2, img, p, text)
 import Html.Styled.Attributes exposing (alt, css, id, src)
 import Markdown
 import Msg exposing (Msg)
@@ -39,7 +39,11 @@ viewPageHeader =
 
 viewPageFooter : Html Msg
 viewPageFooter =
-    div [ css [ footerStyle ] ] [ text (t SiteFooter) ]
+    div [ css [ footerStyle ] ]
+        [ h2 [] [ text (t ContactUsH2) ]
+        , markdownToHtml (t ContactUsMarkdown)
+        , p [] [ text (t CompanyInformation) ]
+        ]
 
 
 pagewrapperStyle : Style

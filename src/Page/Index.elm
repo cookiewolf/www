@@ -2,7 +2,7 @@ module Page.Index exposing (view)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Html.Styled exposing (Html, div, h2, p, text)
+import Html.Styled exposing (Html, div, h2, text)
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Theme.View
@@ -12,14 +12,11 @@ view : Model -> Html Msg
 view _ =
     div []
         [ h2 [] [ text (t WhatWeDoH2) ]
-        , p [] [ text (t WhatWeDoP) ]
+        , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
+        , h2 [] [ text (t ThingsWeWorkOnH2) ]
+        , div [] [ text "[cCc] Case study list #23" ]
         , h2 [] [ text (t WhoWeAreH2) ]
-        , p [] [ text (t WhoWeAreP) ]
-        , h2 [] [ text (t WhatWeBelieveH2) ]
-        , Theme.View.markdownToHtml (t WhatWeBelieveP)
-        , h2 [] [ text (t HowMuchWeCostH2) ]
-        , p [] [ text (t HowMuchWeCostP) ]
-        , Theme.View.markdownToHtml (t HowMuchWeCostUl)
-        , h2 [] [ text (t HowToContactUsH2) ]
-        , Theme.View.markdownToHtml (t HowToContactUsP)
+        , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
+        , div [] [ text "[cCc] Who we are list #24" ]
+        , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
         ]

@@ -3,16 +3,13 @@ module Copy.Keys exposing (Key(..))
 
 type Key
     = SiteTitle
-    | SiteFooter
     | Strapline
     | WhatWeDoH2
-    | WhatWeDoP
+    | WhatWeDoMarkdown
+    | ThingsWeWorkOnH2
     | WhoWeAreH2
-    | WhoWeAreP
-    | WhatWeBelieveH2
-    | WhatWeBelieveP
-    | HowMuchWeCostH2
-    | HowMuchWeCostP
-    | HowMuchWeCostUl
-    | HowToContactUsH2
-    | HowToContactUsP
+    | WhoWeAreMarkdown1
+    | WhoWeAreMarkdown2
+    | ContactUsH2
+    | ContactUsMarkdown
+    | CompanyInformation
