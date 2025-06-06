@@ -10,9 +10,6 @@ import Copy.Keys exposing (Key(..))
 t : Key -> String
 t key =
     case key of
-        SiteUrl ->
-            "https://cookiewolf.coop"
-
         SiteTitle ->
             "Cookiewolf Co-op"
 
@@ -20,12 +17,6 @@ t key =
             "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
 
         --- Site Meta
-        IndexPageMetaTitle ->
-            "Home"
-
-        IndexPageMetaDescription ->
-            "Cookiewolf Co-op builds digital tools in collaboration with you."
-
         Strapline ->
             "Building useful stuff online, together"
 
