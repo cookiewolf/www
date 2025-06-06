@@ -11,53 +11,49 @@ t : Key -> String
 t key =
     case key of
         SiteTitle ->
-            "Cookiewolf Co-op"
-
-        SiteFooter ->
-            "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
+            "Cookiewolf"
 
         --- Site Meta
         Strapline ->
-            "Building useful stuff online, together"
+            "Building useful digital tools with you"
 
         WhatWeDoH2 ->
-            "What we do"
+            "What We Do"
 
-        WhatWeDoP ->
-            "We work with small organisations and people to discover, design and build the digital tools they need."
+        WhatWeDoMarkdown ->
+            """
+**Cookiewolf** is a cooperatively-run digital development and design studio. We work with organizations of all sizes.
+
+Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity, delivered on a limited budget.
+            """
 
         WhoWeAreH2 ->
             "Who we are"
 
-        WhoWeAreP ->
-            "We’re a collective of developers, designers, researchers and other folk who understand digital tools, small organisation goals, sustainability and creative thinking. Our solutions focus on accessibility and inclusivity as well as delivering on a limited budget."
-
-        WhatWeBelieveH2 ->
-            "What we believe"
-
-        WhatWeBelieveP ->
+        WhoWeAreMarkdown1 ->
             """
- Collaboration and training is at the core of what we deliver. We work with you to feel confident about maintaining the tools we build together.
-
-We are founders of [Code Reading Club CIC](https://codereading.club), putting reading skills at the forefront of a professional programmer's priorities. We foster a learning culture, allowing for everyone to do things at their own pace and with the support they need.
+An experienced group of developers, designers, writers, and other folk who’ve come together to form a collective. Cookiewolf Co-op reflects how we think businesses should be run, based in equity, flexibility and creative thinking.
             """
 
-        HowMuchWeCostH2 ->
-            "What we cost"
-
-        HowMuchWeCostP ->
-            "We work with you to make the most of your budget. We make sure enough time lapses between decisions to give us the most considered outcome."
-
-        HowMuchWeCostUl ->
+        WhoWeAreMarkdown2 ->
             """
-- **up to £1,000** (within a month) We can get you set up with a DIY solution or improve something you already have.
-- **£5,000** (over a few months) We can build a small app or help you put together a basic website.
-- **£20,000** (over 3-9 months) We can plan and prototype an idea you have and test it out or build a large website with a few bespoke features.
-- **£60,000 +** (up to a year or more) We can do some in depth explorations and try out a few ideas, continuously making improvements in order to reach the best solution.
+Our members’ award-winning work spans medium to large-scale projects with clients across the arts, third sector, B2B, social justice and retail sectors.
+
+[Meet the people behind Cookiewolf](/about-us)
             """
 
-        HowToContactUsH2 ->
-            "How to contact us"
+        ThingsWeWorkOnH2 ->
+            "Things We're Working On"
 
-        HowToContactUsP ->
-            "[hello@cookiewolf.coop](mailto:hello@cookiewolf.coop)"
+        ContactUsH2 ->
+            "Contact Us"
+
+        ContactUsMarkdown ->
+            """
+Got a project? Questions? Just want a chat? Email us at:
+
+[hello@cookiewolf.coop](mailto:hello@cookiewolf.coop)
+            """
+
+        CompanyInformation ->
+            "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
