@@ -30,7 +30,7 @@ main =
 
 
 init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
-init flags url key =
+init _ url key =
     let
         maybeRoute : Maybe Route
         maybeRoute =

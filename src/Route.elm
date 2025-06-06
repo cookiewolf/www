@@ -1,7 +1,7 @@
-module Route exposing (Route(..), fromUrl, toString)
+module Route exposing (Route(..), fromUrl)
 
 import Url
-import Url.Parser as Parser exposing ((</>), Parser, map, oneOf, s, string, top)
+import Url.Parser as Parser exposing (Parser, map, oneOf, top)
 
 
 type Route
@@ -12,13 +12,6 @@ fromUrl : Url.Url -> Maybe Route
 fromUrl url =
     url
         |> Parser.parse routeParser
-
-
-toString : Route -> String
-toString route =
-    case route of
-        Index ->
-            "/"
 
 
 routeParser : Parser (Route -> a) a
