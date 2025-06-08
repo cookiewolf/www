@@ -12,15 +12,17 @@ type
     | Strapline
     | Category ContentType
       -- Home
-    | WhatWeDoH2
+    | WhatWeDoHeading
     | WhatWeDoMarkdown
-    | ThingsWeWorkOnH2
-    | WhoWeAreH2
+    | ThingsWeWorkOnHeading
+    | WhoWeAreHeading
     | WhoWeAreMarkdown1
     | WhoWeAreMarkdown2
       -- Case Study
     | CaseStudySlug
+    | WhatWeDidHeading
+    | ResultsHeading
       -- Footer
-    | ContactUsH2
+    | ContactUsHeading
     | ContactUsMarkdown
     | CompanyInformation

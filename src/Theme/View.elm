@@ -40,7 +40,7 @@ viewPageHeader =
 viewPageFooter : Html Msg
 viewPageFooter =
     div [ css [ footerStyle ] ]
-        [ h2 [] [ text (t ContactUsH2) ]
+        [ h2 [] [ text (t ContactUsHeading) ]
         , markdownToHtml (t ContactUsMarkdown)
         , p [] [ text (t CompanyInformation) ]
         ]

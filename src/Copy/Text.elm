@@ -23,7 +23,7 @@ t key =
             )
                 ++ ":"
 
-        WhatWeDoH2 ->
+        WhatWeDoHeading ->
             "What We Do"
 
         WhatWeDoMarkdown ->
@@ -33,7 +33,7 @@ t key =
 Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity, delivered on a limited budget.
             """
 
-        WhoWeAreH2 ->
+        WhoWeAreHeading ->
             "Who we are"
 
         WhoWeAreMarkdown1 ->
@@ -48,10 +48,19 @@ Our members’ award-winning work spans medium to large-scale projects with clie
 [Meet the people behind Cookiewolf](/about-us)
             """
 
-        ThingsWeWorkOnH2 ->
+        ThingsWeWorkOnHeading ->
             "Things We're Working On"
 
-        ContactUsH2 ->
+        CaseStudySlug ->
+            "case-study"
+
+        WhatWeDidHeading ->
+            "What We Did"
+
+        ResultsHeading ->
+            "The Results"
+
+        ContactUsHeading ->
             "Contact Us"
 
         ContactUsMarkdown ->
@@ -63,6 +72,3 @@ Got a project? Questions? Just want a chat? Email us at:
 
         CompanyInformation ->
             "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
-
-        CaseStudySlug ->
-            "case-study"
