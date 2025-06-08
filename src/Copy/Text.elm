@@ -1,6 +1,6 @@
 module Copy.Text exposing (t)
 
-import Copy.Keys exposing (Key(..))
+import Copy.Keys exposing (ContentType(..), Key(..))
 
 
 
@@ -13,9 +13,15 @@ t key =
         SiteTitle ->
             "Cookiewolf"
 
-        --- Site Meta
         Strapline ->
             "Building useful digital tools with you"
+
+        Category contentType ->
+            (case contentType of
+                CaseStudy ->
+                    "Case Study"
+            )
+                ++ ":"
 
         WhatWeDoH2 ->
             "What We Do"
@@ -57,3 +63,6 @@ Got a project? Questions? Just want a chat? Email us at:
 
         CompanyInformation ->
             "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
+
+        CaseStudySlug ->
+            "case-study"

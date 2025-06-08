@@ -11,9 +11,9 @@ import Theme.Style exposing (blue, globalStyles, withMediaTablet)
 import VitePluginHelper
 
 
-viewPageWrapper : Key -> Html Msg -> Html Msg
+viewPageWrapper : String -> Html Msg -> Html Msg
 viewPageWrapper pageTitle pageContent =
-    div [ id ("page-" ++ generateId (t pageTitle)), css [ pagewrapperStyle ] ]
+    div [ id ("page-" ++ generateId pageTitle), css [ pagewrapperStyle ] ]
         [ globalStyles
         , viewPageHeader
         , div [ css [ containerStyle ] ] [ pageContent ]

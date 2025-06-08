@@ -1,11 +1,14 @@
-module Route exposing (Route(..), fromUrl)
+module Route exposing (Route(..), fromUrl, toString)
 
+import Copy.Keys exposing (Key(..))
+import Copy.Text exposing (t)
 import Url
-import Url.Parser as Parser exposing (Parser, map, oneOf, top)
+import Url.Parser as Parser exposing ((</>), Parser, map, oneOf, s, string, top)
 
 
 type Route
     = Index
+    | CaseStudy String
 
 
 fromUrl : Url.Url -> Maybe Route
@@ -14,8 +17,19 @@ fromUrl url =
         |> Parser.parse routeParser
 
 
+toString : Route -> String
+toString route =
+    case route of
+        Index ->
+            "/"
+
+        CaseStudy slug ->
+            "/" ++ t CaseStudySlug ++ "/" ++ slug
+
+
 routeParser : Parser (Route -> a) a
 routeParser =
     oneOf
         [ map Index top
+        , map CaseStudy (s (t CaseStudySlug) </> string)
         ]

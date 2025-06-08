@@ -2,11 +2,13 @@ module Main exposing (main)
 
 import Browser
 import Browser.Navigation
+import Copy.CaseStudy
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Html.Styled exposing (Html, toUnstyled)
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import Page.CaseStudy
 import Page.Index
 import Route exposing (Route(..))
 import Theme.View
@@ -83,4 +85,12 @@ view : Model -> Html Msg
 view model =
     case model.page of
         Index ->
-            Theme.View.viewPageWrapper SiteTitle (Page.Index.view model)
+            Theme.View.viewPageWrapper (t SiteTitle) (Page.Index.view model)
+
+        CaseStudy slug ->
+            let
+                caseStudy =
+                    Copy.CaseStudy.caseStudyIdFromSlug slug
+                        |> Copy.CaseStudy.caseStudyFromId
+            in
+            Theme.View.viewPageWrapper caseStudy.title (Page.CaseStudy.view model caseStudy)
