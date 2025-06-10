@@ -7,7 +7,7 @@ import Html.Styled exposing (Html, div, h1, h2, img, p, text)
 import Html.Styled.Attributes exposing (alt, css, id, src)
 import Markdown
 import Msg exposing (Msg)
-import Theme.Style exposing (blue, globalStyles, withMediaTablet)
+import Theme.Style exposing (globalStyles, green, withMediaTablet)
 import VitePluginHelper
 
 
@@ -69,7 +69,7 @@ pageHeaderStyle =
 headingStyle : Style
 headingStyle =
     batch
-        [ color blue.dark
+        [ color green.dark
         , fontSize (rem 2.6)
         , outline none
         , padding zero
