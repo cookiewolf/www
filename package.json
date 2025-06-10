@@ -17,8 +17,7 @@
     "vite-plugin-elm": "^3.0.1"
   },
   "dependencies": {
-    "@fontsource/chau-philomene-one": "^5.2.5",
-    "@fontsource/sono": "^5.2.5",
+    "@fontsource/poppins": "^5.2.6",
     "elm-debug-transformer": "^1.2.1"
   }
 }

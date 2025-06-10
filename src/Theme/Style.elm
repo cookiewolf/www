@@ -53,28 +53,8 @@ globalStyles =
         [ typeSelector "body"
             [ backgroundColor white
             , color brown.dark
-            , fontFamilies [ "sono", sansSerif.value ]
+            , fontFamilies [ "Poppins", sansSerif.value ]
             , fontWeight (int 400)
-            ]
-        , typeSelector "h1"
-            [ color blue.light
-            , fontFamilies
-                [ "Chau Philomene One", sansSerif.value ]
-            , fontSize (rem 3)
-            ]
-        , typeSelector "h2"
-            [ color blue.light
-            , fontFamilies
-                [ "Chau Philomene One", sansSerif.value ]
-            , fontSize (rem 2.2)
-            , paddingTop (rem 2)
-            ]
-        , typeSelector "h3"
-            [ --color blue
-              fontSize (rem 1.8)
-            ]
-        , typeSelector "h4"
-            [--color blue
             ]
         , typeSelector "a"
             [ borderBottom3 (px 2) solid orange
