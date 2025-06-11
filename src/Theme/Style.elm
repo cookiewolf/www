@@ -1,4 +1,4 @@
-module Theme.Style exposing (blue, globalStyles, withMediaTablet)
+module Theme.Style exposing (globalStyles, green, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)
@@ -12,22 +12,17 @@ import Html.Styled exposing (Html)
 
 white : Color
 white =
-    hex "EDF7F6"
+    hex "FFFFFF"
 
 
-brown : { light : Color, dark : Color }
-brown =
-    { light = hex "DED6D1", dark = hex "483b33" }
+green : { light : Color, mid : Color, dark : Color }
+green =
+    { light = hex "E6F6F0", mid = hex "8EBFAD", dark = hex "0F3729" }
 
 
-blue : { light : Color, dark : Color }
-blue =
-    { light = hex "2660A4", dark = hex "0D1B3E" }
-
-
-orange : Color
-orange =
-    hex "F19953"
+pink : { light : Color, mid : Color, dark : Color }
+pink =
+    { light = hex "FFF0FD", mid = hex "EEC5E8", dark = hex "AF1495" }
 
 
 
@@ -52,36 +47,17 @@ globalStyles =
     global
         [ typeSelector "body"
             [ backgroundColor white
-            , color brown.dark
-            , fontFamilies [ "sono", sansSerif.value ]
+            , color green.dark
+            , fontFamilies [ "Poppins", sansSerif.value ]
             , fontWeight (int 400)
             ]
-        , typeSelector "h1"
-            [ color blue.light
-            , fontFamilies
-                [ "Chau Philomene One", sansSerif.value ]
-            , fontSize (rem 3)
-            ]
-        , typeSelector "h2"
-            [ color blue.light
-            , fontFamilies
-                [ "Chau Philomene One", sansSerif.value ]
-            , fontSize (rem 2.2)
-            , paddingTop (rem 2)
-            ]
-        , typeSelector "h3"
-            [ --color blue
-              fontSize (rem 1.8)
-            ]
-        , typeSelector "h4"
-            [--color blue
-            ]
         , typeSelector "a"
-            [ borderBottom3 (px 2) solid orange
-            , color blue.dark
+            [ borderBottom3 (px 1.5) dotted pink.dark
+            , color pink.dark
             , textDecoration none
             , hover
-                [ color blue.light
+                [ borderBottom3 (px 2) dotted pink.dark
+                , color pink.dark
                 , fontWeight (int 700)
                 ]
             ]
