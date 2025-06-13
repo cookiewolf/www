@@ -11,9 +11,9 @@ import Theme.Style exposing (globalStyles, green, withMediaTablet)
 import VitePluginHelper
 
 
-viewPageWrapper : Key -> Html Msg -> Html Msg
+viewPageWrapper : String -> Html Msg -> Html Msg
 viewPageWrapper pageTitle pageContent =
-    div [ id ("page-" ++ generateId (t pageTitle)), css [ pagewrapperStyle ] ]
+    div [ id ("page-" ++ generateId pageTitle), css [ pagewrapperStyle ] ]
         [ globalStyles
         , viewPageHeader
         , div [ css [ containerStyle ] ] [ pageContent ]
@@ -40,7 +40,7 @@ viewPageHeader =
 viewPageFooter : Html Msg
 viewPageFooter =
     div [ css [ footerStyle ] ]
-        [ h2 [] [ text (t ContactUsH2) ]
+        [ h2 [] [ text (t ContactUsHeading) ]
         , markdownToHtml (t ContactUsMarkdown)
         , p [] [ text (t CompanyInformation) ]
         ]
