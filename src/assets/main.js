@@ -1,6 +1,7 @@
 import './reset.css';
 import { Elm } from '../Main.elm';
-import '@fontsource/poppins';
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/800.css';
 
 if (process.env.NODE_ENV === 'development') {
   const ElmDebugTransform = await import('elm-debug-transformer');
