@@ -3,11 +3,11 @@ module Theme.View exposing (markdownToHtml, viewPageWrapper)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, div, h1, h2, img, p, text)
-import Html.Styled.Attributes exposing (alt, css, id, src)
+import Html.Styled exposing (Html, a, div, h2, header, p, text)
+import Html.Styled.Attributes exposing (css, href, id)
 import Markdown
 import Msg exposing (Msg)
-import Theme.Style exposing (globalStyles, green, withMediaTablet)
+import Theme.Style exposing (black, globalStyles, green, white, withMediaTablet)
 import VitePluginHelper
 
 
@@ -23,17 +23,9 @@ viewPageWrapper pageTitle pageContent =
 
 viewPageHeader : Html Msg
 viewPageHeader =
-    div [ css [ pageHeaderStyle ] ]
-        [ img
-            [ src (VitePluginHelper.asset "/src/assets/logo.png")
-            , alt ""
-            , css [ logoImageStyle ]
-            ]
-            []
-        , div []
-            [ h1 [ css [ headingStyle ] ] [ text (t SiteTitle) ]
-            , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
-            ]
+    header [ css [ pageHeaderStyle ] ]
+        [ a [ css [ headingStyle ], href "/" ] [ text (t SiteTitle) ]
+        , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
         ]
 
 
@@ -50,7 +42,7 @@ pagewrapperStyle : Style
 pagewrapperStyle =
     batch
         [ margin4 zero auto (rem 0.5) auto
-        , maxWidth (px 800)
+        , maxWidth (px 1000)
         , width (pct 100)
         ]
 
@@ -59,21 +51,26 @@ pageHeaderStyle : Style
 pageHeaderStyle =
     batch
         [ alignItems center
+        , backgroundImage (url (VitePluginHelper.asset "/src/assets/background.jpg"))
+        , backgroundPosition center
+        , backgroundSize cover
         , displayFlex
+        , flexDirection column
         , justifyContent center
-        , padding2 zero (rem 1)
-        , withMediaTablet [ justifyContent end ]
+        , padding (rem 3)
         ]
 
 
 headingStyle : Style
 headingStyle =
     batch
-        [ color green.dark
+        [ color white
         , fontSize (rem 2.6)
+        , fontWeight (int 700)
         , outline none
         , padding zero
         , textAlign center
+        , textTransform uppercase
         , withMediaTablet
             [ fontSize (rem 4.2) ]
         ]
@@ -82,16 +79,11 @@ headingStyle =
 straplineStyle : Style
 straplineStyle =
     batch
-        [ fontWeight bold
+        [ backgroundColor green.mid
+        , color black
+        , fontWeight bold
+        , padding2 (rem 0.1) (rem 0.5)
         , textAlign center
-        ]
-
-
-logoImageStyle : Style
-logoImageStyle =
-    batch
-        [ width (px 140)
-        , withMediaTablet [ width (px 150) ]
         ]
 
 
@@ -99,7 +91,6 @@ containerStyle : Style
 containerStyle =
     batch
         [ margin2 zero auto
-        , maxWidth (px 800)
         , padding2 zero (rem 1)
         , width (pct 100)
         ]
