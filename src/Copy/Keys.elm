@@ -1,8 +1,14 @@
-module Copy.Keys exposing (ContentType(..), Key(..))
+module Copy.Keys exposing (ContentType(..), Key(..), Section(..))
 
 
 type ContentType
     = CaseStudy
+
+
+type Section
+    = Business
+    | ContentAndDesign
+    | DigitalDevelopment
 
 
 type
@@ -18,6 +24,11 @@ type
     | WhoWeAreHeading
     | WhoWeAreMarkdown1
     | WhoWeAreMarkdown2
+      -- About Us
+    | AboutUsSlug
+    | AboutUsTitle
+    | AboutUsSection Section
+    | AboutUsProfileProjectsLabel
       -- Case Study
     | CaseStudySlug
     | WhatWeDidHeading
