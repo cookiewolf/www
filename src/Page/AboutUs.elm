@@ -3,13 +3,11 @@ module Page.AboutUs exposing (view)
 import Copy.AboutUs
 import Copy.Keys exposing (Key(..), Section(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, batch)
-import Html.Styled exposing (Html, a, button, div, h1, h2, h3, h4, p, section, text)
-import Html.Styled.Attributes exposing (attribute, class, css, href, id)
+import Html.Styled exposing (Html, button, div, h1, h2, h3, h4, section, text)
+import Html.Styled.Attributes exposing (attribute, css, id)
 import Html.Styled.Events exposing (onClick)
 import Model exposing (Model)
 import Msg exposing (Msg)
-import Route
 import Set
 import Theme.Style
 import Theme.View

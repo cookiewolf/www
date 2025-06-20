@@ -3,7 +3,6 @@ module Theme.Style exposing (globalStyles, green, visuallyHiddenStyles, withMedi
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)
 import Css.Media as Media exposing (only, screen, withMedia)
-import Css.Transitions
 import Html.Styled exposing (Html)
 
 

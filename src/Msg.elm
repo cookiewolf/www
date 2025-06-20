@@ -1,7 +1,6 @@
 module Msg exposing (Msg(..))
 
 import Browser
-import Copy.Keys
 import Url
 
 
