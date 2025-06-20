@@ -13,7 +13,7 @@ import VitePluginHelper
 
 viewPageWrapper : Key -> Html Msg -> Html Msg
 viewPageWrapper pageTitle pageContent =
-    div [ id ("page-" ++ generateId (t pageTitle)), css [ pagewrapperStyle ] ]
+    div [ id ("page-" ++ generateId (t pageTitle)) ]
         [ globalStyles
         , viewPageHeader
         , div [ css [ containerStyle ] ] [ pageContent ]
@@ -23,9 +23,15 @@ viewPageWrapper pageTitle pageContent =
 
 viewPageHeader : Html Msg
 viewPageHeader =
-    header [ css [ pageHeaderStyle ] ]
-        [ a [ css [ headingStyle ], href "/" ] [ text (t SiteTitle) ]
-        , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
+    header [ css [ pageHeaderBackgroundStyle ] ]
+        [ div [ css [ contentContainer ] ]
+            [ div
+                [ css [ pageHeaderStyle ]
+                ]
+                [ a [ css [ headingStyle ], href "/" ] [ text (t SiteTitle) ]
+                , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
+                ]
+            ]
         ]
 
 
@@ -38,8 +44,8 @@ viewPageFooter =
         ]
 
 
-pagewrapperStyle : Style
-pagewrapperStyle =
+contentContainer : Style
+contentContainer =
     batch
         [ margin4 zero auto (rem 0.5) auto
         , maxWidth (px 1000)
@@ -59,6 +65,11 @@ pageHeaderStyle =
         , justifyContent center
         , padding (rem 3)
         ]
+
+
+pageHeaderBackgroundStyle : Style
+pageHeaderBackgroundStyle =
+    backgroundColor green.dark
 
 
 headingStyle : Style
