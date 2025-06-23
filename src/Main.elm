@@ -2,13 +2,17 @@ module Main exposing (main)
 
 import Browser
 import Browser.Navigation
+import Copy.CaseStudy
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Html.Styled exposing (Html, toUnstyled)
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import Page.AboutUs
+import Page.CaseStudy
 import Page.Index
 import Route exposing (Route(..))
+import Set
 import Theme.View
 import Url
 
@@ -38,6 +42,7 @@ init _ url key =
     in
     ( { key = key
       , page = Maybe.withDefault Index maybeRoute
+      , openSections = Set.empty
       }
     , Cmd.none
     )
@@ -46,6 +51,17 @@ init _ url key =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        SectionToggled sectionSlug ->
+            let
+                newOpenSections =
+                    if Set.member sectionSlug model.openSections then
+                        Set.remove sectionSlug model.openSections
+
+                    else
+                        Set.insert sectionSlug model.openSections
+            in
+            ( { model | openSections = newOpenSections }, Cmd.none )
+
         UrlChanged url ->
             let
                 newRoute : Route
@@ -83,4 +99,15 @@ view : Model -> Html Msg
 view model =
     case model.page of
         Index ->
-            Theme.View.viewPageWrapper SiteTitle (Page.Index.view model)
+            Theme.View.viewPageWrapper (t SiteTitle) (Page.Index.view model)
+
+        AboutUs ->
+            Theme.View.viewPageWrapper (t AboutUsTitle) (Page.AboutUs.view model)
+
+        CaseStudy slug ->
+            let
+                caseStudy =
+                    Copy.CaseStudy.caseStudyIdFromSlug slug
+                        |> Copy.CaseStudy.caseStudyFromId
+            in
+            Theme.View.viewPageWrapper caseStudy.title (Page.CaseStudy.view model caseStudy)

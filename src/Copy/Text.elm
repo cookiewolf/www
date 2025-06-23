@@ -1,6 +1,6 @@
 module Copy.Text exposing (t)
 
-import Copy.Keys exposing (Key(..))
+import Copy.Keys exposing (ContentType(..), Key(..), Section(..))
 
 
 
@@ -13,11 +13,17 @@ t key =
         SiteTitle ->
             "Cookiewolf"
 
-        --- Site Meta
         Strapline ->
             "Building useful digital tools with you"
 
-        WhatWeDoH2 ->
+        Category contentType ->
+            (case contentType of
+                CaseStudy ->
+                    "Case Study"
+            )
+                ++ ":"
+
+        WhatWeDoHeading ->
             "What We Do"
 
         WhatWeDoMarkdown ->
@@ -27,7 +33,7 @@ t key =
 Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity, delivered on a limited budget.
             """
 
-        WhoWeAreH2 ->
+        WhoWeAreHeading ->
             "Who we are"
 
         WhoWeAreMarkdown1 ->
@@ -42,10 +48,39 @@ Our members’ award-winning work spans medium to large-scale projects with clie
 [Meet the people behind Cookiewolf](/about-us)
             """
 
-        ThingsWeWorkOnH2 ->
+        ThingsWeWorkOnHeading ->
             "Things We're Working On"
 
-        ContactUsH2 ->
+        AboutUsSlug ->
+            "about-us"
+
+        AboutUsTitle ->
+            "About Us"
+
+        AboutUsSection section ->
+            case section of
+                Business ->
+                    "Business"
+
+                ContentAndDesign ->
+                    "Content And Design"
+
+                DigitalDevelopment ->
+                    "Digital Development"
+
+        AboutUsProfileProjectsLabel ->
+            "**Selected clients**: "
+
+        CaseStudySlug ->
+            "case-study"
+
+        WhatWeDidHeading ->
+            "What We Did"
+
+        ResultsHeading ->
+            "The Results"
+
+        ContactUsHeading ->
             "Contact Us"
 
         ContactUsMarkdown ->
