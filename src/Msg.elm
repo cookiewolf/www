@@ -5,5 +5,6 @@ import Url
 
 
 type Msg
-    = UrlChanged Url.Url
+    = SectionToggled String
+    | UrlChanged Url.Url
     | LinkClicked Browser.UrlRequest

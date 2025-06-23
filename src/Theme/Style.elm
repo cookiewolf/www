@@ -1,4 +1,4 @@
-module Theme.Style exposing (globalStyles, green, withMediaTablet)
+module Theme.Style exposing (globalStyles, green, visuallyHiddenStyles, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)
@@ -23,6 +23,21 @@ green =
 pink : { light : Color, mid : Color, dark : Color }
 pink =
     { light = hex "FFF0FD", mid = hex "EEC5E8", dark = hex "AF1495" }
+
+
+
+-- Utilities
+
+
+visuallyHiddenStyles : Style
+visuallyHiddenStyles =
+    batch
+        [ height (px 1)
+        , overflow hidden
+        , position absolute
+        , whiteSpace noWrap
+        , width (px 1)
+        ]
 
 
 

@@ -1,12 +1,15 @@
-module Model exposing (CaseStudy, Image, Model, Quote)
+module Model exposing (CaseStudy, Image, Model, ProfileInfo, Quote)
 
 import Browser.Navigation
+import Copy.Keys
 import Route exposing (Route)
+import Set exposing (Set)
 
 
 type alias Model =
     { key : Browser.Navigation.Key
     , page : Route
+    , openSections : Set String
     }
 
 
@@ -32,4 +35,13 @@ type alias CaseStudy =
     , maybeWhatWeDidImage : Maybe Image
     , resultsMarkdown : String
     , maybeQuote : Maybe Quote
+    }
+
+
+type alias ProfileInfo =
+    { section : Copy.Keys.Section
+    , name : String
+    , role : String
+    , bioMarkdown : String
+    , projectsMarkdown : String
     }

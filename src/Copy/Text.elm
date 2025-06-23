@@ -1,6 +1,6 @@
 module Copy.Text exposing (t)
 
-import Copy.Keys exposing (ContentType(..), Key(..))
+import Copy.Keys exposing (ContentType(..), Key(..), Section(..))
 
 
 
@@ -50,6 +50,26 @@ Our members’ award-winning work spans medium to large-scale projects with clie
 
         ThingsWeWorkOnHeading ->
             "Things We're Working On"
+
+        AboutUsSlug ->
+            "about-us"
+
+        AboutUsTitle ->
+            "About Us"
+
+        AboutUsSection section ->
+            case section of
+                Business ->
+                    "Business"
+
+                ContentAndDesign ->
+                    "Content And Design"
+
+                DigitalDevelopment ->
+                    "Digital Development"
+
+        AboutUsProfileProjectsLabel ->
+            "**Selected clients**: "
 
         CaseStudySlug ->
             "case-study"
