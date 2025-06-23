@@ -59,6 +59,7 @@ We're using [elm-test-rs](https://github.com/mpizenberg/elm-test-rs) to run [elm
 
 - UI text and meta text values are stored in `Copy.Text` and can render as html from markdown
 - Case Study text is in `Copy.CaseStudy` and must contain values for the required fields
+- About Us profile text is in `Copy.AboutUs`
 - Page templates for each `Route` are defined in e.g. `Page.Index` and `Page.CaseStudy`
 
 ### Styling & layouts
