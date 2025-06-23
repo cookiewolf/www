@@ -1,4 +1,4 @@
-module Theme.Style exposing (globalStyles, green, visuallyHiddenStyles, withMediaTablet)
+module Theme.Style exposing (black, globalStyles, green, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (adjacentSiblings, global, typeSelector)
@@ -8,6 +8,11 @@ import Html.Styled exposing (Html)
 
 
 -- Brand colours
+
+
+black : Color
+black =
+    hex "000000"
 
 
 white : Color
@@ -64,7 +69,6 @@ globalStyles =
             [ backgroundColor white
             , color green.dark
             , fontFamilies [ "Poppins", sansSerif.value ]
-            , fontWeight (int 400)
             ]
         , typeSelector "a"
             [ borderBottom3 (px 1.5) dotted pink.dark
