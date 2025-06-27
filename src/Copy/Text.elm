@@ -69,7 +69,7 @@ Our members’ award-winning work spans medium to large-scale projects with clie
                     "Digital Development"
 
         AboutUsProfileProjectsLabel ->
-            "**Selected clients**: "
+            "**Selected projects**: "
 
         CaseStudySlug ->
             "case-study"
