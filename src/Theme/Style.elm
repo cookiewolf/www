@@ -1,7 +1,7 @@
-module Theme.Style exposing (black, globalStyles, green, visuallyHiddenStyles, white, withMediaTablet)
+module Theme.Style exposing (black, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
-import Css.Global exposing (adjacentSiblings, global, typeSelector)
+import Css.Global exposing (a, adjacentSiblings, descendants, footer, global, typeSelector)
 import Css.Media as Media exposing (only, screen, withMedia)
 import Html.Styled exposing (Html)
 
@@ -75,9 +75,9 @@ globalStyles =
             , color pink.dark
             , textDecoration none
             , hover
-                [ borderBottom3 (px 2) dotted pink.dark
+                [ backgroundColor pink.light
+                , borderBottom3 (px 2) dotted pink.dark
                 , color pink.dark
-                , fontWeight (int 700)
                 ]
             ]
         , typeSelector "b"
@@ -94,6 +94,19 @@ globalStyles =
             [ adjacentSiblings
                 [ typeSelector "blockquote"
                     [ marginTop (rem 1)
+                    ]
+                ]
+            ]
+        , footer
+            [ descendants
+                [ a
+                    [ borderBottom3 (px 2) dotted white
+                    , color white
+                    , hover
+                        [ backgroundColor transparent
+                        , borderBottom3 (px 2) dotted pink.mid
+                        , color pink.mid
+                        ]
                     ]
                 ]
             ]
