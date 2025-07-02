@@ -3,17 +3,17 @@ module Theme.View exposing (markdownToHtml, viewPageWrapper)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, a, div, h2, header, p, text)
+import Html.Styled exposing (Html, a, div, footer, h2, header, p, text)
 import Html.Styled.Attributes exposing (css, href, id)
 import Markdown
 import Msg exposing (Msg)
-import Theme.Style exposing (black, globalStyles, green, white, withMediaTablet)
+import Theme.Style exposing (black, globalStyles, green, pink, white, withMediaTablet)
 import VitePluginHelper
 
 
 viewPageWrapper : String -> Html Msg -> Html Msg
 viewPageWrapper pageTitle pageContent =
-    div [ id ("page-" ++ generateId pageTitle) ]
+    div [ id ("page-" ++ generateId pageTitle), css [ viewPageStyle ] ]
         [ globalStyles
         , viewPageHeader
         , div [ css [ containerStyle ] ] [ pageContent ]
@@ -37,17 +37,21 @@ viewPageHeader =
 
 viewPageFooter : Html Msg
 viewPageFooter =
-    div [ css [ footerStyle ] ]
-        [ h2 [] [ text (t ContactUsHeading) ]
-        , markdownToHtml (t ContactUsMarkdown)
-        , p [] [ text (t CompanyInformation) ]
+    footer [ css [ footerStyle ] ]
+        [ div [ css [ contentContainer ] ]
+            [ h2 [ css [ footerHeadingStyle ] ] [ text (t ContactUsHeading) ]
+            , div []
+                [ markdownToHtml (t ContactUsMarkdown)
+                ]
+            , p [ css [ footerInfoStyle ] ] [ text (t CompanyInformation) ]
+            ]
         ]
 
 
 contentContainer : Style
 contentContainer =
     batch
-        [ margin4 zero auto (rem 0.5) auto
+        [ margin2 zero auto
         , maxWidth (px 1000)
         , width (pct 100)
         ]
@@ -72,18 +76,32 @@ pageHeaderBackgroundStyle =
     backgroundColor green.dark
 
 
+viewPageStyle : Style
+viewPageStyle =
+    batch
+        [ displayFlex
+        , flexDirection column
+        , height (vh 100)
+        ]
+
+
 headingStyle : Style
 headingStyle =
     batch
-        [ color white
+        [ borderBottom (px 0)
+        , color white
         , fontSize (rem 2.6)
         , fontWeight (int 700)
         , outline none
         , padding zero
         , textAlign center
         , textTransform uppercase
-        , withMediaTablet
-            [ fontSize (rem 4.2) ]
+        , withMediaTablet [ fontSize (rem 4.2) ]
+        , hover
+            [ backgroundColor transparent
+            , borderBottom (px 0)
+            , color green.light
+            ]
         ]
 
 
@@ -110,9 +128,26 @@ containerStyle =
 footerStyle : Style
 footerStyle =
     batch
-        [ fontSize (rem 0.75)
-        , paddingTop (rem 2)
+        [ backgroundColor green.dark
+        , color white
+        , marginTop auto
+        , padding4 (rem 2) (rem 2) (rem 3) (rem 2)
         , textAlign center
+        ]
+
+
+footerHeadingStyle : Style
+footerHeadingStyle =
+    batch
+        [ marginBottom (rem 1)
+        ]
+
+
+footerInfoStyle : Style
+footerInfoStyle =
+    batch
+        [ color pink.mid
+        , marginTop (rem 3)
         ]
 
 
