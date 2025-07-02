@@ -20,6 +20,7 @@ Alfie believes that problems are best solved by giving those affected the tools 
     , projectsMarkdown = """
 Ivan and Alfie had key development roles on PlaceCal, an award-winning community calendar system, developed with Geeks for Social Change and used by communities like TransDimension and Manchester Age Friendly Neighbourhoods.
     """
+    , imagePath = "/src/assets/people/alfie.jpg"
     }
 
 
@@ -34,6 +35,7 @@ Emma has over a decade of experience working across the education, arts, culture
     , projectsMarkdown = """
     The Wildlife Trusts, The Bishopsgate Institute, Happy Valley Pride, Kings Education, Hopscotch Consultancy, The Global Returns Project, Build Concierge, Central London Samaritans
     """
+    , imagePath = "/src/assets/people/emma.jpg"
     }
 
 
@@ -48,6 +50,7 @@ ivan =
     , projectsMarkdown = """
 Ivan and Alfie had key development roles on PlaceCal, an award-winning community calendar system, developed with Geeks for Social Change and used by communities like TransDimension and Manchester Age Friendly Neighbourhoods.
     """
+    , imagePath = "/src/assets/people/ivan.jpg"
     }
 
 
@@ -62,6 +65,7 @@ Karl has 30 years’ experience in the tech industry working in financial servic
     , projectsMarkdown = """
 [Alexandra Rose Charity](https://www.alexandrarose.org.uk/), delivering digital infrastructure, replacing a paper-based system, streamlining the existing voucher distribution process to give low-income families access to fresh fruit and vegetables. Other projects include: The Haven, and the [DocReady app](https://docready.org), a Comic Relief lab project.
     """
+    , imagePath = "/src/assets/people/karl.jpg"
     }
 
 
@@ -76,6 +80,7 @@ Katja’s career has spanned many interests and industries but currently she des
     , projectsMarkdown = """
 Darts, a series of web games created with Nick for an arts charity on a small budget. You can play them [here](https://games.thepoint.org.uk/). Other recent work includes: Radical Routes, Surviving Economic Abuse, Farm Carbon Calculator
     """
+    , imagePath = "/src/assets/people/katja.jpg"
     }
 
 
@@ -90,6 +95,7 @@ Nick’s background is in games development and he likes to work on projects tha
     , projectsMarkdown = """
 [Mind of my Own](https://mindofmyown.org.uk/): By the end of this six-year project with Neontribe, Nick had become Lead Front-end Developer, creating apps that make it safe and intuitive for young people living within the care system to raise safeguarding concerns.
     """
+    , imagePath = "/src/assets/people/nick.jpg"
     }
 
 
@@ -104,6 +110,7 @@ Rebecca has worked as a copywriter, bid writer, editor and content designer for 
     , projectsMarkdown = """
 Shelter, UsVsTh3m; bid writing for Geeks for Social Change and agency work for Saatchi & Saatchi pro, Agency Inc and Pebble Studios.
     """
+    , imagePath = "/src/assets/people/rebecca.jpg"
     }
 
 
@@ -118,4 +125,5 @@ Stuart is a UX and service design specialist with a focus on project and product
     , projectsMarkdown = """
  The Foundling Museum, South London Gallery, Art UK, Surviving Economic Abuse, Standing Together Against Domestic Abuse, Manchester Museum.
     """
+    , imagePath = "/src/assets/people/stuart.png"
     }
