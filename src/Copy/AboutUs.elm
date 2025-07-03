@@ -125,5 +125,5 @@ Stuart is a UX and service design specialist with a focus on project and product
     , projectsMarkdown = """
  The Foundling Museum, South London Gallery, Art UK, Surviving Economic Abuse, Standing Together Against Domestic Abuse, Manchester Museum.
     """
-    , imagePath = "/src/assets/people/stuart.png"
+    , imagePath = "/src/assets/people/stuart.jpg"
     }
