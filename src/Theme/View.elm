@@ -130,6 +130,7 @@ footerStyle =
     batch
         [ backgroundColor green.dark
         , color white
+        , fontSize (rem 1.25)
         , marginTop auto
         , padding4 (rem 2) (rem 2) (rem 3) (rem 2)
         , textAlign center
@@ -139,7 +140,8 @@ footerStyle =
 footerHeadingStyle : Style
 footerHeadingStyle =
     batch
-        [ marginBottom (rem 1)
+        [ fontSize (rem 2)
+        , marginBottom (rem 1.5)
         ]
 
 
