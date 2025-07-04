@@ -6,7 +6,7 @@ import Copy.Keys exposing (Key(..), Section(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
 import Html.Styled exposing (Html, a, div, h2, img, section, text)
-import Html.Styled.Attributes exposing (alt, class, css, href, src)
+import Html.Styled.Attributes exposing (alt, class, css, href, src, title)
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Route
@@ -39,7 +39,7 @@ viewWhoWeAreList : List Model.ProfileInfo -> List (Html Msg)
 viewWhoWeAreList profiles =
     List.map
         (\profile ->
-            a [ href ("/about-us#" ++ profile.name), class "profile-link" ] (viewProfileImage profile)
+            a [ href ("/about-us#" ++ profile.name), class "profile-link", title profile.name ] (viewProfileImage profile)
         )
         profiles
 
