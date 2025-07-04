@@ -120,7 +120,8 @@ globalStyles =
                 ]
             ]
         , class "profile-link"
-            [ borderRadius (px 500)
+            [ borderBottom (px 0)
+            , borderRadius (px 500)
             , flexShrink zero
             , height (rem 7)
             , margin2 zero (rem 0.5)
