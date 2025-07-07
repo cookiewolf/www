@@ -1,13 +1,16 @@
 module Page.Index exposing (view)
 
+import Copy.AboutUs
 import Copy.CaseStudy exposing (CaseStudyKey(..))
-import Copy.Keys exposing (Key(..))
+import Copy.Keys exposing (Key(..), Section(..))
 import Copy.Text exposing (t)
-import Html.Styled exposing (Html, a, div, h2, text)
-import Html.Styled.Attributes exposing (href)
+import Css exposing (..)
+import Html.Styled exposing (Html, a, div, h2, img, section, text)
+import Html.Styled.Attributes exposing (alt, class, css, href, src, title)
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Route
+import Theme.Style exposing (pink)
 import Theme.View
 
 
@@ -21,8 +24,68 @@ view _ =
             [ div [] [ text "[cCc] Case study list #23" ]
             , a [ href (Route.toString (Route.CaseStudy (Copy.CaseStudy.caseStudyFromId Foyer).slug)) ] [ text (Copy.CaseStudy.caseStudyFromId Foyer).title ]
             ]
-        , h2 [] [ text (t WhoWeAreHeading) ]
-        , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
-        , div [] [ text "[cCc] Who we are list #24" ]
-        , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
+        , section [ css [ whoWeAreSectionStyle ], class "about-us" ]
+            [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
+            , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
+            , div
+                [ css [ imageRowStyle ] ]
+                (viewWhoWeAreList Copy.AboutUs.profiles)
+            , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
+            ]
+        ]
+
+
+viewWhoWeAreList : List Model.ProfileInfo -> List (Html Msg)
+viewWhoWeAreList profiles =
+    List.map
+        (\profile ->
+            a [ href ("/about-us#" ++ profile.name), class "profile-link", title profile.name ] (viewProfileImage profile)
+        )
+        profiles
+
+
+viewProfileImage : Model.ProfileInfo -> List (Html Msg)
+viewProfileImage profile =
+    [ img [ src profile.imagePath, css [ imageStyle ], alt profile.name ] []
+    ]
+
+
+
+-- Styles
+
+
+whoWeAreSectionStyle : Style
+whoWeAreSectionStyle =
+    batch
+        [ margin2 (rem 3) auto
+        , textAlign center
+        ]
+
+
+whoWeAreHeadingStyle : Style
+whoWeAreHeadingStyle =
+    batch
+        [ color pink.dark
+        , fontSize (rem 2)
+        , margin2 (rem 2) auto
+        ]
+
+
+imageRowStyle : Style
+imageRowStyle =
+    batch
+        [ displayFlex
+        , overflowX auto
+        , margin2 (rem 3) (rem -1)
+        ]
+
+
+imageStyle : Style
+imageStyle =
+    batch
+        [ borderRadius (px 500)
+        , flexShrink zero
+        , height (rem 7)
+        , property "object-fit" "cover"
+        , width (rem 7)
         ]

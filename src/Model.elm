@@ -44,4 +44,5 @@ type alias ProfileInfo =
     , role : String
     , bioMarkdown : String
     , projectsMarkdown : String
+    , imagePath : String
     }

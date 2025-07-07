@@ -1,7 +1,7 @@
 module Theme.Style exposing (black, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
-import Css.Global exposing (a, adjacentSiblings, descendants, footer, global, typeSelector)
+import Css.Global exposing (a, adjacentSiblings, class, descendants, footer, global, typeSelector)
 import Css.Media as Media exposing (only, screen, withMedia)
 import Html.Styled exposing (Html)
 
@@ -108,6 +108,29 @@ globalStyles =
                         , color pink.mid
                         ]
                     ]
+                ]
+            ]
+        , class "about-us"
+            [ descendants
+                [ typeSelector "p"
+                    [ fontSize (rem 1.25)
+                    , margin2 (rem 1) auto
+                    , maxWidth (ch 80)
+                    ]
+                ]
+            ]
+        , class "profile-link"
+            [ borderBottom (px 0)
+            , borderRadius (px 500)
+            , flexShrink zero
+            , height (rem 7)
+            , margin2 zero (rem 0.5)
+            , width (rem 7)
+            , pseudoClass "first-child"
+                [ marginLeft auto
+                ]
+            , pseudoClass "last-child"
+                [ marginRight auto
                 ]
             ]
         ]

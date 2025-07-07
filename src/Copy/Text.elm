@@ -34,7 +34,7 @@ Our projects are based in true collaboration with our clients, focusing on acces
             """
 
         WhoWeAreHeading ->
-            "Who we are"
+            "Who We Are"
 
         WhoWeAreMarkdown1 ->
             """
