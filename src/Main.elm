@@ -15,7 +15,7 @@ import Route exposing (Route(..))
 import Set
 import Theme.View
 import Url
-
+import MetaTags
 
 type alias Flags =
     ()
@@ -36,15 +36,15 @@ main =
 init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
 init _ url key =
     let
-        maybeRoute : Maybe Route
-        maybeRoute =
-            Route.fromUrl url
+        route : Route
+        route =
+            Maybe.withDefault Index <| Route.fromUrl url
     in
     ( { key = key
-      , page = Maybe.withDefault Index maybeRoute
+      , page = route
       , openSections = Set.empty
       }
-    , Cmd.none
+    , MetaTags.setMetadata <| MetaTags.metaForPage route
     )
 
 
@@ -70,7 +70,9 @@ update msg model =
                     -- could 404 instead depends on desired behaviour
                     Maybe.withDefault Index (Route.fromUrl url)
             in
-            ( { model | page = newRoute }, Cmd.none )
+            ( { model | page = newRoute }
+            , MetaTags.setMetadata <| MetaTags.metaForPage newRoute
+            )
 
         LinkClicked urlRequest ->
             case urlRequest of
@@ -92,7 +94,9 @@ subscriptions _ =
 
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
-    { title = t SiteTitle, body = [ toUnstyled (view model) ] }
+    { title = MetaTags.titleForPage model.page
+    , body = [ toUnstyled (view model) ]
+    }
 
 
 view : Model -> Html Msg

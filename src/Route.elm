@@ -10,6 +10,7 @@ type Route
     = Index
     | AboutUs
     | CaseStudy String
+    -- | NotFound
 
 
 fromUrl : Url.Url -> Maybe Route
