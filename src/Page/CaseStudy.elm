@@ -2,37 +2,53 @@ module Page.CaseStudy exposing (view)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Html.Styled exposing (Html, blockquote, div, h1, h2, img, p, text)
-import Html.Styled.Attributes exposing (alt, src)
+import Css exposing (..)
+import Html.Styled exposing (Html, blockquote, div, h1, h2, hr, img, p, section, text)
+import Html.Styled.Attributes exposing (alt, css, src)
 import Model exposing (Model)
 import Msg exposing (Msg)
-import Theme.View
+import Theme.Style exposing (pink, shadow, withMediaTablet)
+import Theme.View exposing (contentContainer)
 
 
 view : Model -> Model.CaseStudy -> Html Msg
 view _ caseStudy =
     div []
-        [ div [] [ text (t (Category Copy.Keys.CaseStudy)) ]
-        , div []
-            [ div []
-                [ h1 [] [ text caseStudy.title ]
-                , Theme.View.markdownToHtml caseStudy.introMarkdown
+        [ section []
+            [ div [ css [ titleAreaStyle ] ]
+                [ div [ css [ contentContainer ] ]
+                    [ div [ css [ caseStudyStyle ] ] [ text (t (Category Copy.Keys.CaseStudy)) ]
+                    , h1 [ css [ titleStyle ] ] [ text caseStudy.title ]
+                    ]
                 ]
-            , viewMaybeImage caseStudy.maybeIntroImage
+            , div [ css [ contentContainer, aaaStyle ] ]
+                [ div []
+                    [ Theme.View.markdownToHtml caseStudy.introMarkdown
+                    ]
+                , div []
+                    [ viewMaybeImage caseStudy.maybeIntroImage
+                    ]
+                ]
             ]
-        , div []
+        , hr [ css [ aaaHRStyle ] ] []
+        , div [ css [ contentContainer, aaaStyle ] ]
             [ div []
-                [ h2 [] [ text (t WhatWeDidHeading) ]
+                [ h2 [ css [ aaaHeadingStyle ] ] [ text (t WhatWeDidHeading) ]
                 , Theme.View.markdownToHtml caseStudy.whatWeDidMarkdown
                 ]
-            , viewMaybeImage caseStudy.maybeWhatWeDidImage
+            , div []
+                [ viewMaybeImage caseStudy.maybeWhatWeDidImage
+                ]
             ]
-        , div []
+        , hr [ css [ aaaHRStyle ] ] []
+        , div [ css [ contentContainer, aaaStyle ] ]
             [ div []
-                [ h2 [] [ text (t ResultsHeading) ]
+                [ h2 [ css [ aaaHeadingStyle ] ] [ text (t ResultsHeading) ]
                 , Theme.View.markdownToHtml caseStudy.resultsMarkdown
                 ]
-            , viewMaybeQuote caseStudy.maybeQuote
+            , div []
+                [ viewMaybeQuote caseStudy.maybeQuote
+                ]
             ]
         ]
 
@@ -59,3 +75,61 @@ viewMaybeQuote maybeQuote =
 
         Nothing ->
             text ""
+
+
+
+-- Styles
+
+
+titleAreaStyle : Style
+titleAreaStyle =
+    batch
+        [ backgroundColor pink.light
+        , boxShadow4 (px 0) (px 0) (px 20) shadow
+        , padding2 (rem 3) zero
+        ]
+
+
+caseStudyStyle : Style
+caseStudyStyle =
+    batch
+        [ color pink.dark
+        , fontSize (rem 2)
+        , fontWeight bold
+        ]
+
+
+titleStyle : Style
+titleStyle =
+    batch
+        [ fontSize (rem 2.5)
+        , fontWeight bold
+        , lineHeight (rem 3)
+        , withMediaTablet [ fontSize (rem 3.75), lineHeight (rem 4.5) ]
+        ]
+
+
+aaaStyle : Style
+aaaStyle =
+    batch
+        [ displayFlex
+        , flexDirection column
+        , padding2 (rem 3) (rem 1)
+        , withMediaTablet [ flexDirection row ]
+        ]
+
+
+aaaHeadingStyle : Style
+aaaHeadingStyle =
+    batch
+        [ color pink.dark
+        , fontSize (rem 2)
+        , margin2 (rem 2) auto
+        ]
+
+
+aaaHRStyle : Style
+aaaHRStyle =
+    batch
+        [ border3 (px 1) dashed pink.dark
+        ]
