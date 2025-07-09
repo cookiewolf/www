@@ -45,7 +45,7 @@ The Foundling Museum came to us with numerous challenges:
 - The system lacked up-to-date payment options, like Apple Pay.
 - The museum had no CRM system, so wider museum systems including point-of-sale, e-commerce and finance, didn't have a fast or smooth information flow. In fact, museum employees often had to transfer data manually.
         """
-    , maybeIntroImage = Nothing
+    , maybeIntroImage = Just { src = "/case_studies/foundling_museum.png", alt = "Foundling Museum" }
     , whatWeDidMarkdown =
         """
 Our custom Foyer solution was developed in close collaboration with key stakeholders at The Foundling Museum. We worked together iteratively and identified the underlying problem — too many complex systems that weren't working together.
@@ -56,7 +56,7 @@ Our custom Foyer solution was developed in close collaboration with key stakehol
 - Implementing no-code tools like Zapier allowed us to simplify systems and enable consistent data flow without expensive time and development cost.
 - We worked directly with the Foundling Museum’s teams, breaking down silos that caused mistrust in data. We also identified staff members to support the CRM and focus specifically on clear communication between departments.
         """
-    , maybeWhatWeDidImage = Nothing
+    , maybeWhatWeDidImage = Just { src = "/case_studies/foyer.png", alt = "Foyer" }
     , resultsMarkdown =
         """
 We’re really proud of what Foyer accomplished for The Foundling Museum, particularly the impact it had on ticket sales and customer engagement:
