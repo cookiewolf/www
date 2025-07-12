@@ -33,8 +33,7 @@ type
     | AboutUsSection Section
     | AboutUsProfileProjectsLabel
       -- Case Study
-    | CaseStudyTitle
-    | CaseStudyDescription
+    | CaseStudyTopLevelTitle
     | CaseStudySlug
     | WhatWeDidHeading
     | ResultsHeading

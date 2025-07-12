@@ -35,6 +35,8 @@ type alias CaseStudy =
     , maybeWhatWeDidImage : Maybe Image
     , resultsMarkdown : String
     , maybeQuote : Maybe Quote
+    , metaTitle : String
+    , metaDescription : String
     }
 
 

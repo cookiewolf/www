@@ -80,11 +80,8 @@ Our members’ award-winning work spans medium to large-scale projects with clie
         AboutUsProfileProjectsLabel ->
             "**Selected projects**: "
 
-        CaseStudyTitle ->
-            "Case Study"
-
-        CaseStudyDescription ->
-            "Case Study description [cCc]"
+        CaseStudyTopLevelTitle ->
+            "Case Study [cCc]"
 
         CaseStudySlug ->
             "case-study"

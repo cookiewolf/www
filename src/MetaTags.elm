@@ -2,6 +2,7 @@ port module MetaTags exposing (PageMetadata, setMetadata, metaForPage, titleForP
 import Route
 import Copy.Text exposing (t)
 import Copy.Keys as Keys
+import Copy.CaseStudy
 
 type alias PageMetadata =
     { title : String
@@ -11,18 +12,35 @@ type alias PageMetadata =
 titleForPage : Route.Route -> String
 titleForPage route =
     let
-        pageKey =
+        pageTitle =
             case route of
-                Route.Index ->
-                    Keys.SiteTitle
+                Route.CaseStudy slug ->
+                    let
+                        caseStudy =
+                            Copy.CaseStudy.caseStudyIdFromSlug slug
+                                |> Copy.CaseStudy.caseStudyFromId
+                    in
+                    caseStudy.metaTitle ++ " - " ++ (t Keys.CaseStudyTopLevelTitle)
 
-                Route.AboutUs ->
-                    Keys.AboutUsTitle
+                _ ->
+                    let
+                        pageKey =
+                            case route of
+                                Route.Index ->
+                                    Keys.SiteTitle
 
-                Route.CaseStudy _ ->
-                    Keys.CaseStudyTitle
+                                Route.AboutUs ->
+                                    Keys.AboutUsTitle
+
+                                _ ->
+                                    Keys.SiteTitle
+                    in
+                    t pageKey
+
     in
-      (t pageKey) ++ " - " ++ (t Keys.SiteTitle)
+    pageTitle ++ " - " ++ (t Keys.SiteTitle)
+
+
 
 
 
@@ -40,10 +58,15 @@ metaForPage route =
             , description = t Keys.AboutUsDescription
             }
 
-        Route.CaseStudy _ ->
-            { title = titleForPage route
-            , description = t Keys.CaseStudyDescription
-            }
+        Route.CaseStudy slug ->
+            let
+                caseStudy =
+                    Copy.CaseStudy.caseStudyIdFromSlug slug
+                        |> Copy.CaseStudy.caseStudyFromId
+            in
+                { title = titleForPage route
+                , description = caseStudy.metaDescription
+                }
 
 
 port setMetadata : PageMetadata -> Cmd msg

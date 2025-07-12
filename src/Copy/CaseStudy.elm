@@ -74,6 +74,8 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
 [The work we did was also shortlisted in the "Using Data" category at the 2025 Digital Cultural Awards.](https://digitalculturenetwork.org.uk/awards/)
         """
     , maybeQuote = Nothing
+    , metaTitle = "Foyer [cCc]"
+    , metaDescription = "Foyer Description [cCc]"
     }
 
 
@@ -87,4 +89,6 @@ fourZeroFour =
     , maybeWhatWeDidImage = Nothing
     , resultsMarkdown = ""
     , maybeQuote = Nothing
+    , metaTitle = "[cCc]"
+    , metaDescription = "[cCc]"
     }
