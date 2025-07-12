@@ -6,7 +6,7 @@
     "prebuild": "elm-tooling install",
     "build": "vite build",
     "serve": "vite preview",
-    "format": "elm-format",
+    "format": "elm-format src/ --yes",
     "lint": "elm-review",
     "test": "elm-test-rs"
   },

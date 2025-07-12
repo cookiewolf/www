@@ -1,13 +1,16 @@
-port module MetaTags exposing (PageMetadata, setMetadata, metaForPage, titleForPage)
-import Route
-import Copy.Text exposing (t)
-import Copy.Keys as Keys
+port module MetaTags exposing (PageMetadata, metaForPage, setMetadata, titleForPage)
+
 import Copy.CaseStudy
+import Copy.Keys as Keys
+import Copy.Text exposing (t)
+import Route
+
 
 type alias PageMetadata =
     { title : String
     , description : String
     }
+
 
 titleForPage : Route.Route -> String
 titleForPage route =
@@ -20,7 +23,7 @@ titleForPage route =
                             Copy.CaseStudy.caseStudyIdFromSlug slug
                                 |> Copy.CaseStudy.caseStudyFromId
                     in
-                    caseStudy.metaTitle ++ " - " ++ (t Keys.CaseStudyTopLevelTitle)
+                    caseStudy.metaTitle ++ " - " ++ t Keys.CaseStudyTopLevelTitle
 
                 _ ->
                     let
@@ -36,17 +39,12 @@ titleForPage route =
                                     Keys.SiteTitle
                     in
                     t pageKey
-
     in
-    pageTitle ++ " - " ++ (t Keys.SiteTitle)
-
-
-
+    pageTitle ++ " - " ++ t Keys.SiteTitle
 
 
 metaForPage : Route.Route -> PageMetadata
 metaForPage route =
-
     case route of
         Route.Index ->
             { title = titleForPage route
@@ -64,9 +62,9 @@ metaForPage route =
                     Copy.CaseStudy.caseStudyIdFromSlug slug
                         |> Copy.CaseStudy.caseStudyFromId
             in
-                { title = titleForPage route
-                , description = caseStudy.metaDescription
-                }
+            { title = titleForPage route
+            , description = caseStudy.metaDescription
+            }
 
 
 port setMetadata : PageMetadata -> Cmd msg

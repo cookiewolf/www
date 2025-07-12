@@ -6,6 +6,7 @@ import Copy.CaseStudy
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Html.Styled exposing (Html, toUnstyled)
+import MetaTags
 import Model exposing (Model)
 import Msg exposing (Msg(..))
 import Page.AboutUs
@@ -15,7 +16,7 @@ import Route exposing (Route(..))
 import Set
 import Theme.View
 import Url
-import MetaTags
+
 
 type alias Flags =
     ()
