@@ -18,6 +18,8 @@ type
     | Strapline
     | Category ContentType
       -- Home
+    | HomeMetaTitle
+    | HomeMetaDescription
     | WhatWeDoHeading
     | WhatWeDoMarkdown
     | ThingsWeWorkOnHeading
@@ -27,9 +29,11 @@ type
       -- About Us
     | AboutUsSlug
     | AboutUsTitle
+    | AboutUsMetaDescription
     | AboutUsSection Section
     | AboutUsProfileProjectsLabel
       -- Case Study
+    | CaseStudyMetaTitle
     | CaseStudySlug
     | WhatWeDidHeading
     | ResultsHeading
