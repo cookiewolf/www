@@ -1,4 +1,4 @@
-module Model exposing (CaseStudy, Image, Model, ProfileInfo, Quote)
+module Model exposing (CaseStudy, CaseStudyContent, Image, Model, ProfileInfo, Quote)
 
 import Browser.Navigation
 import Copy.Keys
@@ -27,9 +27,18 @@ type alias Quote =
 
 
 type alias CaseStudy =
-    { slug : String
-    , title : String
-    , introMarkdown : String
+    { title : String
+    , maybeTeaserLogoSrc : Maybe String
+    , teaserBackgroundSrc : String
+    , teaserSummary : String
+    , teaserLinkText : String
+    , teaserHref : String
+    , maybePageContent : Maybe CaseStudyContent
+    }
+
+
+type alias CaseStudyContent =
+    { introMarkdown : String
     , maybeIntroImage : Maybe Image
     , whatWeDidMarkdown : String
     , maybeWhatWeDidImage : Maybe Image

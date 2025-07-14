@@ -9,13 +9,13 @@ import Msg exposing (Msg)
 import Theme.View
 
 
-view : Model -> Model.CaseStudy -> Html Msg
-view _ caseStudy =
+view : String -> Model.CaseStudyContent -> Html Msg
+view caseStudyTitle caseStudy =
     div []
         [ div [] [ text (t (Category Copy.Keys.CaseStudy)) ]
         , div []
             [ div []
-                [ h1 [] [ text caseStudy.title ]
+                [ h1 [] [ text caseStudyTitle ]
                 , Theme.View.markdownToHtml caseStudy.introMarkdown
                 ]
             , viewMaybeImage caseStudy.maybeIntroImage

@@ -28,7 +28,7 @@ t key =
 
         WhatWeDoMarkdown ->
             """
-**Cookiewolf** is a cooperatively-run digital development and design studio. We work with organizations of all sizes.
+**Cookiewolf** is a cooperatively-run digital development and design studio. We work with organisations of all sizes.
 
 Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity, delivered on a limited budget.
             """

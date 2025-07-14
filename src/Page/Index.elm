@@ -2,10 +2,10 @@ module Page.Index exposing (view)
 
 import Copy.AboutUs
 import Copy.CaseStudy exposing (CaseStudyKey(..))
-import Copy.Keys exposing (Key(..), Section(..))
+import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, a, div, h2, img, section, text)
+import Html.Styled exposing (Html, a, div, h2, img, li, p, section, text, ul)
 import Html.Styled.Attributes exposing (alt, class, css, href, src, title)
 import Model exposing (Model)
 import Msg exposing (Msg)
@@ -14,16 +14,18 @@ import Theme.Style exposing (pink)
 import Theme.View
 
 
+featuredCaseStudyList : List Copy.CaseStudy.CaseStudyKey
+featuredCaseStudyList =
+    [ Foyer, CodeReadingClub, FourZeroFour ]
+
+
 view : Model -> Html Msg
 view _ =
     div []
         [ h2 [] [ text (t WhatWeDoHeading) ]
         , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
         , h2 [] [ text (t ThingsWeWorkOnHeading) ]
-        , div []
-            [ div [] [ text "[cCc] Case study list #23" ]
-            , a [ href (Route.toString (Route.CaseStudy (Copy.CaseStudy.caseStudyFromId Foyer).slug)) ] [ text (Copy.CaseStudy.caseStudyFromId Foyer).title ]
-            ]
+        , ul [] (viewWorkingOnList featuredCaseStudyList)
         , section [ css [ whoWeAreSectionStyle ], class "about-us" ]
             [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
@@ -33,6 +35,44 @@ view _ =
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
             ]
         ]
+
+
+viewWorkingOnList : List Copy.CaseStudy.CaseStudyKey -> List (Html Msg)
+viewWorkingOnList featuredCaseStudies =
+    List.map
+        (\caseStudyId ->
+            let
+                caseStudy : Model.CaseStudy
+                caseStudy =
+                    Copy.CaseStudy.caseStudyFromId caseStudyId
+            in
+            li [] [ viewCaseStudyCard caseStudy ]
+        )
+        featuredCaseStudies
+
+
+viewCaseStudyCard : Model.CaseStudy -> Html Msg
+viewCaseStudyCard caseStudy =
+    div []
+        [ viewCaseStudyCardHeader caseStudy
+        , viewCaseStudyCardSummary caseStudy
+        , viewCaseStudyCardLink caseStudy
+        ]
+
+
+viewCaseStudyCardHeader : Model.CaseStudy -> Html Msg
+viewCaseStudyCardHeader caseStudy =
+    div [] [ text "background, logo, title" ]
+
+
+viewCaseStudyCardSummary : Model.CaseStudy -> Html Msg
+viewCaseStudyCardSummary caseStudy =
+    p [] [ text caseStudy.teaserSummary ]
+
+
+viewCaseStudyCardLink : Model.CaseStudy -> Html Msg
+viewCaseStudyCardLink caseStudy =
+    a [ href caseStudy.teaserHref ] [ text caseStudy.teaserLinkText ]
 
 
 viewWhoWeAreList : List Model.ProfileInfo -> List (Html Msg)
