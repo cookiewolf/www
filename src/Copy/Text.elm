@@ -23,10 +23,10 @@ t key =
             )
                 ++ ":"
 
-        HomeTitle ->
+        HomeMetaTitle ->
             "Home"
 
-        HomeDescription ->
+        HomeMetaDescription ->
             "Home description [cCc]"
 
         WhatWeDoHeading ->
@@ -63,7 +63,7 @@ Our members’ award-winning work spans medium to large-scale projects with clie
         AboutUsTitle ->
             "About Us"
 
-        AboutUsDescription ->
+        AboutUsMetaDescription ->
             "About Us description [cCc]"
 
         AboutUsSection section ->
@@ -80,7 +80,7 @@ Our members’ award-winning work spans medium to large-scale projects with clie
         AboutUsProfileProjectsLabel ->
             "**Selected projects**: "
 
-        CaseStudyTopLevelTitle ->
+        CaseStudyMetaTitle ->
             "Case Study [cCc]"
 
         CaseStudySlug ->

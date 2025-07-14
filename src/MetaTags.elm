@@ -23,14 +23,14 @@ titleForPage route =
                             Copy.CaseStudy.caseStudyIdFromSlug slug
                                 |> Copy.CaseStudy.caseStudyFromId
                     in
-                    caseStudy.metaTitle ++ " - " ++ t Keys.CaseStudyTopLevelTitle
+                    caseStudy.metaTitle ++ " - " ++ t Keys.CaseStudyMetaTitle
 
                 _ ->
                     let
                         pageKey =
                             case route of
                                 Route.Index ->
-                                    Keys.SiteTitle
+                                    Keys.HomeMetaTitle
 
                                 Route.AboutUs ->
                                     Keys.AboutUsTitle
@@ -48,12 +48,12 @@ metaForPage route =
     case route of
         Route.Index ->
             { title = titleForPage route
-            , description = t Keys.HomeDescription
+            , description = t Keys.HomeMetaDescription
             }
 
         Route.AboutUs ->
             { title = titleForPage route
-            , description = t Keys.AboutUsDescription
+            , description = t Keys.AboutUsMetaDescription
             }
 
         Route.CaseStudy slug ->

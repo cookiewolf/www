@@ -12,10 +12,6 @@ type Route
     | CaseStudy String
 
 
-
--- | NotFound
-
-
 fromUrl : Url.Url -> Maybe Route
 fromUrl url =
     url
