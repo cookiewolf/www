@@ -1,7 +1,7 @@
 module Theme.Style exposing (black, fuchsia, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
-import Css.Global exposing (a, adjacentSiblings, class, descendants, footer, global, typeSelector)
+import Css.Global exposing (a, adjacentSiblings, children, class, descendants, footer, global, typeSelector)
 import Css.Media as Media exposing (only, screen, withMedia)
 import Html.Styled exposing (Html)
 
@@ -131,12 +131,23 @@ globalStyles =
             , height (rem 7)
             , listStyle none
             , margin2 zero (rem 0.5)
+            , position relative
             , width (rem 7)
             , pseudoClass "first-child"
                 [ marginLeft auto
                 ]
             , pseudoClass "last-child"
                 [ marginRight auto
+                ]
+            ]
+        , class "profile-link"
+            [ hover
+                [ cursor pointer
+                , children
+                    [ typeSelector "div"
+                        [ displayFlex
+                        ]
+                    ]
                 ]
             ]
         ]

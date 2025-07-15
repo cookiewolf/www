@@ -27,7 +27,7 @@ Ivan and Alfie had key development roles on PlaceCal, an award-winning community
 emma : Model.ProfileInfo
 emma =
     { section = ContentAndDesign
-    , name = "Emma"
+    , name = "Emma Charleston"
     , role = "Graphic Designer, Illustrator & UX Designer"
     , bioMarkdown = """
 Emma has over a decade of experience working across the education, arts, culture and charity sectors. [Her graphic and branding work](https://www.emmacharleston.co.uk/) spans print and digital, website and app wireframes, qualitative and quantitative user and client research. She’s particularly interested in collaborative and community-led design practice that’s informed by local circumstance and experience. 
@@ -42,7 +42,7 @@ Emma has over a decade of experience working across the education, arts, culture
 ivan : Model.ProfileInfo
 ivan =
     { section = DigitalDevelopment
-    , name = "Ivan"
+    , name = "Ivan Kocienski"
     , role = "Full Stack Developer & DevOps"
     , bioMarkdown = """
  Ivan’s focus is software engineering with Ruby on Rails, perl, labview, common lisp and unity. He's also had stabs at javascript and python. He’s interested in Tech for Good and generally fostering community among the queer, nerdy and disabled.
@@ -57,7 +57,7 @@ Ivan and Alfie had key development roles on PlaceCal, an award-winning community
 karl : Model.ProfileInfo
 karl =
     { section = Business
-    , name = "Karl"
+    , name = "Karl Jermy"
     , role = "Delivery Manager & Software Tester"
     , bioMarkdown = """
 Karl has 30 years’ experience in the tech industry working in financial services and the charity sector. He’s interested in tech projects that empower people, including those who don’t see themselves as ‘techy’  to access help when they need it most. 
@@ -72,7 +72,7 @@ Karl has 30 years’ experience in the tech industry working in financial servic
 katja : Model.ProfileInfo
 katja =
     { section = DigitalDevelopment
-    , name = "Katja"
+    , name = "Katja Mordaunt"
     , role = "Full Stack Developer & Project Lead"
     , bioMarkdown = """
 Katja’s career has spanned many interests and industries but currently she designs and implements digital services and browser-based tools that help improve the reach of charities and community organisations. She values a culture of collaboration, open source, transparency, integrity, sharing stuff and giving everyone a chance at meaningful participation. 
@@ -87,7 +87,7 @@ Darts, a series of web games created with Nick for an arts charity on a small bu
 nick : Model.ProfileInfo
 nick =
     { section = DigitalDevelopment
-    , name = "Nick"
+    , name = "Nick Wade"
     , role = "Front-end Web Developer"
     , bioMarkdown = """
 Nick’s background is in games development and he likes to work on projects that genuinely help people, He values semantically correct HTML, creating responsive layouts with CSS and has a special interest in web accessibility.
@@ -102,7 +102,7 @@ Nick’s background is in games development and he likes to work on projects tha
 rebecca : Model.ProfileInfo
 rebecca =
     { section = ContentAndDesign
-    , name = "Rebecca"
+    , name = "Rebecca Wigmore"
     , role = "Writer & Content Designer"
     , bioMarkdown = """
 Rebecca has worked as a copywriter, bid writer, editor and content designer for over a decade, working on everything from editing poetry anthologies written by at-risk young people, to user-focused copy for websites and apps.
@@ -117,7 +117,7 @@ Shelter, UsVsTh3m; bid writing for Geeks for Social Change and agency work for S
 stuart : Model.ProfileInfo
 stuart =
     { section = Business
-    , name = "Stuart"
+    , name = "Stuart Leech"
     , role = "Business Development & Digital Specialist"
     , bioMarkdown = """
 Stuart is a UX and service design specialist with a focus on project and product management. As a visual artist himself, he's particularly interested in working on digital projects for arts and social justice organisations.  Stuart's work with Foyer has also seen him nominated for multiple awards, including being longlisted for the 'Digital Ambassador' award in the 2025 Digital Cultural Awards.

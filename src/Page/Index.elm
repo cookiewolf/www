@@ -42,6 +42,8 @@ viewWhoWeAreList profiles =
             li [ class "profile-item" ]
                 [ a [ href ("/about-us#" ++ String.toLower (String.replace " " "-" profile.name)), class "profile-link" ]
                     [ viewProfileImage profile
+                    , div [ css [ overlayStyle ] ] []
+                    , div [ css [ overlayLabelStyle ] ] [ text profile.name ]
                     ]
                 ]
         )
@@ -87,8 +89,40 @@ imageStyle : Style
 imageStyle =
     batch
         [ borderRadius (px 500)
-        , flexShrink zero
         , height (rem 7)
         , property "object-fit" "cover"
+        , width (rem 7)
+        ]
+
+
+overlayStyle : Style
+overlayStyle =
+    batch
+        [ alignItems center
+        , backgroundColor fuchsia
+        , borderRadius (px 500)
+        , display none
+        , height (rem 7)
+        , justifyContent center
+        , position absolute
+        , property "mix-blend-mode" "multiply"
+        , top zero
+        , width (rem 7)
+        ]
+
+
+overlayLabelStyle : Style
+overlayLabelStyle =
+    batch
+        [ alignItems center
+        , borderRadius (px 500)
+        , color white
+        , display none
+        , fontWeight (int 700)
+        , height (rem 7)
+        , justifyContent center
+        , position absolute
+        , property "word-spacing" "7rem"
+        , top zero
         , width (rem 7)
         ]
