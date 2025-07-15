@@ -44,7 +44,9 @@ Our projects are based in true collaboration with our clients, focusing on acces
 
         WhoWeAreMarkdown1 ->
             """
-An experienced group of developers, designers, writers, and other folk who’ve come together to form a collective. Cookiewolf Co-op reflects how we think businesses should be run, based in equity, flexibility and creative thinking.
+An experienced group of developers, designers, writers, and other folk who’ve come together to form a collective.
+
+Cookiewolf Co-op reflects how we think businesses should be run, based in equity, flexibility and creative thinking.
             """
 
         WhoWeAreMarkdown2 ->

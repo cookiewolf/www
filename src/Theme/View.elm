@@ -1,5 +1,4 @@
-module Theme.View exposing (contentContainer, markdownToHtml, viewPageWrapper)
-
+module Theme.View exposing (contentContainer, generateId, markdownToHtml, viewPageWrapper)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)

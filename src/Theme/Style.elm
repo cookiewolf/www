@@ -1,7 +1,7 @@
-module Theme.Style exposing (black, globalStyles, green, pink, shadow, visuallyHiddenStyles, white, withMediaTablet)
+module Theme.Style exposing (black, fuchsia, globalStyles, green, pink, shadow, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
-import Css.Global exposing (a, adjacentSiblings, class, descendants, footer, global, typeSelector)
+import Css.Global exposing (a, adjacentSiblings, children, class, descendants, footer, global, typeSelector)
 import Css.Media as Media exposing (only, screen, withMedia)
 import Html.Styled exposing (Html)
 
@@ -33,6 +33,11 @@ green =
 pink : { light : Color, mid : Color, dark : Color }
 pink =
     { light = hex "FFF0FD", mid = hex "EEC5E8", dark = hex "AF1495" }
+
+
+fuchsia : Color
+fuchsia =
+    hex "AF1495"
 
 
 
@@ -115,27 +120,39 @@ globalStyles =
                     ]
                 ]
             ]
-        , class "about-us"
+        , class "home-section"
             [ descendants
                 [ typeSelector "p"
                     [ fontSize (rem 1.25)
                     , margin2 (rem 1) auto
-                    , maxWidth (ch 80)
+                    , maxWidth (ch 50)
                     ]
                 ]
             ]
-        , class "profile-link"
+        , class "profile-item"
             [ borderBottom (px 0)
             , borderRadius (px 500)
             , flexShrink zero
             , height (rem 7)
+            , listStyle none
             , margin2 zero (rem 0.5)
+            , position relative
             , width (rem 7)
             , pseudoClass "first-child"
                 [ marginLeft auto
                 ]
             , pseudoClass "last-child"
                 [ marginRight auto
+                ]
+            ]
+        , class "profile-link"
+            [ hover
+                [ cursor pointer
+                , children
+                    [ typeSelector "div"
+                        [ displayFlex
+                        ]
+                    ]
                 ]
             ]
         ]
