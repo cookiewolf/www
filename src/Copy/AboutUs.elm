@@ -72,7 +72,7 @@ Karl has 30 years’ experience in the tech industry working in financial servic
 katja : Model.ProfileInfo
 katja =
     { section = DigitalDevelopment
-    , name = "Katja Mordaunt"
+    , name = "Katja"
     , role = "Full Stack Developer & Project Lead"
     , bioMarkdown = """
 Katja’s career has spanned many interests and industries but currently she designs and implements digital services and browser-based tools that help improve the reach of charities and community organisations. She values a culture of collaboration, open source, transparency, integrity, sharing stuff and giving everyone a chance at meaningful participation. 
