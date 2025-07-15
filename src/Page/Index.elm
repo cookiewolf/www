@@ -2,20 +2,24 @@ module Page.Index exposing (view)
 
 import Copy.AboutUs
 import Copy.CaseStudy exposing (CaseStudyKey(..))
-import Copy.Keys exposing (Key(..), Section(..))
+import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, a, div, h2, img, li, section, text, ul)
+import Html.Styled exposing (Html, a, div, h2, h3, img, li, p, section, text, ul)
 import Html.Styled.Attributes exposing (alt, class, css, href, src)
-import Model exposing (Model)
+import Model
 import Msg exposing (Msg)
-import Route
 import Theme.Style exposing (fuchsia, pink, white)
 import Theme.View exposing (generateId)
 
 
-view : Model -> Html Msg
-view _ =
+featuredCaseStudyList : List Copy.CaseStudy.CaseStudyKey
+featuredCaseStudyList =
+    [ Foyer, CodeReadingClub, NewProjectInvite ]
+
+
+view : Html Msg
+view =
     div []
         [ section [ css [ whoWeAreSectionStyle ], class "home-section" ]
             [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
@@ -24,10 +28,7 @@ view _ =
         , h2
             []
             [ text (t ThingsWeWorkOnHeading) ]
-        , div []
-            [ div [] [ text "[cCc] Case study list #23" ]
-            , a [ href (Route.toString (Route.CaseStudy (Copy.CaseStudy.caseStudyFromId Foyer).slug)) ] [ text (Copy.CaseStudy.caseStudyFromId Foyer).title ]
-            ]
+        , ul [] (viewWorkingOnList featuredCaseStudyList)
         , section [ css [ whoWeAreSectionStyle ], class "home-section" ]
             [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
@@ -37,6 +38,53 @@ view _ =
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
             ]
         ]
+
+
+viewWorkingOnList : List Copy.CaseStudy.CaseStudyKey -> List (Html Msg)
+viewWorkingOnList featuredCaseStudies =
+    List.map
+        (\caseStudyId ->
+            let
+                caseStudy : Model.CaseStudy
+                caseStudy =
+                    Copy.CaseStudy.caseStudyFromId caseStudyId
+            in
+            li [] [ viewCaseStudyCard caseStudy ]
+        )
+        featuredCaseStudies
+
+
+viewCaseStudyCard : Model.CaseStudy -> Html Msg
+viewCaseStudyCard caseStudy =
+    div []
+        [ viewCaseStudyCardHeader caseStudy
+        , viewCaseStudyCardSummary caseStudy
+        , viewCaseStudyCardLink caseStudy
+        ]
+
+
+viewCaseStudyCardHeader : Model.CaseStudy -> Html Msg
+viewCaseStudyCardHeader caseStudy =
+    div [ css [ workingOnCardStyle caseStudy.teaserBackgroundSrc ] ]
+        (case caseStudy.maybeTeaserLogoSrc of
+            Nothing ->
+                [ h3 [] [ text caseStudy.title ] ]
+
+            Just aLogoSrc ->
+                [ img [ src aLogoSrc, alt "" ] []
+                , h3 [ css [ Theme.Style.visuallyHiddenStyles ] ] [ text caseStudy.title ]
+                ]
+        )
+
+
+viewCaseStudyCardSummary : Model.CaseStudy -> Html Msg
+viewCaseStudyCardSummary caseStudy =
+    p [] [ text caseStudy.teaserSummary ]
+
+
+viewCaseStudyCardLink : Model.CaseStudy -> Html Msg
+viewCaseStudyCardLink caseStudy =
+    a [ href caseStudy.teaserHref ] [ text caseStudy.teaserLinkText ]
 
 
 viewWhoWeAreList : List Model.ProfileInfo -> List (Html Msg)
@@ -61,6 +109,17 @@ viewProfileImage profile =
 
 
 -- Styles
+
+
+workingOnCardStyle : String -> Style
+workingOnCardStyle src =
+    batch
+        [ backgroundImage (url src)
+        , backgroundSize cover
+        , borderRadius (px 20)
+        , height (px 200)
+        , width (px 200)
+        ]
 
 
 whoWeAreSectionStyle : Style

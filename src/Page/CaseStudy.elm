@@ -5,20 +5,20 @@ import Copy.Text exposing (t)
 import Css exposing (..)
 import Html.Styled exposing (Html, aside, blockquote, div, h1, h2, hr, img, p, section, text)
 import Html.Styled.Attributes exposing (alt, css, src)
-import Model exposing (Model)
+import Model
 import Msg exposing (Msg)
 import Theme.Style exposing (pink, shadow, withMediaTablet)
 import Theme.View exposing (contentContainer)
 
 
-view : Model -> Model.CaseStudy -> Html Msg
-view _ caseStudy =
+view : String -> Model.CaseStudyContent -> Html Msg
+view caseStudyTitle caseStudy =
     div []
         [ section []
             [ div [ css [ titleBackgroundStyle ] ]
                 [ div [ css [ contentContainer, titleAreaStyle ] ]
                     [ div [ css [ caseStudyStyle ] ] [ text (t (Category Copy.Keys.CaseStudy)) ]
-                    , h1 [ css [ titleStyle ] ] [ text caseStudy.title ]
+                    , h1 [ css [ titleStyle ] ] [ text caseStudyTitle ]
                     ]
                 ]
             , div [ css [ contentContainer, sectionLayoutStyle ] ]

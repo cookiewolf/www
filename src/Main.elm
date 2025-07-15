@@ -104,15 +104,26 @@ view : Model -> Html Msg
 view model =
     case model.page of
         Index ->
-            Theme.View.viewPageWrapper (t SiteTitle) (Page.Index.view model)
+            Theme.View.viewPageWrapper (t SiteTitle) Page.Index.view
 
         AboutUs ->
             Theme.View.viewPageWrapper (t AboutUsTitle) (Page.AboutUs.view model)
 
         CaseStudy slug ->
             let
+                caseStudy : Model.CaseStudy
                 caseStudy =
                     Copy.CaseStudy.caseStudyIdFromSlug slug
                         |> Copy.CaseStudy.caseStudyFromId
+
+                maybeContent : Maybe Model.CaseStudyContent
+                maybeContent =
+                    caseStudy.maybePageContent
             in
-            Theme.View.viewPageWrapper caseStudy.title (Page.CaseStudy.view model caseStudy)
+            case maybeContent of
+                Just content ->
+                    Theme.View.viewPageWrapper caseStudy.title (Page.CaseStudy.view caseStudy.title content)
+
+                Nothing ->
+                    -- Replace with global 404 ?
+                    Theme.View.viewPageWrapper (t SiteTitle) Page.Index.view
