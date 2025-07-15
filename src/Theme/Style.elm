@@ -1,4 +1,4 @@
-module Theme.Style exposing (black, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
+module Theme.Style exposing (black, fuchsia, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (a, adjacentSiblings, class, descendants, footer, global, typeSelector)
@@ -28,6 +28,11 @@ green =
 pink : { light : Color, mid : Color, dark : Color }
 pink =
     { light = hex "FFF0FD", mid = hex "EEC5E8", dark = hex "AF1495" }
+
+
+fuchsia : Color
+fuchsia =
+    hex "AF1495"
 
 
 
@@ -119,11 +124,12 @@ globalStyles =
                     ]
                 ]
             ]
-        , class "profile-link"
+        , class "profile-item"
             [ borderBottom (px 0)
             , borderRadius (px 500)
             , flexShrink zero
             , height (rem 7)
+            , listStyle none
             , margin2 zero (rem 0.5)
             , width (rem 7)
             , pseudoClass "first-child"

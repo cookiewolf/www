@@ -27,7 +27,7 @@ view _ =
         , section [ css [ whoWeAreSectionStyle ], class "about-us" ]
             [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
-            , div
+            , ul
                 [ css [ imageRowStyle ] ]
                 (viewWhoWeAreList Copy.AboutUs.profiles)
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
@@ -39,15 +39,18 @@ viewWhoWeAreList : List Model.ProfileInfo -> List (Html Msg)
 viewWhoWeAreList profiles =
     List.map
         (\profile ->
-            a [ href ("/about-us#" ++ profile.name), class "profile-link", title profile.name ] (viewProfileImage profile)
+            li [ class "profile-item" ]
+                [ a [ href ("/about-us#" ++ String.toLower (String.replace " " "-" profile.name)), class "profile-link" ]
+                    [ viewProfileImage profile
+                    ]
+                ]
         )
         profiles
 
 
-viewProfileImage : Model.ProfileInfo -> List (Html Msg)
+viewProfileImage : Model.ProfileInfo -> Html Msg
 viewProfileImage profile =
-    [ img [ src profile.imagePath, css [ imageStyle ], alt profile.name ] []
-    ]
+    img [ src profile.imagePath, css [ imageStyle ], alt profile.name ] []
 
 
 
