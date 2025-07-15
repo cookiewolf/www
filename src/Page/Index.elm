@@ -85,7 +85,7 @@ imageRowStyle =
     batch
         [ displayFlex
         , overflowX auto
-        , margin2 (rem 3) (rem -1)
+        , margin2 (rem 3) auto
         ]
 
 

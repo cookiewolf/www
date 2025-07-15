@@ -1,5 +1,4 @@
-module Theme.View exposing (generateId, markdownToHtml, viewPageWrapper)
-
+module Theme.View exposing (contentContainer, generateId, markdownToHtml, viewPageWrapper)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
@@ -16,7 +15,7 @@ viewPageWrapper pageTitle pageContent =
     div [ id ("page-" ++ generateId pageTitle), css [ viewPageStyle ] ]
         [ globalStyles
         , viewPageHeader
-        , div [ css [ containerStyle ] ] [ pageContent ]
+        , div [ css [] ] [ pageContent ]
         , viewPageFooter
         ]
 

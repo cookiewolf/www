@@ -1,4 +1,4 @@
-module Theme.Style exposing (black, fuchsia, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
+module Theme.Style exposing (black, fuchsia, globalStyles, green, pink, shadow, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (a, adjacentSiblings, children, class, descendants, footer, global, typeSelector)
@@ -18,6 +18,11 @@ black =
 white : Color
 white =
     hex "FFFFFF"
+
+
+shadow : Color
+shadow =
+    hex "00000040"
 
 
 green : { light : Color, mid : Color, dark : Color }
