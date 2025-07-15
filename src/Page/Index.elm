@@ -6,11 +6,11 @@ import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
 import Html.Styled exposing (Html, a, div, h2, h3, img, li, p, section, text, ul)
-import Html.Styled.Attributes exposing (alt, class, css, href, src, title)
-import Model exposing (Model)
+import Html.Styled.Attributes exposing (alt, class, css, href, src)
+import Model
 import Msg exposing (Msg)
-import Theme.Style exposing (pink)
-import Theme.View
+import Theme.Style exposing (fuchsia, pink, white)
+import Theme.View exposing (generateId)
 
 
 featuredCaseStudyList : List Copy.CaseStudy.CaseStudyKey
@@ -21,14 +21,18 @@ featuredCaseStudyList =
 view : Html Msg
 view =
     div []
-        [ h2 [] [ text (t WhatWeDoHeading) ]
-        , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
-        , h2 [] [ text (t ThingsWeWorkOnHeading) ]
+        [ section [ css [ whoWeAreSectionStyle ], class "home-section" ]
+            [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
+            , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
+            ]
+        , h2
+            []
+            [ text (t ThingsWeWorkOnHeading) ]
         , ul [] (viewWorkingOnList featuredCaseStudyList)
-        , section [ css [ whoWeAreSectionStyle ], class "about-us" ]
+        , section [ css [ whoWeAreSectionStyle ], class "home-section" ]
             [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
-            , div
+            , ul
                 [ css [ imageRowStyle ] ]
                 (viewWhoWeAreList Copy.AboutUs.profiles)
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
@@ -87,15 +91,20 @@ viewWhoWeAreList : List Model.ProfileInfo -> List (Html Msg)
 viewWhoWeAreList profiles =
     List.map
         (\profile ->
-            a [ href ("/about-us#" ++ profile.name), class "profile-link", title profile.name ] (viewProfileImage profile)
+            li [ class "profile-item" ]
+                [ a [ href ("/about-us#" ++ generateId profile.name), class "profile-link" ]
+                    [ viewProfileImage profile
+                    , div [ css [ overlayStyle ] ] []
+                    , div [ css [ overlayLabelStyle ] ] [ text profile.name ]
+                    ]
+                ]
         )
         profiles
 
 
-viewProfileImage : Model.ProfileInfo -> List (Html Msg)
+viewProfileImage : Model.ProfileInfo -> Html Msg
 viewProfileImage profile =
-    [ img [ src profile.imagePath, css [ imageStyle ], alt profile.name ] []
-    ]
+    img [ src profile.imagePath, css [ imageStyle ], alt profile.name ] []
 
 
 
@@ -135,7 +144,7 @@ imageRowStyle =
     batch
         [ displayFlex
         , overflowX auto
-        , margin2 (rem 3) (rem -1)
+        , margin2 (rem 3) auto
         ]
 
 
@@ -143,8 +152,40 @@ imageStyle : Style
 imageStyle =
     batch
         [ borderRadius (px 500)
-        , flexShrink zero
         , height (rem 7)
         , property "object-fit" "cover"
+        , width (rem 7)
+        ]
+
+
+overlayStyle : Style
+overlayStyle =
+    batch
+        [ alignItems center
+        , backgroundColor fuchsia
+        , borderRadius (px 500)
+        , display none
+        , height (rem 7)
+        , justifyContent center
+        , position absolute
+        , property "mix-blend-mode" "multiply"
+        , top zero
+        , width (rem 7)
+        ]
+
+
+overlayLabelStyle : Style
+overlayLabelStyle =
+    batch
+        [ alignItems center
+        , borderRadius (px 500)
+        , color white
+        , display none
+        , fontWeight (int 700)
+        , height (rem 7)
+        , justifyContent center
+        , position absolute
+        , property "word-spacing" "7rem"
+        , top zero
         , width (rem 7)
         ]
