@@ -115,12 +115,12 @@ globalStyles =
                     ]
                 ]
             ]
-        , class "about-us"
+        , class "home-section"
             [ descendants
                 [ typeSelector "p"
                     [ fontSize (rem 1.25)
                     , margin2 (rem 1) auto
-                    , maxWidth (ch 80)
+                    , maxWidth (ch 50)
                     ]
                 ]
             ]
