@@ -110,7 +110,7 @@ newProjectInvite : Model.CaseStudy
 newProjectInvite =
     { title = "Your Project here?"
     , maybeTeaserLogoSrc = Nothing
-    , teaserBackgroundSrc = "/litle_bird_big_object.png"
+    , teaserBackgroundSrc = "/work/little_bird_big_object.png"
     , teaserSummary = "We're always up for working with folks who are building new things or making old things work better. Wherever you're at, we'd love to chat."
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
     , teaserHref = "mailto:hello@cookiewolf.coop"
