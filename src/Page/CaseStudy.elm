@@ -3,7 +3,7 @@ module Page.CaseStudy exposing (sectionLayoutStyle, view)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, blockquote, div, h1, h2, hr, img, p, section, text)
+import Html.Styled exposing (Html, aside, blockquote, div, h1, h2, hr, img, p, section, text)
 import Html.Styled.Attributes exposing (alt, css, src)
 import Model exposing (Model)
 import Msg exposing (Msg)
@@ -15,28 +15,28 @@ view : Model -> Model.CaseStudy -> Html Msg
 view _ caseStudy =
     div []
         [ section []
-            [ div [ css [ titleAreaStyle ] ]
-                [ div [ css [ contentContainer ] ]
+            [ div [ css [ titleBackgroundStyle ] ]
+                [ div [ css [ contentContainer, titleAreaStyle ] ]
                     [ div [ css [ caseStudyStyle ] ] [ text (t (Category Copy.Keys.CaseStudy)) ]
                     , h1 [ css [ titleStyle ] ] [ text caseStudy.title ]
                     ]
                 ]
             , div [ css [ contentContainer, sectionLayoutStyle ] ]
-                [ div []
+                [ div [ css [ contentStyle ] ]
                     [ Theme.View.markdownToHtml caseStudy.introMarkdown
                     ]
-                , div []
+                , aside [ css [ asideStyle ] ]
                     [ viewMaybeImage caseStudy.maybeIntroImage
                     ]
                 ]
             ]
         , hr [ css [ hrStyle ] ] []
         , div [ css [ contentContainer, sectionLayoutStyle ] ]
-            [ div []
+            [ div [ css [ contentStyle ] ]
                 [ h2 [ css [ sectionHeadingStyle ] ] [ text (t WhatWeDidHeading) ]
                 , Theme.View.markdownToHtml caseStudy.whatWeDidMarkdown
                 ]
-            , div []
+            , aside [ css [ asideStyle ] ]
                 [ viewMaybeImage caseStudy.maybeWhatWeDidImage
                 ]
             ]
@@ -46,7 +46,7 @@ view _ caseStudy =
                 [ h2 [ css [ sectionHeadingStyle ] ] [ text (t ResultsHeading) ]
                 , Theme.View.markdownToHtml caseStudy.resultsMarkdown
                 ]
-            , div []
+            , aside []
                 [ viewMaybeQuote caseStudy.maybeQuote
                 ]
             ]
@@ -81,12 +81,21 @@ viewMaybeQuote maybeQuote =
 -- Styles
 
 
-titleAreaStyle : Style
-titleAreaStyle =
+titleBackgroundStyle : Style
+titleBackgroundStyle =
     batch
         [ backgroundColor pink.light
         , boxShadow4 (px 0) (px 0) (px 20) shadow
-        , padding2 (rem 3) zero
+        , withMediaTablet
+            [ padding2 (rem 2) (rem 1)
+            ]
+        ]
+
+
+titleAreaStyle : Style
+titleAreaStyle =
+    batch
+        [ padding2 (rem 2) (rem 1)
         ]
 
 
@@ -105,7 +114,10 @@ titleStyle =
         [ fontSize (rem 2.5)
         , fontWeight bold
         , lineHeight (rem 3)
-        , withMediaTablet [ fontSize (rem 3.75), lineHeight (rem 4.5) ]
+        , withMediaTablet
+            [ fontSize (rem 3.75)
+            , lineHeight (rem 4.5)
+            ]
         ]
 
 
@@ -114,8 +126,26 @@ sectionLayoutStyle =
     batch
         [ displayFlex
         , flexDirection column
-        , padding2 (rem 3) (rem 1)
-        , withMediaTablet [ flexDirection row ]
+        , fontSize (rem 1.25)
+        , padding2 (rem 2) (rem 1)
+        , withMediaTablet
+            [ flexDirection row
+            , padding2 (rem 3) (rem 1)
+            ]
+        ]
+
+
+contentStyle : Style
+contentStyle =
+    batch
+        [ flexBasis (pct 60)
+        ]
+
+
+asideStyle : Style
+asideStyle =
+    batch
+        [ flexBasis (pct 40)
         ]
 
 
@@ -124,7 +154,7 @@ sectionHeadingStyle =
     batch
         [ color pink.dark
         , fontSize (rem 2)
-        , margin2 (rem 2) auto
+        , marginBottom (rem 2)
         ]
 
 
