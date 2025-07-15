@@ -17,7 +17,7 @@ type
     = SiteTitle
     | Strapline
     | Category ContentType
-      -- Home
+    | HomeMetaDescription
     | WhatWeDoHeading
     | WhatWeDoMarkdown
     | ThingsWeWorkOnHeading
@@ -27,9 +27,9 @@ type
       -- About Us
     | AboutUsSlug
     | AboutUsTitle
+    | AboutUsMetaDescription
     | AboutUsSection Section
     | AboutUsProfileProjectsLabel
-      -- Case Study
     | CaseStudySlug
     | WhatWeDidHeading
     | ResultsHeading

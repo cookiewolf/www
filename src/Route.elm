@@ -1,9 +1,8 @@
-module Route exposing (Route(..), fromSlug, fromUrl, toString)
+module Route exposing (Route(..), fromUrl, toString)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Url
-import Url.Builder
 import Url.Parser as Parser exposing ((</>), Parser, map, oneOf, s, string, top)
 
 
@@ -17,28 +16,6 @@ fromUrl : Url.Url -> Maybe Route
 fromUrl url =
     url
         |> Parser.parse routeParser
-
-
-fromSlug : List String -> Maybe Route
-fromSlug slug =
-    let
-        maybeUrl : Maybe Url.Url
-        maybeUrl =
-            Url.Builder.absolute slug []
-                |> Url.fromString
-
-        aUrl =
-            Url.Builder.absolute slug []
-
-        _ =
-            Debug.log "MAYBE" maybeUrl
-    in
-    case maybeUrl of
-        Just url ->
-            fromUrl url
-
-        Nothing ->
-            Just Index
 
 
 toString : Route -> String

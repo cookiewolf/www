@@ -4,7 +4,7 @@ import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Html.Styled exposing (Html, blockquote, div, h1, h2, img, p, text)
 import Html.Styled.Attributes exposing (alt, src)
-import Model exposing (Model)
+import Model
 import Msg exposing (Msg)
 import Theme.View
 

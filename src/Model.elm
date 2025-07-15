@@ -38,7 +38,8 @@ type alias CaseStudy =
 
 
 type alias CaseStudyContent =
-    { introMarkdown : String
+    { metaDescription : String
+    , introMarkdown : String
     , maybeIntroImage : Maybe Image
     , whatWeDidMarkdown : String
     , maybeWhatWeDidImage : Maybe Image

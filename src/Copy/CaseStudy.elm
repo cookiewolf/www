@@ -7,6 +7,7 @@ import Route
 type CaseStudyKey
     = CodeReadingClub
     | Foyer
+    | NewProjectInvite
     | FourZeroFour
 
 
@@ -29,6 +30,9 @@ caseStudyFromId id =
         Foyer ->
             foyer
 
+        NewProjectInvite ->
+            newProjectInvite
+
         FourZeroFour ->
             fourZeroFour
 
@@ -48,14 +52,15 @@ codeReadingClub =
 foyer : Model.CaseStudy
 foyer =
     { title = "Transforming The Foundling Museum's digital infrastructure with Foyer"
-    , maybeTeaserLogoSrc = Just ""
+    , maybeTeaserLogoSrc = Just "/foyer_logo.png"
     , teaserBackgroundSrc = "/work/ancient_arches.png"
     , teaserSummary = "Foyer, our award-winning bespoke ticketing platform that helps organisations simplify systems and create faster, better visitor experiences."
     , teaserLinkText = "Read our case study"
     , teaserHref = Route.toString (Route.CaseStudy "foyer")
     , maybePageContent =
         Just
-            { introMarkdown =
+            { metaDescription = "Foyer Description [cCc]"
+            , introMarkdown =
                 """
 **Cookiewolf's Stuart Leech led the Foundling Museum's digital transformation, collaborating with lead developer Katja Mordaunt to build a bespoke version of Foyer, our Shopify-based ticketing system.**
 
@@ -101,13 +106,25 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
     }
 
 
-fourZeroFour : Model.CaseStudy
-fourZeroFour =
+newProjectInvite : Model.CaseStudy
+newProjectInvite =
     { title = "Your Project here?"
     , maybeTeaserLogoSrc = Nothing
     , teaserBackgroundSrc = "/litle_bird_big_object.png"
     , teaserSummary = "We're always up for working with folks who are building new things or making old things work better. Wherever you're at, we'd love to chat."
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
+    , teaserHref = "mailto:hello@cookiewolf.coop"
+    , maybePageContent = Nothing
+    }
+
+
+fourZeroFour : Model.CaseStudy
+fourZeroFour =
+    { title = "Project not found"
+    , maybeTeaserLogoSrc = Nothing
+    , teaserBackgroundSrc = ""
+    , teaserSummary = ""
+    , teaserLinkText = ""
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
     }

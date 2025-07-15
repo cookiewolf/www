@@ -5,22 +5,21 @@ import Copy.CaseStudy exposing (CaseStudyKey(..))
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, a, div, h2, img, li, p, section, text, ul)
+import Html.Styled exposing (Html, a, div, h2, h3, img, li, p, section, text, ul)
 import Html.Styled.Attributes exposing (alt, class, css, href, src, title)
 import Model exposing (Model)
 import Msg exposing (Msg)
-import Route
 import Theme.Style exposing (pink)
 import Theme.View
 
 
 featuredCaseStudyList : List Copy.CaseStudy.CaseStudyKey
 featuredCaseStudyList =
-    [ Foyer, CodeReadingClub, FourZeroFour ]
+    [ Foyer, CodeReadingClub, NewProjectInvite ]
 
 
-view : Model -> Html Msg
-view _ =
+view : Html Msg
+view =
     div []
         [ h2 [] [ text (t WhatWeDoHeading) ]
         , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
@@ -62,7 +61,16 @@ viewCaseStudyCard caseStudy =
 
 viewCaseStudyCardHeader : Model.CaseStudy -> Html Msg
 viewCaseStudyCardHeader caseStudy =
-    div [] [ text "background, logo, title" ]
+    div [ css [ workingOnCardStyle caseStudy.teaserBackgroundSrc ] ]
+        (case caseStudy.maybeTeaserLogoSrc of
+            Nothing ->
+                [ h3 [] [ text caseStudy.title ] ]
+
+            Just aLogoSrc ->
+                [ img [ src aLogoSrc, alt "" ] []
+                , h3 [ css [ Theme.Style.visuallyHiddenStyles ] ] [ text caseStudy.title ]
+                ]
+        )
 
 
 viewCaseStudyCardSummary : Model.CaseStudy -> Html Msg
@@ -92,6 +100,17 @@ viewProfileImage profile =
 
 
 -- Styles
+
+
+workingOnCardStyle : String -> Style
+workingOnCardStyle src =
+    batch
+        [ backgroundImage (url src)
+        , backgroundSize cover
+        , borderRadius (px 20)
+        , height (px 200)
+        , width (px 200)
+        ]
 
 
 whoWeAreSectionStyle : Style
