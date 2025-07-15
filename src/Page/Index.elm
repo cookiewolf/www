@@ -11,7 +11,7 @@ import Model exposing (Model)
 import Msg exposing (Msg)
 import Route
 import Theme.Style exposing (fuchsia, pink, white)
-import Theme.View
+import Theme.View exposing (generateId)
 
 
 view : Model -> Html Msg
@@ -44,7 +44,7 @@ viewWhoWeAreList profiles =
     List.map
         (\profile ->
             li [ class "profile-item" ]
-                [ a [ href ("/about-us#" ++ String.toLower (String.replace " " "-" profile.name)), class "profile-link" ]
+                [ a [ href ("/about-us#" ++ generateId profile.name), class "profile-link" ]
                     [ viewProfileImage profile
                     , div [ css [ overlayStyle ] ] []
                     , div [ css [ overlayLabelStyle ] ] [ text profile.name ]

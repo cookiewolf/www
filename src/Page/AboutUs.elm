@@ -10,7 +10,7 @@ import Model exposing (Model)
 import Msg exposing (Msg)
 import Set
 import Theme.Style
-import Theme.View
+import Theme.View exposing (generateId)
 
 
 view : Model -> Html Msg
@@ -53,7 +53,7 @@ viewProfileSection model profileSection profiles =
 
 viewProfile : Model.ProfileInfo -> List (Html Msg)
 viewProfile profile =
-    [ h3 [ id (String.toLower (String.replace " " "-" profile.name)) ] [ text profile.name ]
+    [ h3 [ id (generateId profile.name) ] [ text profile.name ]
     , h4 [] [ text profile.role ]
     , div [] [ Theme.View.markdownToHtml profile.bioMarkdown ]
     , div [] [ Theme.View.markdownToHtml (t AboutUsProfileProjectsLabel ++ profile.projectsMarkdown) ]
