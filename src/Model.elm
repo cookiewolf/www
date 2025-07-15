@@ -37,6 +37,8 @@ type alias CaseStudy =
     , maybeQuote : Maybe Quote
     , metaTitle : String
     , metaDescription : String
+    , metaUrl : Maybe String
+    , metaImageSrc : Maybe String
     }
 
 

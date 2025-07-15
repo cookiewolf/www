@@ -76,6 +76,8 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
     , maybeQuote = Nothing
     , metaTitle = "Foyer [cCc]"
     , metaDescription = "Foyer Description [cCc]"
+    , metaUrl = Just "https://example.com/change-this-katja"
+    , metaImageSrc = Just "/change-this-katja"
     }
 
 
@@ -91,4 +93,6 @@ fourZeroFour =
     , maybeQuote = Nothing
     , metaTitle = "[cCc]"
     , metaDescription = "[cCc]"
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
     }
