@@ -20,8 +20,6 @@ app.ports.setMetadata.subscribe(function (pageMetadata) {
   const defaultImage = `${baseUrl}/meta-image.png`;
   const defaultUrl = baseUrl;
 
-  console.log("setting metadata to: ", pageMetadata);
-
   if (pageMetadata.hasOwnProperty("title")) {
     document.title = pageMetadata.title;
     document
