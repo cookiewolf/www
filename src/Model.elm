@@ -9,6 +9,7 @@ import Set exposing (Set)
 type alias Model =
     { key : Browser.Navigation.Key
     , page : Route
+    , viewportHeightWidth : ( Float, Float )
     , openSections : Set String
     }
 
