@@ -1,4 +1,4 @@
-module Theme.Style exposing (black, fuchsia, globalStyles, green, pink, shadow, visuallyHiddenStyles, white, withMediaTablet)
+module Theme.Style exposing (black, fuchsia, globalStyles, green, maxMobile, pink, shadow, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
 import Css.Global exposing (a, adjacentSiblings, children, class, descendants, footer, global, typeSelector)
