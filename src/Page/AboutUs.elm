@@ -10,7 +10,7 @@ import Model exposing (Model)
 import Msg exposing (Msg)
 import Set
 import Theme.Style
-import Theme.View
+import Theme.View exposing (generateId)
 
 
 view : Model -> Html Msg
@@ -24,40 +24,71 @@ view model =
 viewProfileSection : Model -> Section -> List Model.ProfileInfo -> Html Msg
 viewProfileSection model profileSection profiles =
     div []
-        [ h2 []
+        [ h2 [] [ text (t (AboutUsSection profileSection)) ]
+        , section [] (viewProfiles model profiles)
+        ]
+
+
+viewProfile : Model -> Model.ProfileInfo -> List (Html Msg)
+viewProfile model profile =
+    let
+        sectionId : String
+        sectionId =
+            generateId profile.name
+
+        isSmallScreen : Bool
+        isSmallScreen =
+            Tuple.second model.viewportHeightWidth < Theme.Style.maxMobile
+    in
+    [ if isSmallScreen then
+        h3 []
             [ button
-                [ id (headerIdFromSection profileSection)
-                , if Set.member (slugFromSection profileSection) model.openSections then
+                [ id ("header-" ++ sectionId)
+                , if Set.member sectionId model.openSections then
                     attribute "aria-expanded" "true"
 
                   else
                     attribute "aria-expanded" "false"
-                , attribute "aria-controls" (contentIdFromSection profileSection)
-                , onClick (Msg.SectionToggled (slugFromSection profileSection))
+                , attribute "aria-controls" ("content-" ++ sectionId)
+                , onClick (Msg.SectionToggled sectionId)
                 ]
-                [ text (t (AboutUsSection profileSection))
+                [ text profile.name
                 ]
             ]
-        , section
-            [ id (contentIdFromSection profileSection)
-            , attribute "aria-labelledby" (headerIdFromSection profileSection)
-            , if Set.member (slugFromSection profileSection) model.openSections then
-                css [ Theme.Style.visuallyHiddenStyles ]
 
-              else
-                css []
-            ]
-            (viewProfiles profiles)
-        ]
-
-
-viewProfile : Model.ProfileInfo -> List (Html Msg)
-viewProfile profile =
-    [ h3 [ id profile.name ] [ text profile.name ]
-    , h4 [] [ text profile.role ]
-    , div [] [ Theme.View.markdownToHtml profile.bioMarkdown ]
-    , div [] [ Theme.View.markdownToHtml (t AboutUsProfileProjectsLabel ++ profile.projectsMarkdown) ]
+      else
+        h3 [ id sectionId ] [ text profile.name ]
+    , viewProfileInfoSection isSmallScreen model profile
     ]
+
+
+viewProfileInfoSection : Bool -> Model -> Model.ProfileInfo -> Html Msg
+viewProfileInfoSection isSmallScreen model profile =
+    let
+        sectionId : String
+        sectionId =
+            generateId profile.name
+
+        collapseAttributes : List (Html.Styled.Attribute Msg)
+        collapseAttributes =
+            if isSmallScreen then
+                [ attribute "aria-labelledby" ("header-" ++ sectionId)
+                , if Set.member sectionId model.openSections then
+                    css []
+
+                  else
+                    css [ Theme.Style.visuallyHiddenStyles ]
+                ]
+
+            else
+                []
+    in
+    section
+        ([ id ("content-" ++ sectionId) ] ++ collapseAttributes)
+        [ h4 [] [ text profile.role ]
+        , div [] [ Theme.View.markdownToHtml profile.bioMarkdown ]
+        , div [] [ Theme.View.markdownToHtml (t AboutUsProfileProjectsLabel ++ profile.projectsMarkdown) ]
+        ]
 
 
 viewProfileSections : Model -> List (Html Msg)
@@ -74,35 +105,12 @@ viewProfileSections model =
         [ Business, ContentAndDesign, DigitalDevelopment ]
 
 
-viewProfiles : List Model.ProfileInfo -> List (Html Msg)
-viewProfiles profiles =
+viewProfiles : Model -> List Model.ProfileInfo -> List (Html Msg)
+viewProfiles model profiles =
     List.concat
         (List.map
             (\profile ->
-                viewProfile profile
+                viewProfile model profile
             )
             profiles
         )
-
-
-headerIdFromSection : Section -> String
-headerIdFromSection profileSection =
-    "header-"
-        ++ slugFromSection profileSection
-
-
-contentIdFromSection : Section -> String
-contentIdFromSection profileSection =
-    "content-"
-        ++ slugFromSection profileSection
-
-
-slugFromSection : Section -> String
-slugFromSection profileSection =
-    slugify (t (AboutUsSection profileSection))
-
-
-slugify : String -> String
-slugify rawString =
-    String.toLower rawString
-        |> String.replace " " "-"

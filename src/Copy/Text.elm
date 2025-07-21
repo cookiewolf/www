@@ -23,9 +23,6 @@ t key =
             )
                 ++ ":"
 
-        HomeMetaTitle ->
-            "Home"
-
         HomeMetaDescription ->
             "Home description [cCc]"
 
@@ -34,7 +31,7 @@ t key =
 
         WhatWeDoMarkdown ->
             """
-**Cookiewolf** is a cooperatively-run digital development and design studio. We work with organizations of all sizes.
+**Cookiewolf** is a cooperatively-run digital development and design studio. We work with organisations of all sizes.
 
 Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity, delivered on a limited budget.
             """
@@ -44,7 +41,9 @@ Our projects are based in true collaboration with our clients, focusing on acces
 
         WhoWeAreMarkdown1 ->
             """
-An experienced group of developers, designers, writers, and other folk who’ve come together to form a collective. Cookiewolf Co-op reflects how we think businesses should be run, based in equity, flexibility and creative thinking.
+An experienced group of developers, designers, writers, and other folk who’ve come together to form a collective.
+
+Cookiewolf Co-op reflects how we think businesses should be run, based in equity, flexibility and creative thinking.
             """
 
         WhoWeAreMarkdown2 ->
@@ -79,9 +78,6 @@ Our members’ award-winning work spans medium to large-scale projects with clie
 
         AboutUsProfileProjectsLabel ->
             "**Selected projects**: "
-
-        CaseStudyMetaTitle ->
-            "Case Study [cCc]"
 
         CaseStudySlug ->
             "case-study"

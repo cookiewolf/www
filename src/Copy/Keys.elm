@@ -17,8 +17,6 @@ type
     = SiteTitle
     | Strapline
     | Category ContentType
-      -- Home
-    | HomeMetaTitle
     | HomeMetaDescription
     | WhatWeDoHeading
     | WhatWeDoMarkdown
@@ -32,8 +30,6 @@ type
     | AboutUsMetaDescription
     | AboutUsSection Section
     | AboutUsProfileProjectsLabel
-      -- Case Study
-    | CaseStudyMetaTitle
     | CaseStudySlug
     | WhatWeDidHeading
     | ResultsHeading

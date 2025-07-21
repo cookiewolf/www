@@ -1,6 +1,8 @@
 module Main exposing (main)
 
 import Browser
+import Browser.Dom
+import Browser.Events
 import Browser.Navigation
 import Copy.CaseStudy
 import Copy.Keys exposing (Key(..))
@@ -14,6 +16,7 @@ import Page.CaseStudy
 import Page.Index
 import Route exposing (Route(..))
 import Set
+import Task
 import Theme.View
 import Url
 
@@ -43,9 +46,13 @@ init _ url key =
     in
     ( { key = key
       , page = route
+      , viewportHeightWidth = ( 800, 800 )
       , openSections = Set.empty
       }
-    , MetaTags.setMetadata <| MetaTags.metaForPage route
+    , Cmd.batch
+        [ MetaTags.setMetadata <| MetaTags.metaForPage route
+        , Task.perform GotViewport Browser.Dom.getViewport
+        ]
     )
 
 
@@ -62,6 +69,19 @@ update msg model =
                         Set.insert sectionSlug model.openSections
             in
             ( { model | openSections = newOpenSections }, Cmd.none )
+
+        GotViewport viewport ->
+            ( { model
+                | viewportHeightWidth =
+                    Maybe.withDefault model.viewportHeightWidth (Just ( viewport.viewport.height, viewport.viewport.width ))
+              }
+            , Cmd.none
+            )
+
+        OnResize newViewportHeightWidth ->
+            ( { model | viewportHeightWidth = newViewportHeightWidth }
+            , Cmd.none
+            )
 
         UrlChanged url ->
             let
@@ -90,7 +110,12 @@ update msg model =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    Sub.batch
+        [ Browser.Events.onResize
+            (\newWidth newHeight ->
+                OnResize ( toFloat newHeight, toFloat newWidth )
+            )
+        ]
 
 
 viewDocument : Model -> Browser.Document Msg
@@ -104,15 +129,26 @@ view : Model -> Html Msg
 view model =
     case model.page of
         Index ->
-            Theme.View.viewPageWrapper (t SiteTitle) (Page.Index.view model)
+            Theme.View.viewPageWrapper (t SiteTitle) Page.Index.view
 
         AboutUs ->
             Theme.View.viewPageWrapper (t AboutUsTitle) (Page.AboutUs.view model)
 
         CaseStudy slug ->
             let
+                caseStudy : Model.CaseStudy
                 caseStudy =
                     Copy.CaseStudy.caseStudyIdFromSlug slug
                         |> Copy.CaseStudy.caseStudyFromId
+
+                maybeContent : Maybe Model.CaseStudyContent
+                maybeContent =
+                    caseStudy.maybePageContent
             in
-            Theme.View.viewPageWrapper caseStudy.title (Page.CaseStudy.view model caseStudy)
+            case maybeContent of
+                Just content ->
+                    Theme.View.viewPageWrapper caseStudy.title (Page.CaseStudy.view caseStudy.title content)
+
+                Nothing ->
+                    -- Replace with global 404 ?
+                    Theme.View.viewPageWrapper (t SiteTitle) Page.Index.view
