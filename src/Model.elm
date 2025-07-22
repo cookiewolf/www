@@ -36,8 +36,6 @@ type alias CaseStudy =
     , teaserHref : String
     , maybePageContent : Maybe CaseStudyContent
     , metaTitle : String
-
-    --, metaDescription : String
     , metaUrl : Maybe String
     , metaImageSrc : Maybe String
     }
