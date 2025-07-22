@@ -46,6 +46,9 @@ codeReadingClub =
     , teaserLinkText = "Find out more"
     , teaserHref = "https://codereading.club"
     , maybePageContent = Nothing
+    , metaTitle = "[cCc]"
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
     }
 
 
@@ -103,6 +106,9 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
         """
             , maybeQuote = Nothing
             }
+    , metaTitle = "[cCc]"
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
     }
 
 
@@ -115,6 +121,9 @@ newProjectInvite =
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
+    , metaTitle = "[cCc]"
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
     }
 
 
@@ -127,4 +136,7 @@ fourZeroFour =
     , teaserLinkText = ""
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
+    , metaTitle = "[cCc]"
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
     }
