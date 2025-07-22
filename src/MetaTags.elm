@@ -16,33 +16,12 @@ type alias PageMetadata =
 
 titleForPage : Route.Route -> String
 titleForPage route =
-    let
-        pageTitle =
-            case route of
-                Route.CaseStudy slug ->
-                    let
-                        caseStudy =
-                            Copy.CaseStudy.caseStudyIdFromSlug slug
-                                |> Copy.CaseStudy.caseStudyFromId
-                    in
-                    caseStudy.metaTitle ++ " - " ++ t Keys.CaseStudyMetaTitle
+    case route of
+        Route.AboutUs ->
+            t Keys.AboutUsTitle ++ " - " ++ t Keys.SiteTitle
 
-                _ ->
-                    let
-                        pageKey =
-                            case route of
-                                Route.Index ->
-                                    Keys.HomeMetaTitle
-
-                                Route.AboutUs ->
-                                    Keys.AboutUsTitle
-
-                                _ ->
-                                    Keys.SiteTitle
-                    in
-                    t pageKey
-    in
-    pageTitle ++ " - " ++ t Keys.SiteTitle
+        _ ->
+            t Keys.SiteTitle
 
 
 metaForPage : Route.Route -> PageMetadata
@@ -67,9 +46,17 @@ metaForPage route =
                 caseStudy =
                     Copy.CaseStudy.caseStudyIdFromSlug slug
                         |> Copy.CaseStudy.caseStudyFromId
+
+                metaDescription =
+                    case caseStudy.maybePageContent of
+                        Just pageContent ->
+                            pageContent.metaDescription
+
+                        Nothing ->
+                            t Keys.HomeMetaDescription
             in
-            { title = titleForPage route
-            , description = caseStudy.metaDescription
+            { title = caseStudy.title
+            , description = metaDescription
             , url = caseStudy.metaUrl
             , imageSrc = caseStudy.metaImageSrc
             }

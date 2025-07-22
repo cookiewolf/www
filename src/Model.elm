@@ -35,20 +35,22 @@ type alias CaseStudy =
     , teaserLinkText : String
     , teaserHref : String
     , maybePageContent : Maybe CaseStudyContent
+    , metaTitle : String
+
+    --, metaDescription : String
+    , metaUrl : Maybe String
+    , metaImageSrc : Maybe String
     }
 
 
 type alias CaseStudyContent =
     { introMarkdown : String
+    , metaDescription : String
     , maybeIntroImage : Maybe Image
     , whatWeDidMarkdown : String
     , maybeWhatWeDidImage : Maybe Image
     , resultsMarkdown : String
     , maybeQuote : Maybe Quote
-    , metaTitle : String
-    , metaDescription : String
-    , metaUrl : Maybe String
-    , metaImageSrc : Maybe String
     }
 
 
