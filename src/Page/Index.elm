@@ -21,16 +21,16 @@ featuredCaseStudyList =
 view : Html Msg
 view =
     div []
-        [ section [ css [ whoWeAreSectionStyle ], class "home-section" ]
-            [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
+        [ section [ css [ sectionStyle ], class "home-section" ]
+            [ h2 [ css [ sectionHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
             , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
             ]
-        , h2
-            []
-            [ text (t ThingsWeWorkOnHeading) ]
-        , ul [] (viewWorkingOnList featuredCaseStudyList)
-        , section [ css [ whoWeAreSectionStyle ], class "home-section" ]
-            [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
+        , section [ css [ sectionStyle, sectionHighlightStyle ], class "home-section" ]
+            [ h2 [ css [ sectionHeadingStyle ] ] [ text (t ThingsWeWorkOnHeading) ]
+            , ul [ css [ workListStyle ] ] (viewWorkingOnList featuredCaseStudyList)
+            ]
+        , section [ css [ sectionStyle ], class "home-section" ]
+            [ h2 [ css [ sectionHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
             , ul
                 [ css [ imageRowStyle ] ]
@@ -122,20 +122,35 @@ workingOnCardStyle src =
         ]
 
 
-whoWeAreSectionStyle : Style
-whoWeAreSectionStyle =
+sectionStyle : Style
+sectionStyle =
     batch
         [ margin2 (rem 3) auto
         , textAlign center
         ]
 
 
-whoWeAreHeadingStyle : Style
-whoWeAreHeadingStyle =
+sectionHighlightStyle : Style
+sectionHighlightStyle =
+    batch
+        [ backgroundColor pink.light
+        ]
+
+
+sectionHeadingStyle : Style
+sectionHeadingStyle =
     batch
         [ color pink.dark
         , fontSize (rem 2)
         , margin2 (rem 2) auto
+        ]
+
+
+workListStyle : Style
+workListStyle =
+    batch
+        [ listStyle none
+        , displayFlex
         ]
 
 

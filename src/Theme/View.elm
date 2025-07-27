@@ -1,4 +1,5 @@
 module Theme.View exposing (contentContainer, generateId, markdownToHtml, viewPageWrapper)
+
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
@@ -112,15 +113,6 @@ straplineStyle =
         , fontWeight bold
         , padding2 (rem 0.1) (rem 0.5)
         , textAlign center
-        ]
-
-
-containerStyle : Style
-containerStyle =
-    batch
-        [ margin2 zero auto
-        , padding2 zero (rem 1)
-        , width (pct 100)
         ]
 
 
