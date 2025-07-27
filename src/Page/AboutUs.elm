@@ -41,7 +41,7 @@ viewProfile model profile =
             Tuple.second model.viewportHeightWidth < Theme.Style.maxMobile
     in
     [ if isSmallScreen then
-        h3 []
+        h3 [ id sectionId ]
             [ button
                 [ id ("header-" ++ sectionId)
                 , if Set.member sectionId model.openSections then

@@ -43,11 +43,20 @@ init _ url key =
         route : Route
         route =
             Maybe.withDefault Index <| Route.fromUrl url
+
+        openSections : Set.Set String
+        openSections =
+            case url.fragment of
+                Just aFragment ->
+                    Set.fromList [ aFragment ]
+
+                Nothing ->
+                    Set.empty
     in
     ( { key = key
       , page = route
       , viewportHeightWidth = ( 800, 800 )
-      , openSections = Set.empty
+      , openSections = openSections
       }
     , Cmd.batch
         [ MetaTags.setMetadata <| MetaTags.metaForPage route
@@ -90,8 +99,17 @@ update msg model =
                     -- If not a valid route, go to index
                     -- could 404 instead depends on desired behaviour
                     Maybe.withDefault Index (Route.fromUrl url)
+
+                openSections : Set.Set String
+                openSections =
+                    case url.fragment of
+                        Just aFragment ->
+                            Set.fromList [ aFragment ]
+
+                        Nothing ->
+                            Set.empty
             in
-            ( { model | page = newRoute }
+            ( { model | page = newRoute, openSections = openSections }
             , MetaTags.setMetadata <| MetaTags.metaForPage newRoute
             )
 
