@@ -6,7 +6,8 @@ import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
 import Html.Styled exposing (Html, a, div, h2, h3, img, li, p, section, text, ul)
-import Html.Styled.Attributes exposing (alt, class, css, href, src)
+import Html.Styled.Attributes exposing (alt, class, css, href, src, target)
+import Html.Styled.Events exposing (onClick)
 import Model
 import Msg exposing (Msg)
 import Theme.Style exposing (fuchsia, pink, white, withMediaTablet)
@@ -82,7 +83,11 @@ viewWhoWeAreList profiles =
     List.map
         (\profile ->
             li [ class "profile-item" ]
-                [ a [ href ("/about-us#" ++ generateId profile.name), class "profile-link" ]
+                [ a
+                    [ href ("/about-us#" ++ generateId profile.name)
+                    , class "profile-link"
+                    , Html.Styled.Attributes.target "_self"
+                    ]
                     [ viewProfileImage profile
                     , div [ css [ overlayStyle ] ] []
                     , div [ css [ overlayLabelStyle ] ] [ text profile.name ]

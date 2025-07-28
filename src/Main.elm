@@ -1,6 +1,8 @@
 module Main exposing (main)
 
 import Browser
+import Browser.Dom
+import Browser.Events
 import Browser.Navigation
 import Copy.CaseStudy
 import Copy.Keys exposing (Key(..))
@@ -14,6 +16,7 @@ import Page.CaseStudy
 import Page.Index
 import Route exposing (Route(..))
 import Set
+import Task
 import Theme.View
 import Url
 
@@ -40,12 +43,25 @@ init _ url key =
         route : Route
         route =
             Maybe.withDefault Index <| Route.fromUrl url
+
+        openSections : Set.Set String
+        openSections =
+            case url.fragment of
+                Just aFragment ->
+                    Set.fromList [ aFragment ]
+
+                Nothing ->
+                    Set.empty
     in
     ( { key = key
       , page = route
-      , openSections = Set.empty
+      , viewportHeightWidth = ( 800, 800 )
+      , openSections = openSections
       }
-    , MetaTags.setMetadata <| MetaTags.metaForPage route
+    , Cmd.batch
+        [ MetaTags.setMetadata <| MetaTags.metaForPage route
+        , Task.perform GotViewport Browser.Dom.getViewport
+        ]
     )
 
 
@@ -63,6 +79,19 @@ update msg model =
             in
             ( { model | openSections = newOpenSections }, Cmd.none )
 
+        GotViewport viewport ->
+            ( { model
+                | viewportHeightWidth =
+                    Maybe.withDefault model.viewportHeightWidth (Just ( viewport.viewport.height, viewport.viewport.width ))
+              }
+            , Cmd.none
+            )
+
+        OnResize newViewportHeightWidth ->
+            ( { model | viewportHeightWidth = newViewportHeightWidth }
+            , Cmd.none
+            )
+
         UrlChanged url ->
             let
                 newRoute : Route
@@ -70,8 +99,17 @@ update msg model =
                     -- If not a valid route, go to index
                     -- could 404 instead depends on desired behaviour
                     Maybe.withDefault Index (Route.fromUrl url)
+
+                openSections : Set.Set String
+                openSections =
+                    case url.fragment of
+                        Just aFragment ->
+                            Set.fromList [ aFragment ]
+
+                        Nothing ->
+                            Set.empty
             in
-            ( { model | page = newRoute }
+            ( { model | page = newRoute, openSections = openSections }
             , MetaTags.setMetadata <| MetaTags.metaForPage newRoute
             )
 
@@ -90,7 +128,12 @@ update msg model =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    Sub.batch
+        [ Browser.Events.onResize
+            (\newWidth newHeight ->
+                OnResize ( toFloat newHeight, toFloat newWidth )
+            )
+        ]
 
 
 viewDocument : Model -> Browser.Document Msg

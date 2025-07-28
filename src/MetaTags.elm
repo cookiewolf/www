@@ -9,6 +9,8 @@ import Route
 type alias PageMetadata =
     { title : String
     , description : String
+    , url : Maybe String
+    , imageSrc : Maybe String
     }
 
 
@@ -16,7 +18,7 @@ titleForPage : Route.Route -> String
 titleForPage route =
     case route of
         Route.AboutUs ->
-            t Keys.AboutUsTitle ++ t Keys.SiteTitle
+            t Keys.AboutUsTitle ++ " - " ++ t Keys.SiteTitle
 
         _ ->
             t Keys.SiteTitle
@@ -28,11 +30,15 @@ metaForPage route =
         Route.Index ->
             { title = titleForPage route
             , description = t Keys.HomeMetaDescription
+            , url = Nothing
+            , imageSrc = Nothing
             }
 
         Route.AboutUs ->
             { title = titleForPage route
             , description = t Keys.AboutUsMetaDescription
+            , url = Nothing
+            , imageSrc = Nothing
             }
 
         Route.CaseStudy slug ->
@@ -51,6 +57,8 @@ metaForPage route =
             in
             { title = caseStudy.title
             , description = metaDescription
+            , url = caseStudy.metaUrl
+            , imageSrc = caseStudy.metaImageSrc
             }
 
 
