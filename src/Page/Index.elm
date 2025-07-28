@@ -164,7 +164,7 @@ cardImageStyle : Style
 cardImageStyle =
     batch
         [ borderRadius (px 20)
-        , maxWidth (pct 80)
+        , maxWidth (pct 60)
         ]
 
 
