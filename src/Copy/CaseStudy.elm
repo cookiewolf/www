@@ -39,9 +39,10 @@ caseStudyFromId id =
 
 codeReadingClub : Model.CaseStudy
 codeReadingClub =
-    { title = "Code Reading Club"
+    { name = "Code Reading Club"
+    , title = "Code Reading Club"
     , maybeTeaserLogoSrc = Nothing
-    , teaserBackgroundSrc = "/work/woven_loops.png"
+    , teaserBackgroundSrc = "/work/crc_project.jpg"
     , teaserSummary = "Like a book group, but for coders. We devise and facilitate inclusive, live workshops for developers of all skill levels to connect and sharpen their skills."
     , teaserLinkText = "Find out more"
     , teaserHref = "https://codereading.club"
@@ -51,9 +52,10 @@ codeReadingClub =
 
 foyer : Model.CaseStudy
 foyer =
-    { title = "Transforming The Foundling Museum's digital infrastructure with Foyer"
+    { name = "Foyer"
+    , title = "Transforming The Foundling Museum's digital infrastructure with Foyer"
     , maybeTeaserLogoSrc = Just "/foyer_logo.png"
-    , teaserBackgroundSrc = "/work/ancient_arches.png"
+    , teaserBackgroundSrc = "/work/foyer_project.jpg"
     , teaserSummary = "Foyer, our award-winning bespoke ticketing platform that helps organisations simplify systems and create faster, better visitor experiences."
     , teaserLinkText = "Read our case study"
     , teaserHref = Route.toString (Route.CaseStudy "foyer")
@@ -108,9 +110,10 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
 
 newProjectInvite : Model.CaseStudy
 newProjectInvite =
-    { title = "Your Project here?"
+    { name = "Your Project here?"
+    , title = "Your Project here?"
     , maybeTeaserLogoSrc = Nothing
-    , teaserBackgroundSrc = "/work/little_bird_big_object.png"
+    , teaserBackgroundSrc = "/work/your_project.jpg"
     , teaserSummary = "We're always up for working with folks who are building new things or making old things work better. Wherever you're at, we'd love to chat."
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
     , teaserHref = "mailto:hello@cookiewolf.coop"
@@ -120,7 +123,8 @@ newProjectInvite =
 
 fourZeroFour : Model.CaseStudy
 fourZeroFour =
-    { title = "Project not found"
+    { name = "Project not found"
+    , title = "Project not found"
     , maybeTeaserLogoSrc = Nothing
     , teaserBackgroundSrc = ""
     , teaserSummary = ""
