@@ -41,7 +41,6 @@ codeReadingClub : Model.CaseStudy
 codeReadingClub =
     { name = "Code Reading Club"
     , title = "Code Reading Club"
-    , maybeTeaserLogoSrc = Nothing
     , teaserBackgroundSrc = "/work/crc_project.jpg"
     , teaserSummary = "Like a book group, but for coders. We devise and facilitate inclusive, live workshops for developers of all skill levels to connect and sharpen their skills."
     , teaserLinkText = "Find out more"
@@ -54,7 +53,6 @@ foyer : Model.CaseStudy
 foyer =
     { name = "Foyer"
     , title = "Transforming The Foundling Museum's digital infrastructure with Foyer"
-    , maybeTeaserLogoSrc = Just "/foyer_logo.png"
     , teaserBackgroundSrc = "/work/foyer_project.jpg"
     , teaserSummary = "Foyer, our award-winning bespoke ticketing platform that helps organisations simplify systems and create faster, better visitor experiences."
     , teaserLinkText = "Read our case study"
@@ -112,7 +110,6 @@ newProjectInvite : Model.CaseStudy
 newProjectInvite =
     { name = "Your Project here?"
     , title = "Your Project here?"
-    , maybeTeaserLogoSrc = Nothing
     , teaserBackgroundSrc = "/work/your_project.jpg"
     , teaserSummary = "We're always up for working with folks who are building new things or making old things work better. Wherever you're at, we'd love to chat."
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
@@ -125,7 +122,6 @@ fourZeroFour : Model.CaseStudy
 fourZeroFour =
     { name = "Project not found"
     , title = "Project not found"
-    , maybeTeaserLogoSrc = Nothing
     , teaserBackgroundSrc = ""
     , teaserSummary = ""
     , teaserLinkText = ""

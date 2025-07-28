@@ -95,6 +95,7 @@ headingStyle =
         , outline none
         , padding zero
         , textAlign center
+        , textDecoration none
         , textTransform uppercase
         , withMediaTablet [ fontSize (rem 4.2) ]
         , hover

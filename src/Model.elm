@@ -29,7 +29,6 @@ type alias Quote =
 type alias CaseStudy =
     { name : String
     , title : String
-    , maybeTeaserLogoSrc : Maybe String
     , teaserBackgroundSrc : String
     , teaserSummary : String
     , teaserLinkText : String
