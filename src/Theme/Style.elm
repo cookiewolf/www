@@ -81,12 +81,11 @@ globalStyles =
             , fontFamilies [ "Poppins", sansSerif.value ]
             ]
         , typeSelector "a"
-            [ borderBottom3 (px 1.5) dotted pink.dark
-            , color pink.dark
-            , textDecoration none
+            [ color pink.dark
+            , textDecoration2 underline dotted
             , hover
                 [ backgroundColor pink.light
-                , borderBottom3 (px 2) dotted pink.dark
+                , property "text-decoration-thickness" "0.15em"
                 , color pink.dark
                 ]
             ]
@@ -110,11 +109,9 @@ globalStyles =
         , footer
             [ descendants
                 [ a
-                    [ borderBottom3 (px 2) dotted white
-                    , color white
+                    [ color white
                     , hover
                         [ backgroundColor transparent
-                        , borderBottom3 (px 2) dotted pink.mid
                         , color pink.mid
                         ]
                     ]
@@ -126,6 +123,7 @@ globalStyles =
                     [ fontSize (rem 1.25)
                     , margin2 (rem 1) auto
                     , maxWidth (ch 50)
+                    , padding2 zero (rem 1)
                     ]
                 ]
             ]

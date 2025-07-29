@@ -10,7 +10,7 @@ import Html.Styled.Attributes exposing (alt, class, css, href, src, target)
 import Html.Styled.Events exposing (onClick)
 import Model
 import Msg exposing (Msg)
-import Theme.Style exposing (fuchsia, pink, white)
+import Theme.Style exposing (fuchsia, pink, white, withMediaTablet)
 import Theme.View exposing (generateId)
 
 
@@ -22,16 +22,16 @@ featuredCaseStudyList =
 view : Html Msg
 view =
     div []
-        [ section [ css [ whoWeAreSectionStyle ], class "home-section" ]
-            [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
+        [ section [ css [ sectionStyle ], class "home-section" ]
+            [ h2 [ css [ sectionHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
             , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
             ]
-        , h2
-            []
-            [ text (t ThingsWeWorkOnHeading) ]
-        , ul [] (viewWorkingOnList featuredCaseStudyList)
-        , section [ css [ whoWeAreSectionStyle ], class "home-section" ]
-            [ h2 [ css [ whoWeAreHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
+        , section [ css [ sectionStyle, sectionHighlightStyle ], class "home-section" ]
+            [ h2 [ css [ sectionHeadingStyle ] ] [ text (t ThingsWeWorkOnHeading) ]
+            , ul [ css [ workListStyle ] ] (viewWorkingOnList featuredCaseStudyList)
+            ]
+        , section [ css [ sectionStyle ], class "home-section" ]
+            [ h2 [ css [ sectionHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
             , ul
                 [ css [ imageRowStyle ] ]
@@ -50,32 +50,22 @@ viewWorkingOnList featuredCaseStudies =
                 caseStudy =
                     Copy.CaseStudy.caseStudyFromId caseStudyId
             in
-            li [] [ viewCaseStudyCard caseStudy ]
+            li [ css [ workingOnCardStyle ] ] (viewCaseStudyCard caseStudy)
         )
         featuredCaseStudies
 
 
-viewCaseStudyCard : Model.CaseStudy -> Html Msg
+viewCaseStudyCard : Model.CaseStudy -> List (Html Msg)
 viewCaseStudyCard caseStudy =
-    div []
-        [ viewCaseStudyCardHeader caseStudy
-        , viewCaseStudyCardSummary caseStudy
-        , viewCaseStudyCardLink caseStudy
-        ]
+    [ viewCaseStudyCardHeader caseStudy
+    , viewCaseStudyCardSummary caseStudy
+    , viewCaseStudyCardLink caseStudy
+    ]
 
 
 viewCaseStudyCardHeader : Model.CaseStudy -> Html Msg
 viewCaseStudyCardHeader caseStudy =
-    div [ css [ workingOnCardStyle caseStudy.teaserBackgroundSrc ] ]
-        (case caseStudy.maybeTeaserLogoSrc of
-            Nothing ->
-                [ h3 [] [ text caseStudy.title ] ]
-
-            Just aLogoSrc ->
-                [ img [ src aLogoSrc, alt "" ] []
-                , h3 [ css [ Theme.Style.visuallyHiddenStyles ] ] [ text caseStudy.title ]
-                ]
-        )
+    img [ src caseStudy.teaserBackgroundSrc, alt caseStudy.name, css [ cardImageStyle ] ] []
 
 
 viewCaseStudyCardSummary : Model.CaseStudy -> Html Msg
@@ -116,31 +106,65 @@ viewProfileImage profile =
 -- Styles
 
 
-workingOnCardStyle : String -> Style
-workingOnCardStyle src =
+sectionStyle : Style
+sectionStyle =
     batch
-        [ backgroundImage (url src)
-        , backgroundSize cover
-        , borderRadius (px 20)
-        , height (px 200)
-        , width (px 200)
-        ]
-
-
-whoWeAreSectionStyle : Style
-whoWeAreSectionStyle =
-    batch
-        [ margin2 (rem 3) auto
+        [ padding2 (rem 3) zero
         , textAlign center
         ]
 
 
-whoWeAreHeadingStyle : Style
-whoWeAreHeadingStyle =
+sectionHighlightStyle : Style
+sectionHighlightStyle =
+    batch
+        [ backgroundColor pink.light
+        ]
+
+
+sectionHeadingStyle : Style
+sectionHeadingStyle =
     batch
         [ color pink.dark
         , fontSize (rem 2)
-        , margin2 (rem 2) auto
+        , marginBottom (rem 2)
+        ]
+
+
+workListStyle : Style
+workListStyle =
+    batch
+        [ displayFlex
+        , flexDirection column
+        , fontSize (rem 1)
+        , listStyle none
+        , margin auto
+        , maxWidth (px 1000)
+        , padding zero
+        , withMediaTablet
+            [ flexDirection row
+            ]
+        ]
+
+
+workingOnCardStyle : Style
+workingOnCardStyle =
+    batch
+        [ alignItems center
+        , displayFlex
+        , flexDirection column
+        , marginBottom (rem 3)
+        , padding2 zero (rem 1)
+        , withMediaTablet
+            [ marginBottom zero
+            ]
+        ]
+
+
+cardImageStyle : Style
+cardImageStyle =
+    batch
+        [ borderRadius (px 20)
+        , maxWidth (pct 60)
         ]
 
 
@@ -150,6 +174,7 @@ imageRowStyle =
         [ displayFlex
         , overflowX auto
         , margin2 (rem 3) auto
+        , padding zero
         ]
 
 
