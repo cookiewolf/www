@@ -4,7 +4,7 @@ import Copy.AboutUs
 import Copy.Keys exposing (Key(..), Section(..))
 import Copy.Text exposing (t)
 import Html.Styled exposing (Html, button, div, h1, h2, h3, h4, section, text)
-import Html.Styled.Attributes exposing (attribute, css, id)
+import Html.Styled.Attributes exposing (attribute, css, id, type_)
 import Html.Styled.Events exposing (onClick)
 import Model exposing (Model)
 import Msg exposing (Msg)
@@ -51,6 +51,7 @@ viewProfile model profile =
                     attribute "aria-expanded" "false"
                 , attribute "aria-controls" ("content-" ++ sectionId)
                 , onClick (Msg.SectionToggled sectionId)
+                , type_ "button"
                 ]
                 [ text profile.name
                 ]
@@ -84,7 +85,7 @@ viewProfileInfoSection isSmallScreen model profile =
                 []
     in
     section
-        ([ id ("content-" ++ sectionId) ] ++ collapseAttributes)
+        (id ("content-" ++ sectionId) :: collapseAttributes)
         [ h4 [] [ text profile.role ]
         , div [] [ Theme.View.markdownToHtml profile.bioMarkdown ]
         , div [] [ Theme.View.markdownToHtml (t AboutUsProfileProjectsLabel ++ profile.projectsMarkdown) ]
