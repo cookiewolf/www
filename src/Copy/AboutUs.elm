@@ -93,7 +93,7 @@ nick =
 Nick’s background is in games development and he likes to work on projects that genuinely help people, He values semantically correct HTML, creating responsive layouts with CSS and has a special interest in web accessibility.
     """
     , projectsMarkdown = """
-[Mind of my Own](https://mindofmyown.org.uk/): By the end of this six-year project with Neontribe, Nick had become Lead Front-end Developer, creating apps that make it safe and intuitive for young people living within the care system to raise safeguarding concerns.
+[Mind Of My Own](https://mindofmyown.org.uk/): By the end of this six-year project with Neontribe, Nick had become Lead Front-end Developer, creating apps that make it safe and intuitive for young people living within the care system to raise safeguarding concerns.
     """
     , imagePath = "/people/nick.jpg"
     }

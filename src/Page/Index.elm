@@ -5,12 +5,11 @@ import Copy.CaseStudy exposing (CaseStudyKey(..))
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, a, div, h2, h3, img, li, p, section, text, ul)
-import Html.Styled.Attributes exposing (alt, class, css, href, src, target)
-import Html.Styled.Events exposing (onClick)
+import Html.Styled exposing (Html, a, div, h1, h2, img, li, p, section, text, ul)
+import Html.Styled.Attributes exposing (alt, class, css, href, src)
 import Model
 import Msg exposing (Msg)
-import Theme.Style exposing (fuchsia, pink, white, withMediaTablet)
+import Theme.Style exposing (fuchsia, pink, shadow, white, withMediaTablet)
 import Theme.View exposing (generateId)
 
 
@@ -23,7 +22,7 @@ view : Html Msg
 view =
     div []
         [ section [ css [ sectionStyle ], class "home-section" ]
-            [ h2 [ css [ sectionHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
+            [ h1 [ css [ sectionHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
             , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
             ]
         , section [ css [ sectionStyle, sectionHighlightStyle ], class "home-section" ]
@@ -118,6 +117,7 @@ sectionHighlightStyle : Style
 sectionHighlightStyle =
     batch
         [ backgroundColor pink.light
+        , boxShadow4 (px 0) (px 0) (px 20) shadow
         ]
 
 
