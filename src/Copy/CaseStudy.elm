@@ -46,7 +46,7 @@ codeReadingClub =
     , teaserLinkText = "Find out more"
     , teaserHref = "https://codereading.club"
     , maybePageContent = Nothing
-    , metaTitle = "Code Reading Club"
+    , metaTitle = ""
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }
