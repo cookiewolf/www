@@ -136,7 +136,7 @@ fourZeroFour =
     , teaserLinkText = ""
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
-    , metaTitle = "Project not found"
+    , metaTitle = ""
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }
