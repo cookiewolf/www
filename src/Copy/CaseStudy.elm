@@ -46,7 +46,7 @@ codeReadingClub =
     , teaserLinkText = "Find out more"
     , teaserHref = "https://codereading.club"
     , maybePageContent = Nothing
-    , metaTitle = "[cCc]"
+    , metaTitle = "Code Reading Club"
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }
@@ -62,7 +62,7 @@ foyer =
     , teaserHref = Route.toString (Route.CaseStudy "foyer")
     , maybePageContent =
         Just
-            { metaDescription = "Foyer Description [cCc]"
+            { metaDescription = "Transforming The Foundling Museum's digital infrastructure with Foyer"
             , introMarkdown =
                 """
 **Cookiewolf's Stuart Leech led the Foundling Museum's digital transformation, collaborating with lead developer Katja Mordaunt to build a bespoke version of Foyer, our Shopify-based ticketing system.**
@@ -106,7 +106,7 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
         """
             , maybeQuote = Nothing
             }
-    , metaTitle = "[cCc]"
+    , metaTitle = "Foyer"
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }
@@ -121,7 +121,7 @@ newProjectInvite =
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
-    , metaTitle = "[cCc]"
+    , metaTitle = "Your Project here?"
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }
@@ -136,7 +136,7 @@ fourZeroFour =
     , teaserLinkText = ""
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
-    , metaTitle = "[cCc]"
+    , metaTitle = "Project not found"
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }

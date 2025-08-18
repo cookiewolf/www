@@ -24,7 +24,7 @@ t key =
                 ++ ":"
 
         HomeMetaDescription ->
-            "Home description [cCc]"
+            "Cookiewolf is a cooperatively-run digital development and design studio. We work with organisations of all sizes. Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity, delivered on a limited budget."
 
         WhatWeDoHeading ->
             "What We Do"
@@ -63,7 +63,7 @@ Our members’ award-winning work spans medium to large-scale projects with clie
             "About Us"
 
         AboutUsMetaDescription ->
-            "About Us description [cCc]"
+            "Our members’ award-winning work spans medium to large-scale projects with clients across the arts, third sector, B2B, social justice and retail sectors.\n"
 
         AboutUsSection section ->
             case section of
