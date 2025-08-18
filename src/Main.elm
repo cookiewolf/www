@@ -65,6 +65,16 @@ init _ url key =
     )
 
 
+possiblyScrollToTop : Set.Set String -> Cmd Msg
+possiblyScrollToTop fragments =
+    if Set.isEmpty fragments then
+        -- scroll to top
+        Task.perform (\_ -> Msg.NoOp) (Browser.Dom.setViewport 0 0)
+
+    else
+        Cmd.none
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -110,7 +120,10 @@ update msg model =
                             Set.empty
             in
             ( { model | page = newRoute, openSections = openSections }
-            , MetaTags.setMetadata <| MetaTags.metaForPage newRoute
+            , Cmd.batch
+                [ MetaTags.setMetadata <| MetaTags.metaForPage newRoute
+                , possiblyScrollToTop openSections
+                ]
             )
 
         LinkClicked urlRequest ->
@@ -124,6 +137,9 @@ update msg model =
                     ( model
                     , Browser.Navigation.load href
                     )
+
+        NoOp ->
+            ( model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
