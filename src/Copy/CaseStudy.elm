@@ -121,7 +121,7 @@ newProjectInvite =
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
-    , metaTitle = "Your Project here?"
+    , metaTitle = ""
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }
