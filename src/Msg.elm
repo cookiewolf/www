@@ -11,3 +11,4 @@ type Msg
     | OnResize ( Float, Float )
     | UrlChanged Url.Url
     | LinkClicked Browser.UrlRequest
+    | NoOp

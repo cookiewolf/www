@@ -65,6 +65,17 @@ init _ url key =
     )
 
 
+possiblyScrollToTop : Url.Url -> Cmd Msg
+possiblyScrollToTop url =
+    case url.fragment of
+        Just _ ->
+            Cmd.none
+
+        Nothing ->
+            -- scroll to top
+            Task.perform (\_ -> Msg.NoOp) (Browser.Dom.setViewport 0 0)
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -110,7 +121,10 @@ update msg model =
                             Set.empty
             in
             ( { model | page = newRoute, openSections = openSections }
-            , MetaTags.setMetadata <| MetaTags.metaForPage newRoute
+            , Cmd.batch
+                [ MetaTags.setMetadata <| MetaTags.metaForPage newRoute
+                , possiblyScrollToTop url
+                ]
             )
 
         LinkClicked urlRequest ->
@@ -124,6 +138,9 @@ update msg model =
                     ( model
                     , Browser.Navigation.load href
                     )
+
+        NoOp ->
+            ( model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
