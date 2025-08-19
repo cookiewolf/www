@@ -106,7 +106,7 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
         """
             , maybeQuote = Nothing
             }
-    , metaTitle = "Foyer"
+    , metaTitle = "Foyer ticketing"
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }
