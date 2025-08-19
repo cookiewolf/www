@@ -1,39 +1,58 @@
-module Theme.Style exposing (blue, globalStyles, gridStyle, maxMobile, oneColumn, threeColumn, twoColumn, verticalSpacing, white, withMediaLargeDevice, withMediaTablet)
+module Theme.Style exposing (black, fuchsia, globalStyles, green, maxMobile, pink, shadow, visuallyHiddenStyles, white, withMediaTablet)
 
 import Css exposing (..)
-import Css.Global exposing (adjacentSiblings, global, typeSelector)
-import Css.Media as Media exposing (minWidth, only, screen, withMedia)
-import Html.Styled exposing (Html, div, text)
-import Html.Styled.Attributes exposing (css, id)
+import Css.Global exposing (a, adjacentSiblings, children, class, descendants, footer, global, typeSelector)
+import Css.Media as Media exposing (only, screen, withMedia)
+import Html.Styled exposing (Html)
 
 
 
 -- Brand colours
 
 
+black : Color
+black =
+    hex "000000"
+
+
 white : Color
 white =
-    hex "EDF7F6"
+    hex "FFFFFF"
 
 
-brown : { light : Color, dark : Color }
-brown =
-    { light = hex "DED6D1", dark = hex "483b33" }
+shadow : Color
+shadow =
+    hex "00000040"
 
 
-pink : Color
+green : { light : Color, mid : Color, dark : Color }
+green =
+    { light = hex "E6F6F0", mid = hex "8EBFAD", dark = hex "0F3729" }
+
+
+pink : { light : Color, mid : Color, dark : Color }
 pink =
-    hex "EEC6CA"
+    { light = hex "FFF0FD", mid = hex "EEC5E8", dark = hex "AF1495" }
 
 
-blue : { light : Color, dark : Color }
-blue =
-    { light = hex "2660A4", dark = hex "0D1B3E" }
+fuchsia : Color
+fuchsia =
+    hex "AF1495"
 
 
-orange : Color
-orange =
-    hex "F19953"
+
+-- Utilities
+
+
+visuallyHiddenStyles : Style
+visuallyHiddenStyles =
+    batch
+        [ height (px 1)
+        , overflow hidden
+        , position absolute
+        , whiteSpace noWrap
+        , width (px 1)
+        ]
 
 
 
@@ -50,21 +69,6 @@ withMediaTablet =
     withMedia [ only screen [ Media.minWidth (px maxMobile) ] ]
 
 
-maxTablet : Float
-maxTablet =
-    769
-
-
-maxLargeDevice : Float
-maxLargeDevice =
-    992
-
-
-withMediaLargeDevice : List Style -> Style
-withMediaLargeDevice =
-    withMedia [ only screen [ Media.minWidth (px maxLargeDevice) ] ]
-
-
 {-| Injects a <style> tag into the body, and can target element or
 class selectors anywhere, including outside the Elm app.
 -}
@@ -73,37 +77,16 @@ globalStyles =
     global
         [ typeSelector "body"
             [ backgroundColor white
-            , color brown.dark
-            , fontFamilies [ "sono", sansSerif.value ]
-            , fontWeight (int 400)
-            ]
-        , typeSelector "h1"
-            [ color blue.light
-            , fontFamilies
-                [ "Chau Philomene One", sansSerif.value ]
-            , fontSize (rem 3)
-            ]
-        , typeSelector "h2"
-            [ color blue.light
-            , fontFamilies
-                [ "Chau Philomene One", sansSerif.value ]
-            , fontSize (rem 2.2)
-            , paddingTop (rem 2)
-            ]
-        , typeSelector "h3"
-            [ --color blue
-              fontSize (rem 1.8)
-            ]
-        , typeSelector "h4"
-            [--color blue
+            , color green.dark
+            , fontFamilies [ "Poppins", sansSerif.value ]
             ]
         , typeSelector "a"
-            [ borderBottom3 (px 2) solid orange
-            , color blue.dark
-            , textDecoration none
+            [ color pink.dark
+            , textDecoration2 underline dotted
             , hover
-                [ color blue.light
-                , fontWeight (int 700)
+                [ backgroundColor pink.light
+                , property "text-decoration-thickness" "0.15em"
+                , color pink.dark
                 ]
             ]
         , typeSelector "b"
@@ -123,41 +106,51 @@ globalStyles =
                     ]
                 ]
             ]
+        , footer
+            [ descendants
+                [ a
+                    [ color white
+                    , hover
+                        [ backgroundColor transparent
+                        , color pink.mid
+                        ]
+                    ]
+                ]
+            ]
+        , class "home-section"
+            [ descendants
+                [ typeSelector "p"
+                    [ fontSize (rem 1.25)
+                    , margin2 (rem 1) auto
+                    , maxWidth (ch 50)
+                    , padding2 zero (rem 1)
+                    ]
+                ]
+            ]
+        , class "profile-item"
+            [ borderBottom (px 0)
+            , borderRadius (px 500)
+            , flexShrink zero
+            , height (rem 7)
+            , listStyle none
+            , margin2 zero (rem 0.5)
+            , position relative
+            , width (rem 7)
+            , pseudoClass "first-child"
+                [ marginLeft auto
+                ]
+            , pseudoClass "last-child"
+                [ marginRight auto
+                ]
+            ]
+        , class "profile-link"
+            [ hover
+                [ cursor pointer
+                , children
+                    [ typeSelector "div"
+                        [ displayFlex
+                        ]
+                    ]
+                ]
+            ]
         ]
-
-
-gridStyle : Style
-gridStyle =
-    batch
-        [ displayFlex
-        , flexWrap wrap
-        , alignItems start
-        ]
-
-
-{-| A flex row item width for a single column layout
-oneColumn : Css.CalculatedLength (not exposed by <https://github.com/rtfeldman/elm-css/pull/519>)
--}
-oneColumn =
-    calc (pct 100) minus (rem 2)
-
-
-{-| A flex row item width for a double column layout
-twoColumn : Css.CalculatedLength
--}
-twoColumn =
-    calc (pct 50) minus (rem 2)
-
-
-{-| A flex row item width for a triple column layout
-threeColumn : Css.CalculatedLength
--}
-threeColumn =
-    calc (pct 33.33) minus (rem 2)
-
-
-{-| A div with known vertical margin
--}
-verticalSpacing : Float -> Html msg
-verticalSpacing num =
-    div [ css [ margin2 (rem num) zero ] ] []

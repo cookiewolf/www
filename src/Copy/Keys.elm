@@ -1,22 +1,39 @@
-module Copy.Keys exposing (Key(..))
+module Copy.Keys exposing (ContentType(..), Key(..), Section(..))
 
 
-type Key
+type ContentType
+    = CaseStudy
+
+
+type Section
+    = Business
+    | ContentAndDesign
+    | DigitalDevelopment
+
+
+type
+    Key
+    -- Header
     = SiteTitle
-    | SiteUrl
-    | SiteFooter
-      --- Site Meta
-    | IndexPageMetaTitle
-    | IndexPageMetaDescription
     | Strapline
-    | WhatWeDoH2
-    | WhatWeDoP
-    | WhoWeAreH2
-    | WhoWeAreP
-    | WhatWeBelieveH2
-    | WhatWeBelieveP
-    | HowMuchWeCostH2
-    | HowMuchWeCostP
-    | HowMuchWeCostUl
-    | HowToContactUsH2
-    | HowToContactUsP
+    | Category ContentType
+    | HomeMetaDescription
+    | WhatWeDoHeading
+    | WhatWeDoMarkdown
+    | ThingsWeWorkOnHeading
+    | WhoWeAreHeading
+    | WhoWeAreMarkdown1
+    | WhoWeAreMarkdown2
+      -- About Us
+    | AboutUsSlug
+    | AboutUsTitle
+    | AboutUsMetaDescription
+    | AboutUsSection Section
+    | AboutUsProfileProjectsLabel
+    | CaseStudySlug
+    | WhatWeDidHeading
+    | ResultsHeading
+      -- Footer
+    | ContactUsHeading
+    | ContactUsMarkdown
+    | CompanyInformation

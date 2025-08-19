@@ -6,19 +6,18 @@
     "prebuild": "elm-tooling install",
     "build": "vite build",
     "serve": "vite preview",
-    "format": "elm-format",
+    "format": "elm-format src/ --yes",
     "lint": "elm-review",
     "test": "elm-test-rs"
   },
   "devDependencies": {
-    "elm-review": "^2.10.1",
-    "elm-tooling": "^1.14.0",
-    "vite": "^4.3.0",
-    "vite-plugin-elm": "^2.8.0-beta.3"
+    "elm-review": "^2.13.2",
+    "elm-tooling": "^1.15.1",
+    "vite": "^6.3.5",
+    "vite-plugin-elm": "^3.0.1"
   },
   "dependencies": {
-    "@fontsource/chau-philomene-one": "^5.0.0",
-    "@fontsource/sono": "^5.0.0",
-    "elm-debug-transformer": "^1.1.2"
+    "@fontsource/poppins": "^5.2.6",
+    "elm-debug-transformer": "^1.2.1"
   }
 }

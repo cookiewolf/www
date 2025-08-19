@@ -1,52 +1,58 @@
-module Theme.View exposing (markdownToHtml, viewPageWrapper)
+module Theme.View exposing (contentContainer, generateId, markdownToHtml, viewPageWrapper)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, div, h1, img, text)
-import Html.Styled.Attributes exposing (alt, css, id, src, style)
+import Html.Styled exposing (Html, a, div, footer, h2, header, p, text)
+import Html.Styled.Attributes exposing (css, href, id)
 import Markdown
 import Msg exposing (Msg)
-import Theme.Style exposing (blue, globalStyles, withMediaTablet)
+import Theme.Style exposing (black, globalStyles, green, pink, white, withMediaTablet)
 import VitePluginHelper
 
 
-viewPageWrapper : Key -> Html Msg -> Html Msg
+viewPageWrapper : String -> Html Msg -> Html Msg
 viewPageWrapper pageTitle pageContent =
-    div [ id ("page-" ++ generateId (t pageTitle)), css [ pagewrapperStyle ] ]
+    div [ id ("page-" ++ generateId pageTitle), css [ viewPageStyle ] ]
         [ globalStyles
         , viewPageHeader
-        , div [ css [ containerStyle ] ] [ pageContent ]
+        , div [ css [] ] [ pageContent ]
         , viewPageFooter
         ]
 
 
 viewPageHeader : Html Msg
 viewPageHeader =
-    div [ css [ pageHeaderStyle ] ]
-        [ img
-            [ src (VitePluginHelper.asset "/src/assets/logo.png")
-            , alt ""
-            , css [ logoImageStyle ]
-            ]
-            []
-        , div []
-            [ h1 [ css [ headingStyle ] ] [ text (t SiteTitle) ]
-            , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
+    header [ css [ pageHeaderBackgroundStyle ] ]
+        [ div [ css [ contentContainer ] ]
+            [ div
+                [ css [ pageHeaderStyle ]
+                ]
+                [ a [ css [ headingStyle ], href "/" ] [ text (t SiteTitle) ]
+                , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
+                ]
             ]
         ]
 
 
 viewPageFooter : Html Msg
 viewPageFooter =
-    div [ css [ footerStyle ] ] [ text (t SiteFooter) ]
+    footer [ css [ footerStyle ] ]
+        [ div [ css [ contentContainer ] ]
+            [ h2 [ css [ footerHeadingStyle ] ] [ text (t ContactUsHeading) ]
+            , div []
+                [ markdownToHtml (t ContactUsMarkdown)
+                ]
+            , p [ css [ footerInfoStyle ] ] [ text (t CompanyInformation) ]
+            ]
+        ]
 
 
-pagewrapperStyle : Style
-pagewrapperStyle =
+contentContainer : Style
+contentContainer =
     batch
-        [ margin4 zero auto (rem 0.5) auto
-        , maxWidth (px 800)
+        [ margin2 zero auto
+        , maxWidth (px 1000)
         , width (pct 100)
         ]
 
@@ -55,58 +61,87 @@ pageHeaderStyle : Style
 pageHeaderStyle =
     batch
         [ alignItems center
+        , backgroundImage (url (VitePluginHelper.asset "/src/assets/background.jpg"))
+        , backgroundPosition center
+        , backgroundSize cover
         , displayFlex
+        , flexDirection column
         , justifyContent center
-        , padding2 zero (rem 1)
-        , withMediaTablet [ justifyContent end ]
+        , padding (rem 3)
+        ]
+
+
+pageHeaderBackgroundStyle : Style
+pageHeaderBackgroundStyle =
+    backgroundColor green.dark
+
+
+viewPageStyle : Style
+viewPageStyle =
+    batch
+        [ displayFlex
+        , flexDirection column
+        , height (vh 100)
         ]
 
 
 headingStyle : Style
 headingStyle =
     batch
-        [ color blue.dark
+        [ borderBottom (px 0)
+        , color white
         , fontSize (rem 2.6)
+        , fontWeight (int 700)
         , outline none
         , padding zero
         , textAlign center
-        , withMediaTablet
-            [ fontSize (rem 4.2) ]
+        , textDecoration none
+        , textTransform uppercase
+        , withMediaTablet [ fontSize (rem 4.2) ]
+        , hover
+            [ backgroundColor transparent
+            , borderBottom (px 0)
+            , color green.light
+            ]
         ]
 
 
 straplineStyle : Style
 straplineStyle =
     batch
-        [ fontWeight bold
+        [ backgroundColor green.mid
+        , color black
+        , fontWeight bold
+        , padding2 (rem 0.1) (rem 0.5)
         , textAlign center
-        ]
-
-
-logoImageStyle : Style
-logoImageStyle =
-    batch
-        [ width (px 140)
-        , withMediaTablet [ width (px 150) ]
-        ]
-
-
-containerStyle : Style
-containerStyle =
-    batch
-        [ margin2 zero auto
-        , maxWidth (px 800)
-        , padding2 zero (rem 1)
-        , width (pct 100)
         ]
 
 
 footerStyle : Style
 footerStyle =
     batch
-        [ fontSize (rem 0.75)
-        , paddingTop (rem 2)
+        [ backgroundColor green.dark
+        , color white
+        , fontSize (rem 1.25)
+        , marginTop auto
+        , padding4 (rem 2) (rem 2) (rem 3) (rem 2)
         , textAlign center
+        ]
+
+
+footerHeadingStyle : Style
+footerHeadingStyle =
+    batch
+        [ fontSize (rem 2)
+        , marginBottom (rem 1.5)
+        ]
+
+
+footerInfoStyle : Style
+footerInfoStyle =
+    batch
+        [ color pink.mid
+        , marginTop (rem 3)
         ]
 
 
