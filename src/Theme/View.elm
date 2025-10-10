@@ -50,7 +50,7 @@ viewPageFooter =
                 ]
                 [ img
                     [ alt (t WorkersCoopLogoAltText)
-                    , src "https://www.workers.coop/wp-content/uploads/2024/03/workers-coop-badge-RGB-white@4x.png"
+                    , src "/workers-coop-badge-RGB-white@4x.png"
                     ]
                     []
                 ]
