@@ -3,8 +3,8 @@ module Theme.View exposing (contentContainer, generateId, markdownToHtml, viewPa
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, a, div, footer, h2, header, p, text)
-import Html.Styled.Attributes exposing (css, href, id)
+import Html.Styled exposing (Html, a, div, footer, h2, header, img, p, text)
+import Html.Styled.Attributes exposing (alt, css, href, id, src)
 import Markdown
 import Msg exposing (Msg)
 import Theme.Style exposing (black, globalStyles, green, pink, white, withMediaTablet)
@@ -44,6 +44,16 @@ viewPageFooter =
                 [ markdownToHtml (t ContactUsMarkdown)
                 ]
             , p [ css [ footerInfoStyle ] ] [ text (t CompanyInformation) ]
+            , a
+                [ css [ footerLogoStyle ]
+                , href "https://www.workers.coop/about-us/"
+                ]
+                [ img
+                    [ alt "a member of workers.coop"
+                    , src "https://www.workers.coop/wp-content/uploads/2024/03/workers-coop-badge-RGB-white@4x.png"
+                    ]
+                    []
+                ]
             ]
         ]
 
@@ -142,6 +152,15 @@ footerInfoStyle =
     batch
         [ color pink.mid
         , marginTop (rem 3)
+        ]
+
+
+footerLogoStyle : Style
+footerLogoStyle =
+    batch
+        [ display inlineBlock
+        , marginTop (rem 3)
+        , maxWidth (rem 15)
         ]
 
 
