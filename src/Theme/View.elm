@@ -49,7 +49,7 @@ viewPageFooter =
                 , href "https://www.workers.coop/about-us/"
                 ]
                 [ img
-                    [ alt "a member of workers.coop"
+                    [ alt (t WorkersCoopLogoAltText)
                     , src "https://www.workers.coop/wp-content/uploads/2024/03/workers-coop-badge-RGB-white@4x.png"
                     ]
                     []
