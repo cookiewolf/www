@@ -159,7 +159,7 @@ footerLogoStyle : Style
 footerLogoStyle =
     batch
         [ display inlineBlock
-        , marginTop (rem 3)
+        , marginTop (rem 1)
         , maxWidth (rem 15)
         ]
 
