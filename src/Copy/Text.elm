@@ -100,3 +100,6 @@ Got a project? Questions? Just want a chat? Email us at:
 
         CompanyInformation ->
             "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
+
+        WorkersCoopLogoAltText ->
+            "a member of workers.coop"
