@@ -24,7 +24,7 @@ t key =
                 ++ ":"
 
         HomeMetaDescription ->
-            "Cookiewolf is a cooperatively-run digital development and design studio. We work with organisations of all sizes. Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity, delivered on a limited budget."
+            "Cookiewolf is a cooperatively-run digital development and design studio. We work with organisations of all sizes. Our projects are based in true collaboration with our clients, focusing on accessibility, sustainability and inclusivity."
 
         WhatWeDoHeading ->
             "What We Do"
@@ -48,7 +48,7 @@ Cookiewolf Co-op reflects how we think businesses should be run, based in equity
 
         WhoWeAreMarkdown2 ->
             """
-Our members’ award-winning work spans medium to large-scale projects with clients across the arts, third sector, B2B, social justice and retail sectors.
+Our members’ award-winning work spans projects with clients across the arts, third sector, B2B, social justice and retail sectors.
 
 [Meet the people behind Cookiewolf](/about-us)
             """
