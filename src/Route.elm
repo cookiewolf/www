@@ -10,6 +10,9 @@ type Route
     = Index
     | AboutUs
     | CaseStudy String
+    | BlogIndex
+    | BlogShowPost String
+    | NotFound
 
 
 fromUrl : Url.Url -> Maybe Route
@@ -30,6 +33,15 @@ toString route =
         CaseStudy slug ->
             "/" ++ t CaseStudySlug ++ "/" ++ slug
 
+        BlogIndex ->
+            "/" ++ t BlogSlug
+
+        BlogShowPost slug ->
+            "/" ++ t BlogSlug ++ "/" ++ slug
+
+        NotFound ->
+            "/"
+
 
 routeParser : Parser (Route -> a) a
 routeParser =
@@ -37,4 +49,6 @@ routeParser =
         [ map Index top
         , map AboutUs (s (t AboutUsSlug))
         , map CaseStudy (s (t CaseStudySlug) </> string)
+        , map BlogIndex (s (t BlogSlug))
+        , map BlogShowPost (s (t BlogSlug) </> string)
         ]

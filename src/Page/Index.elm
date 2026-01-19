@@ -1,7 +1,8 @@
 module Page.Index exposing (view)
 
+import Array exposing (Array)
 import Copy.AboutUs
-import Copy.CaseStudy exposing (CaseStudyKey(..))
+import Copy.CaseStudy
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
@@ -9,26 +10,36 @@ import Html.Styled exposing (Html, a, div, h1, h2, img, li, p, section, text, ul
 import Html.Styled.Attributes exposing (alt, class, css, href, src)
 import Model
 import Msg exposing (Msg)
-import Theme.Style exposing (fuchsia, pink, shadow, white, withMediaTablet)
+import Page.Blog as Blog
+import Route
+import Theme.Style exposing (fuchsia, green, pink, shadow, white, withMediaTablet)
 import Theme.View exposing (generateId)
 
 
-featuredCaseStudyList : List Copy.CaseStudy.CaseStudyKey
+featuredCaseStudyList : List Model.CaseStudy
 featuredCaseStudyList =
-    [ Foyer, CodeReadingClub, NewProjectInvite ]
+    [ Copy.CaseStudy.foyer
+    , Copy.CaseStudy.codeReadingClub
+    , Copy.CaseStudy.newProjectInvite
+    ]
 
 
-view : Html Msg
-view =
+view : Array Model.BlogPost -> Html Msg
+view blogPosts =
     div []
-        [ section [ css [ sectionStyle ], class "home-section" ]
+        [ -- hero banner
+          section [ css [ sectionStyle ], class "home-section" ]
             [ h1 [ css [ sectionHeadingStyle ] ] [ text (t WhatWeDoHeading) ]
             , Theme.View.markdownToHtml (t WhatWeDoMarkdown)
             ]
+
+        -- case studies
         , section [ css [ sectionStyle, sectionHighlightStyle ], class "home-section" ]
             [ h2 [ css [ sectionHeadingStyle ] ] [ text (t ThingsWeWorkOnHeading) ]
             , ul [ css [ workListStyle ] ] (viewWorkingOnList featuredCaseStudyList)
             ]
+
+        -- who we are
         , section [ css [ sectionStyle ], class "home-section" ]
             [ h2 [ css [ sectionHeadingStyle ] ] [ text (t WhoWeAreHeading) ]
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown1)
@@ -37,21 +48,23 @@ view =
                 (viewWhoWeAreList Copy.AboutUs.profiles)
             , Theme.View.markdownToHtml (t WhoWeAreMarkdown2)
             ]
+
+        -- blog sample
+        , section [ css [ sectionStyle, sectionAltHighlightStyle ], class "home-section" ]
+            [ h2 [ css [ sectionHeadingStyle ] ] [ text <| t BlogHomeTitle ]
+            , Blog.viewBlogCardPromo blogPosts
+            , p [] [ a [ href <| Route.toString Route.BlogIndex ] [ text <| t BlogHomeReadMoreLink ] ]
+            ]
         ]
 
 
-viewWorkingOnList : List Copy.CaseStudy.CaseStudyKey -> List (Html Msg)
+viewWorkingOnList : List Model.CaseStudy -> List (Html Msg)
 viewWorkingOnList featuredCaseStudies =
-    List.map
-        (\caseStudyId ->
-            let
-                caseStudy : Model.CaseStudy
-                caseStudy =
-                    Copy.CaseStudy.caseStudyFromId caseStudyId
-            in
-            li [ css [ workingOnCardStyle ] ] (viewCaseStudyCard caseStudy)
-        )
-        featuredCaseStudies
+    featuredCaseStudies
+        |> List.map
+            (\caseStudy ->
+                li [ css [ workingOnCardStyle ] ] (viewCaseStudyCard caseStudy)
+            )
 
 
 viewCaseStudyCard : Model.CaseStudy -> List (Html Msg)
@@ -121,6 +134,14 @@ sectionHighlightStyle =
         ]
 
 
+sectionAltHighlightStyle : Style
+sectionAltHighlightStyle =
+    batch
+        [ backgroundColor green.light
+        , boxShadow4 (px 0) (px 0) (px 20) shadow
+        ]
+
+
 sectionHeadingStyle : Style
 sectionHeadingStyle =
     batch
@@ -143,6 +164,13 @@ workListStyle =
         , withMediaTablet
             [ flexDirection row
             ]
+        ]
+
+
+writingListStyle : Style
+writingListStyle =
+    batch
+        [ displayFlex
         ]
 
 

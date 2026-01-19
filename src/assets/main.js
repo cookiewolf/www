@@ -2,6 +2,7 @@ import './reset.css';
 import { Elm } from '../Main.elm';
 import '@fontsource/poppins/400.css';
 import '@fontsource/poppins/800.css';
+import blogData from './blog-data.json';
 
 if (process.env.NODE_ENV === 'development') {
   const ElmDebugTransform = await import('elm-debug-transformer');
@@ -11,8 +12,11 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
+const flags = { blog_posts: blogData };
+console.log("JS: flags=", flags);
+
 const root = document.querySelector('#app div');
-const app = Elm.Main.init({ node: root });
+const app = Elm.Main.init({ node: root, flags: flags });
 
 app.ports.setMetadata.subscribe(function (pageMetadata) {
   const baseUrl =

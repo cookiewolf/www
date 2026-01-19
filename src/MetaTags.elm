@@ -1,65 +1,79 @@
-port module MetaTags exposing (PageMetadata, metaForPage, setMetadata, titleForPage)
+port module MetaTags exposing
+    ( metaForAboutUs
+    , metaForBlogIndex
+    , metaForBlogShowPost
+    , metaForCaseStudy
+    , metaForNotFound
+    , metaForRoot
+    , setMetadata
+    )
 
-import Copy.CaseStudy
 import Copy.Keys as Keys
 import Copy.Text exposing (t)
-import Route
+import Model exposing (PageMetadata)
 
 
-type alias PageMetadata =
-    { title : String
-    , description : String
-    , url : Maybe String
-    , imageSrc : Maybe String
+metaForRoot : PageMetadata
+metaForRoot =
+    { title = t <| Keys.WindowTitle <| t Keys.HomeTitle
+    , description = t Keys.HomeMetaDescription
+    , url = Nothing
+    , imageSrc = Nothing
     }
 
 
-titleForPage : Route.Route -> String
-titleForPage route =
-    case route of
-        Route.AboutUs ->
-            t Keys.AboutUsTitle ++ " - " ++ t Keys.SiteTitle
+metaForAboutUs : PageMetadata
+metaForAboutUs =
+    { title = t <| Keys.WindowTitle <| t Keys.AboutUsTitle
+    , description = t Keys.AboutUsMetaDescription
+    , url = Nothing
+    , imageSrc = Nothing
+    }
 
-        _ ->
-            t Keys.SiteTitle
+
+metaForCaseStudy : Model.CaseStudy -> PageMetadata
+metaForCaseStudy caseStudy =
+    let
+        metaDescription =
+            case caseStudy.maybePageContent of
+                Just pageContent ->
+                    pageContent.metaDescription
+
+                Nothing ->
+                    t Keys.HomeMetaDescription
+    in
+    { title = t <| Keys.WindowTitle <| caseStudy.title -- could be caseStudie.title ++ " - " ++ t Keys.CaseStudyTitle
+    , description = metaDescription
+    , url = caseStudy.metaUrl
+    , imageSrc = caseStudy.metaImageSrc
+    }
 
 
-metaForPage : Route.Route -> PageMetadata
-metaForPage route =
-    case route of
-        Route.Index ->
-            { title = titleForPage route
-            , description = t Keys.HomeMetaDescription
-            , url = Nothing
-            , imageSrc = Nothing
-            }
+metaForBlogIndex : PageMetadata
+metaForBlogIndex =
+    { title = t <| Keys.WindowTitle <| t Keys.BlogIndexTitle
+    , description = t Keys.BlogMetaDescription
+    , url = Nothing
+    , imageSrc = Nothing
+    }
 
-        Route.AboutUs ->
-            { title = titleForPage route
-            , description = t Keys.AboutUsMetaDescription
-            , url = Nothing
-            , imageSrc = Nothing
-            }
 
-        Route.CaseStudy slug ->
-            let
-                caseStudy =
-                    Copy.CaseStudy.caseStudyIdFromSlug slug
-                        |> Copy.CaseStudy.caseStudyFromId
+metaForBlogShowPost : Model.BlogPost -> PageMetadata
+metaForBlogShowPost post =
+    { title = t <| Keys.WindowTitle <| post.title
+    , description = post.teaser
+    , url = Nothing
+    , imageSrc = Nothing
+    }
 
-                metaDescription =
-                    case caseStudy.maybePageContent of
-                        Just pageContent ->
-                            pageContent.metaDescription
 
-                        Nothing ->
-                            t Keys.HomeMetaDescription
-            in
-            { title = caseStudy.title
-            , description = metaDescription
-            , url = caseStudy.metaUrl
-            , imageSrc = caseStudy.metaImageSrc
-            }
+metaForNotFound : String -> PageMetadata
+metaForNotFound thing =
+    { title = t <| Keys.WindowTitle <| t Keys.NotFoundTitle
+    , description = t <| Keys.NotFoundDescription1 thing
+    , url = Nothing
+    , imageSrc = Nothing
+    }
 
 
 port setMetadata : PageMetadata -> Cmd msg

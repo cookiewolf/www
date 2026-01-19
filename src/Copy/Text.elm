@@ -13,6 +13,12 @@ t key =
         SiteTitle ->
             "Cookiewolf"
 
+        HomeTitle ->
+            "Home"
+
+        WindowTitle pageTitle ->
+            pageTitle ++ " - Cookiewolf"
+
         Strapline ->
             "Building useful digital tools with you"
 
@@ -53,6 +59,12 @@ Our members’ award-winning work spans projects with clients across the arts, t
 [Meet the people behind Cookiewolf](/about-us)
             """
 
+        CaseStudyTitle ->
+            "Case study"
+
+        CaseStudySlug ->
+            "case-study"
+
         ThingsWeWorkOnHeading ->
             "Things We're Working On"
 
@@ -79,9 +91,6 @@ Our members’ award-winning work spans projects with clients across the arts, t
         AboutUsProfileProjectsLabel ->
             "**Selected projects**: "
 
-        CaseStudySlug ->
-            "case-study"
-
         WhatWeDidHeading ->
             "What We Did"
 
@@ -100,3 +109,42 @@ Got a project? Questions? Just want a chat? Email us at:
 
         CompanyInformation ->
             "Cookiewolf Co-op Ltd is registered in England & Wales (No. 13865007)"
+
+        BlogSlug ->
+            "blog"
+
+        BlogNotFoundThing ->
+            "Blog post"
+
+        BlogHomeTitle ->
+            "Our Latest Thoughts"
+
+        BlogHomeReadMoreLink ->
+            "Read more of our blog"
+
+        BlogIndexTitle ->
+            "Blog"
+
+        BlogMetaDescription ->
+            "Blog desription"
+
+        BlogCardReadMoreLink ->
+            "Read more"
+
+        BlogByLineBy ->
+            "By "
+
+        BlogByLineOn ->
+            " on "
+
+        NotFoundTitle ->
+            "Page not found"
+
+        NotFoundThing ->
+            "Page"
+
+        NotFoundDescription1 thing ->
+            "The " ++ thing ++ " you were looking for does not exist"
+
+        NotFoundDescription2 ->
+            "Please check the URL and try again"

@@ -1,40 +1,17 @@
-module Copy.CaseStudy exposing (CaseStudyKey(..), caseStudyFromId, caseStudyIdFromSlug)
+module Copy.CaseStudy exposing (caseStudyFromSlug, codeReadingClub, foyer, newProjectInvite)
 
 import Model
 import Route
 
 
-type CaseStudyKey
-    = CodeReadingClub
-    | Foyer
-    | NewProjectInvite
-    | FourZeroFour
-
-
-caseStudyIdFromSlug : String -> CaseStudyKey
-caseStudyIdFromSlug slug =
+caseStudyFromSlug : String -> Maybe Model.CaseStudy
+caseStudyFromSlug slug =
     case slug of
         "foyer" ->
-            Foyer
+            Just foyer
 
         _ ->
-            FourZeroFour
-
-
-caseStudyFromId : CaseStudyKey -> Model.CaseStudy
-caseStudyFromId id =
-    case id of
-        CodeReadingClub ->
-            codeReadingClub
-
-        Foyer ->
-            foyer
-
-        NewProjectInvite ->
-            newProjectInvite
-
-        FourZeroFour ->
-            fourZeroFour
+            Nothing
 
 
 codeReadingClub : Model.CaseStudy
@@ -119,21 +96,6 @@ newProjectInvite =
     , teaserBackgroundSrc = "/work/work_with_us.png"
     , teaserSummary = "We're always up for working with folks who are building new things or making old things work better. Wherever you're at, we'd love to chat."
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
-    , teaserHref = "mailto:hello@cookiewolf.coop"
-    , maybePageContent = Nothing
-    , metaTitle = ""
-    , metaUrl = Nothing
-    , metaImageSrc = Nothing
-    }
-
-
-fourZeroFour : Model.CaseStudy
-fourZeroFour =
-    { name = "Project not found"
-    , title = "Project not found"
-    , teaserBackgroundSrc = ""
-    , teaserSummary = ""
-    , teaserLinkText = ""
     , teaserHref = "mailto:hello@cookiewolf.coop"
     , maybePageContent = Nothing
     , metaTitle = ""

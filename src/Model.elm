@@ -1,9 +1,27 @@
-module Model exposing (CaseStudy, CaseStudyContent, Image, Model, ProfileInfo, Quote)
+module Model exposing (BlogPost, CaseStudy, CaseStudyContent, Image, Model, PageMetadata, PageResource, ProfileInfo, Quote, emptyCaseStudy, emptyCaseStudyContent, emptyPageMetadata, emptyPageResource)
 
+import Array exposing (Array)
 import Browser.Navigation
 import Copy.Keys
 import Route exposing (Route)
 import Set exposing (Set)
+
+
+type alias PageMetadata =
+    { title : String
+    , description : String
+    , url : Maybe String
+    , imageSrc : Maybe String
+    }
+
+
+emptyPageMetadata : PageMetadata
+emptyPageMetadata =
+    { title = ""
+    , description = ""
+    , url = Nothing
+    , imageSrc = Nothing
+    }
 
 
 type alias Model =
@@ -11,6 +29,34 @@ type alias Model =
     , page : Route
     , viewportHeightWidth : ( Float, Float )
     , openSections : Set String
+    , blogPosts : Array BlogPost
+    , pageResource : PageResource
+    }
+
+
+type alias PageResource =
+    { blogPost : Maybe BlogPost
+    , caseStudy : Maybe CaseStudy
+    , meta : PageMetadata
+    }
+
+
+emptyPageResource : PageResource
+emptyPageResource =
+    { blogPost = Nothing
+    , caseStudy = Nothing
+    , meta = emptyPageMetadata
+    }
+
+
+type alias BlogPost =
+    { slug : String
+    , author : String
+    , publishDate : String -- YYYY-MM-DD
+    , title : String
+    , teaser : String
+    , keywords : String
+    , content : String
     }
 
 
@@ -41,6 +87,21 @@ type alias CaseStudy =
     }
 
 
+emptyCaseStudy : CaseStudy
+emptyCaseStudy =
+    { name = ""
+    , title = ""
+    , teaserBackgroundSrc = ""
+    , teaserSummary = ""
+    , teaserLinkText = ""
+    , teaserHref = ""
+    , maybePageContent = Nothing
+    , metaTitle = ""
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
+    }
+
+
 type alias CaseStudyContent =
     { introMarkdown : String
     , metaDescription : String
@@ -49,6 +110,18 @@ type alias CaseStudyContent =
     , maybeWhatWeDidImage : Maybe Image
     , resultsMarkdown : String
     , maybeQuote : Maybe Quote
+    }
+
+
+emptyCaseStudyContent : CaseStudyContent
+emptyCaseStudyContent =
+    { introMarkdown = ""
+    , metaDescription = ""
+    , maybeIntroImage = Nothing
+    , whatWeDidMarkdown = ""
+    , maybeWhatWeDidImage = Nothing
+    , resultsMarkdown = ""
+    , maybeQuote = Nothing
     }
 
 
