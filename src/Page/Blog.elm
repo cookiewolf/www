@@ -151,10 +151,16 @@ blogCardPromoAreaStyle : Style
 blogCardPromoAreaStyle =
     batch
         [ displayFlex
-        , maxWidth (px 1000)
+        , flexDirection column
+        , fontSize (rem 1)
         , margin auto
-        , property "gap" "2em"
-        , justifyContent center
+        , maxWidth (px 1000)
+        , padding zero
+        , Css.property "gap" "2rem"
+        , withMediaTablet
+            [ flexDirection row
+            , Css.property "gap" "0"
+            ]
         ]
 
 
