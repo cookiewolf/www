@@ -117,7 +117,7 @@ init rawFlags url key =
         flags =
             rawFlags
                 |> JD.decodeValue flagsDecoder
-                |> Result.mapError (\err -> Debug.log "flags decode error: " err)
+                --|> Result.mapError (\err -> Debug.log "flags decode error: " err)
                 |> Result.withDefault { posts = Array.empty }
 
         resource =
