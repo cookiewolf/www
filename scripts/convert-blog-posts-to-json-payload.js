@@ -2,10 +2,13 @@
 
 Don't run this script directly, use `npm run build_blog`!
 
-scripts/convert-blog-posts-to-json-payload.js <src_dir> <output_file>
+scripts/convert-blog-posts-to-json-payload.js <src_dir> <payload_output_file> <feed_output_file>
 
 Looks for markdown files in src directory and bundles all that data
 into one json file for deployment.
+
+NOTE: yes i know this is a bit verbose as it does everything manually but it
+also has ZERO external dependencies, which makes distribution simpler (i hope).
 */
 
 const fs = require('node:fs/promises');
@@ -160,18 +163,59 @@ function savePostData(postData, targetFile) {
   */
 }
 
+function saveFeed(postData, targetFile) {
+
+  let postList =
+    postData
+      .map(
+        post =>
+          `<item>
+  <title>${post.title}</title>
+  <description>${post.teaser}</description>
+  <link>https://cookiewolf.coop/blog/${post.slug}</link>
+  <guid isPermaLink="false">${post.slug}</guid>
+  <pubDate>${post.publish_date}T12:00:00.000Z</pubDate>
+ </item>`)
+      .join("\n");
+
+  const builtOn = new Date().toISOString();
+
+  const output =
+    `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Cookiewolf blog</title>
+      <description>The place for cookiewolf thoughts of all kinds.</description>
+      <link>https://cookiewolf.coop</link>
+      <copyright>Cookiewolf Coop</copyright>
+      <lastBuildDate>${builtOn}</lastBuildDate>
+      <pubDate>${builtOn}</pubDate>
+      <ttl>1800</ttl>
+
+      ${postList}
+</channel>
+</rss>`;
+
+  // console.log("feed:");
+  // console.log(output);
+
+  return fs.writeFile(targetFile, output);
+}
+
 function main() {
-  if (process.argv.length < 4) {
-    console.error("Missing src / output arguments");
+  if (process.argv.length < 5) {
+    console.error("Missing src / output / feed output arguments");
     process.exit(-1);
   }
 
   const srcDir = process.argv[2];
-  const targetFile = process.argv[3];
+  const targetPayloadFile = process.argv[3];
+  const targetFeedFile = process.argv[4];
 
   console.log('convert-blog-posts-to-json-payload');
   console.log("  srcDir=" + srcDir);
-  console.log("  targetFile=" + targetFile)
+  console.log("  targetPayloadFile=" + targetPayloadFile)
+  console.log("  targetFeedFile=" + targetFeedFile)
 
   fs.readdir(srcDir)
     .then(files => {
@@ -188,7 +232,10 @@ function main() {
       Promise
         .all(postFileData)
         .then(normalizePostData)
-        .then(data => savePostData(data, targetFile))
+        .then(data =>
+          Promise.all(
+            [savePostData(data, targetPayloadFile), saveFeed(data, targetFeedFile)]
+          ))
         .then(() => {
           console.log("all done.");
         })

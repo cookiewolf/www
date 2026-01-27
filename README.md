@@ -71,7 +71,9 @@ Then run `npm run build_blog`. This will validate that all post files have the c
 meta fields and output a `blog-data.json` payload. You can then reload your local server
 and the new post should appear at the front of the list.
 
-Any added posts and changes to the `blog-data.json` file should be pushed to main branch
+There is also the RSS feed output file written to `blog-feed.xml`.
+
+Any added posts and changes to the payload or feed files should be pushed to main branch
 to make live on the public site.
 
 The meta fields are (currently):

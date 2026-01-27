@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Cookiewolf blog</title>
+      <description>The place for cookiewolf thoughts of all kinds.</description>
+      <link>https://cookiewolf.coop</link>
+      <copyright>Cookiewolf Coop</copyright>
+      <lastBuildDate>2026-01-27T11:11:40.785Z</lastBuildDate>
+      <pubDate>2026-01-27T11:11:40.785Z</pubDate>
+      <ttl>1800</ttl>
+
+      <item>
+  <title>Introducing the Cookie Blog</title>
+  <description>A little hello from us with an introduction to our plans for the coming year.</description>
+  <link>https://cookiewolf.coop/blog/introducing-the-cookie-blog</link>
+  <guid isPermaLink="false">introducing-the-cookie-blog</guid>
+  <pubDate>2026-02-14T12:00:00.000Z</pubDate>
+ </item>
+<item>
+  <title>Escaping Big Tech</title>
+  <description>BigTech: over-dependence on centralised platforms</description>
+  <link>https://cookiewolf.coop/blog/escaping-big-tech</link>
+  <guid isPermaLink="false">escaping-big-tech</guid>
+  <pubDate>2026-02-01T12:00:00.000Z</pubDate>
+ </item>
+</channel>
+</rss>
