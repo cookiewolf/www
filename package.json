@@ -9,7 +9,7 @@
     "format": "elm-format src/ --yes",
     "lint": "elm-review",
     "test": "elm-test-rs",
-    "build_blog": "node scripts/convert-blog-posts-to-json-payload.js blog-posts/ src/assets/blog-data.json src/assets/blog-feed.rss"
+    "build_blog": "node scripts/convert-blog-posts-to-json-payload.js blog-posts/ src/assets/blog-data.json public/blog-feed.rss"
   },
   "devDependencies": {
     "elm-review": "^2.13.2",
