@@ -11,7 +11,7 @@ t : Key -> String
 t key =
     case key of
         SiteTitle ->
-            "Cookiewolf"
+            "Cookiewolf Cooperative"
 
         Strapline ->
             "Building useful digital tools with you"
