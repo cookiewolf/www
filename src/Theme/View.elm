@@ -53,6 +53,16 @@ viewPageFooter =
                 [ markdownToHtml (t ContactUsMarkdown)
                 ]
             , p [ css [ footerInfoStyle ] ] [ text (t CompanyInformation) ]
+            , a
+                [ css [ footerLogoStyle ]
+                , href "https://www.workers.coop/about-us/"
+                ]
+                [ img
+                    [ alt (t WorkersCoopLogoAltText)
+                    , src "/workers-coop-badge-RGB-white@4x.png"
+                    ]
+                    []
+                ]
             ]
         ]
 
@@ -146,6 +156,15 @@ footerInfoStyle =
     batch
         [ color pink.mid
         , marginTop (rem 3)
+        ]
+
+
+footerLogoStyle : Style
+footerLogoStyle =
+    batch
+        [ display inlineBlock
+        , marginTop (rem 1)
+        , maxWidth (rem 15)
         ]
 
 

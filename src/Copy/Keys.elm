@@ -37,3 +37,4 @@ type
     | ContactUsHeading
     | ContactUsMarkdown
     | CompanyInformation
+    | WorkersCoopLogoAltText
