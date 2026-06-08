@@ -114,9 +114,9 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
 
 newProjectInvite : Model.CaseStudy
 newProjectInvite =
-    { name = "Your Project here?"
-    , title = "Your Project here?"
-    , teaserBackgroundSrc = "/work/your_project.jpg"
+    { name = "Work With Us"
+    , title = "Work With Us"
+    , teaserBackgroundSrc = "/work/work_with_us.png"
     , teaserSummary = "We're always up for working with folks who are building new things or making old things work better. Wherever you're at, we'd love to chat."
     , teaserLinkText = "Get in touch (hello@cookiewolf.coop)"
     , teaserHref = "mailto:hello@cookiewolf.coop"
