@@ -1,5 +1,8 @@
 module Main exposing (main)
 
+-- import Json.Decode.Field as Field
+
+import Array exposing (Array)
 import Browser
 import Browser.Dom
 import Browser.Events
@@ -8,12 +11,15 @@ import Copy.CaseStudy
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Html.Styled exposing (Html, toUnstyled)
+import Json.Decode as JD
 import MetaTags
-import Model exposing (Model)
+import Model exposing (BlogPost, Model, PageResource)
 import Msg exposing (Msg(..))
 import Page.AboutUs
+import Page.Blog as Blog
 import Page.CaseStudy
 import Page.Index
+import Page.NotFound
 import Route exposing (Route(..))
 import Set
 import Task
@@ -22,10 +28,11 @@ import Url
 
 
 type alias Flags =
-    ()
+    { posts : Array BlogPost
+    }
 
 
-main : Program Flags Model Msg
+main : Program JD.Value Model Msg
 main =
     Browser.application
         { init = init
@@ -37,12 +44,66 @@ main =
         }
 
 
-init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
-init _ url key =
+setupResourceForPage : Array BlogPost -> Route -> PageResource
+setupResourceForPage blogPosts route =
+    let
+        baseResource =
+            Model.emptyPageResource
+    in
+    case route of
+        Index ->
+            { baseResource
+                | meta = MetaTags.metaForRoot
+            }
+
+        AboutUs ->
+            { baseResource
+                | meta = MetaTags.metaForAboutUs
+            }
+
+        CaseStudy slug ->
+            case Copy.CaseStudy.caseStudyFromSlug slug of
+                Just foundCaseStudy ->
+                    { baseResource
+                        | caseStudy = Just foundCaseStudy
+                        , meta = MetaTags.metaForCaseStudy foundCaseStudy
+                    }
+
+                Nothing ->
+                    { baseResource
+                        | meta = MetaTags.metaForNotFound (t CaseStudyTitle)
+                    }
+
+        BlogIndex ->
+            { baseResource
+                | meta = MetaTags.metaForBlogIndex
+            }
+
+        BlogShowPost slug ->
+            case Blog.findBlogFromSlug blogPosts slug of
+                Just blogPost ->
+                    { baseResource
+                        | blogPost = Just blogPost
+                        , meta = MetaTags.metaForBlogShowPost blogPost
+                    }
+
+                Nothing ->
+                    { baseResource
+                        | meta = MetaTags.metaForNotFound (t BlogNotFoundThing)
+                    }
+
+        NotFound ->
+            { baseResource
+                | meta = MetaTags.metaForNotFound (t NotFoundThing)
+            }
+
+
+init : JD.Value -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
+init rawFlags url key =
     let
         route : Route
         route =
-            Maybe.withDefault Index <| Route.fromUrl url
+            Maybe.withDefault NotFound <| Route.fromUrl url
 
         openSections : Set.Set String
         openSections =
@@ -52,14 +113,25 @@ init _ url key =
 
                 Nothing ->
                     Set.empty
+
+        flags =
+            rawFlags
+                |> JD.decodeValue flagsDecoder
+                --|> Result.mapError (\err -> Debug.log "flags decode error: " err)
+                |> Result.withDefault { posts = Array.empty }
+
+        resource =
+            setupResourceForPage flags.posts route
     in
     ( { key = key
       , page = route
       , viewportHeightWidth = ( 800, 800 )
       , openSections = openSections
+      , blogPosts = flags.posts
+      , pageResource = resource
       }
     , Cmd.batch
-        [ MetaTags.setMetadata <| MetaTags.metaForPage route
+        [ MetaTags.setMetadata <| resource.meta
         , Task.perform GotViewport Browser.Dom.getViewport
         ]
     )
@@ -109,7 +181,7 @@ update msg model =
                 newRoute =
                     -- If not a valid route, go to index
                     -- could 404 instead depends on desired behaviour
-                    Maybe.withDefault Index (Route.fromUrl url)
+                    Maybe.withDefault NotFound (Route.fromUrl url)
 
                 openSections : Set.Set String
                 openSections =
@@ -119,10 +191,17 @@ update msg model =
 
                         Nothing ->
                             Set.empty
+
+                resource =
+                    setupResourceForPage model.blogPosts newRoute
             in
-            ( { model | page = newRoute, openSections = openSections }
+            ( { model
+                | page = newRoute
+                , openSections = openSections
+                , pageResource = resource
+              }
             , Cmd.batch
-                [ MetaTags.setMetadata <| MetaTags.metaForPage newRoute
+                [ MetaTags.setMetadata <| resource.meta
                 , possiblyScrollToTop url
                 ]
             )
@@ -155,35 +234,67 @@ subscriptions _ =
 
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
-    { title = MetaTags.titleForPage model.page
+    { title = model.pageResource.meta.title
     , body = [ toUnstyled (view model) ]
     }
 
 
 view : Model -> Html Msg
 view model =
-    case model.page of
-        Index ->
-            Theme.View.viewPageWrapper (t SiteTitle) Page.Index.view
+    let
+        innerPage =
+            case model.page of
+                Index ->
+                    Page.Index.view model.blogPosts
 
-        AboutUs ->
-            Theme.View.viewPageWrapper (t AboutUsTitle) (Page.AboutUs.view model)
+                AboutUs ->
+                    Page.AboutUs.view model
 
-        CaseStudy slug ->
-            let
-                caseStudy : Model.CaseStudy
-                caseStudy =
-                    Copy.CaseStudy.caseStudyIdFromSlug slug
-                        |> Copy.CaseStudy.caseStudyFromId
+                CaseStudy _ ->
+                    -- FIXME. this is jank
+                    --  we know case study exists
+                    --  we should move the meta data out of the embedded CaseStudy
+                    --  and just pass that along
+                    case model.pageResource.caseStudy of
+                        Just caseStudy ->
+                            caseStudy.maybePageContent
+                                |> Maybe.withDefault Model.emptyCaseStudyContent
+                                |> Page.CaseStudy.view caseStudy.title
 
-                maybeContent : Maybe Model.CaseStudyContent
-                maybeContent =
-                    caseStudy.maybePageContent
-            in
-            case maybeContent of
-                Just content ->
-                    Theme.View.viewPageWrapper caseStudy.title (Page.CaseStudy.view caseStudy.title content)
+                        Nothing ->
+                            Page.NotFound.view (t CaseStudyTitle)
 
-                Nothing ->
-                    -- Replace with global 404 ?
-                    Theme.View.viewPageWrapper (t SiteTitle) Page.Index.view
+                BlogIndex ->
+                    Blog.viewBlogIndex model
+
+                BlogShowPost _ ->
+                    case model.pageResource.blogPost of
+                        Just post ->
+                            Blog.viewShowBlogPost post
+
+                        Nothing ->
+                            Page.NotFound.view (t BlogNotFoundThing)
+
+                NotFound ->
+                    Page.NotFound.view (t NotFoundThing)
+    in
+    Theme.View.viewPageWrapper
+        model.pageResource.meta.title
+        innerPage
+
+
+flagsDecoder : JD.Decoder Flags
+flagsDecoder =
+    let
+        postDecoder =
+            JD.map7 BlogPost
+                (JD.field "slug" JD.string)
+                (JD.field "author" JD.string)
+                (JD.field "publish_date" JD.string)
+                (JD.field "title" JD.string)
+                (JD.field "teaser" JD.string)
+                (JD.field "keywords" JD.string)
+                (JD.field "content" JD.string)
+    in
+    JD.map Flags
+        (JD.field "blog_posts" <| JD.array postDecoder)

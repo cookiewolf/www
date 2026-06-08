@@ -62,6 +62,32 @@ We're using [elm-test-rs](https://github.com/mpizenberg/elm-test-rs) to run [elm
 - About Us profile text is in `Copy.AboutUs`
 - Page templates for each `Route` are defined in e.g. `Page.Index` and `Page.CaseStudy`
 
+### Writing blog posts
+
+All blog posts are just markdown text files in `/blog-posts`. When you have your content
+written just copy an existing post file and replace that content/meta data as needed.
+
+Then run `npm run build_blog`. This will validate that all post files have the correct
+meta fields and output a `blog-data.json` payload. You can then reload your local server
+and the new post should appear at the front of the list.
+
+There is also the RSS feed output file written to `blog-feed.rss`.
+
+Any added posts and changes to the payload or feed files should be pushed to main branch
+to make live on the public site.
+
+The meta fields are (currently):
+- `author` Who wrote it. Can be any string.
+- `title` The title of the post. Don't put the title in the content. Also appears in the
+  browser title field.
+- `publish_date` Must be in YYYY-MM-DD format.
+- `teaser` Short paragraph giving a brief overview of the main subject. Also used in the
+  page meta field for SEO.
+- `keywords` A list of comma seperated key-words. Also used in the
+  page meta field for SEO.
+
+At this point there is no established way of embedding images.
+
 ### Styling & layouts
 
 - TBC

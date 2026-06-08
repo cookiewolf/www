@@ -15,6 +15,8 @@ type
     Key
     -- Header
     = SiteTitle
+    | HomeTitle
+    | WindowTitle String
     | Strapline
     | Category ContentType
     | HomeMetaDescription
@@ -24,16 +26,33 @@ type
     | WhoWeAreHeading
     | WhoWeAreMarkdown1
     | WhoWeAreMarkdown2
+      -- Case study
+    | CaseStudyTitle
+    | CaseStudySlug
       -- About Us
     | AboutUsSlug
     | AboutUsTitle
     | AboutUsMetaDescription
     | AboutUsSection Section
     | AboutUsProfileProjectsLabel
-    | CaseStudySlug
     | WhatWeDidHeading
     | ResultsHeading
       -- Footer
     | ContactUsHeading
     | ContactUsMarkdown
     | CompanyInformation
+      -- blog bits
+    | BlogSlug
+    | BlogNotFoundThing
+    | BlogHomeTitle
+    | BlogHomeReadMoreLink
+    | BlogIndexTitle
+    | BlogMetaDescription
+    | BlogCardReadMoreLink
+    | BlogByLineBy
+    | BlogByLineOn
+      -- "not found" bits
+    | NotFoundTitle
+    | NotFoundThing
+    | NotFoundDescription1 String
+    | NotFoundDescription2
