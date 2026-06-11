@@ -7,7 +7,7 @@ import Html.Styled exposing (Html, a, div, footer, h2, header, img, p, span, tex
 import Html.Styled.Attributes exposing (alt, css, href, id, src)
 import Markdown
 import Msg exposing (Msg)
-import Theme.Style exposing (black, globalStyles, green, pink, visuallyHiddenStyles, white)
+import Theme.Style exposing (black, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
 
 
 viewPageWrapper : String -> Html Msg -> Html Msg
@@ -23,23 +23,28 @@ viewPageWrapper pageTitle pageContent =
 viewPageHeader : Html Msg
 viewPageHeader =
     header [ css [ pageHeaderBackgroundStyle ] ]
-        [ div [ css [ contentContainer ] ]
-            [ div
-                [ css [ pageHeaderStyle ]
-                ]
-                [ a
-                    [ css [ headingStyle ], href "/" ]
-                    [ img
-                        [ css
-                            [ logoStyle ]
-                        , src "/CookiewolfLogo_Line_Reverse.svg"
-                        , alt ""
-                        ]
-                        []
-                    , span [ css [ visuallyHiddenStyles ] ] [ text (t SiteTitle) ]
+        [ div
+            [ css [ pageHeaderStyle ]
+            ]
+            [ a
+                [ css [ headingStyle ], href "/" ]
+                [ img
+                    [ css
+                        [ logoStyle, logoLineStyle ]
+                    , src "/CookiewolfLogo_Line_Reverse.svg"
+                    , alt ""
                     ]
-                , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
+                    []
+                , img
+                    [ css
+                        [ logoStyle , logoStackStyle]
+                    , src "/CookiewolfLogoStack.svg"
+                    , alt ""
+                    ]
+                    []
+                , span [ css [ visuallyHiddenStyles ] ] [ text (t SiteTitle) ]
                 ]
+            , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
             ]
         ]
 
@@ -90,7 +95,12 @@ pageHeaderStyle =
 
 pageHeaderBackgroundStyle : Style
 pageHeaderBackgroundStyle =
-    backgroundColor green.dark
+    batch
+        [ backgroundColor green.dark
+        , displayFlex
+        , alignItems center
+        , justifyContent center
+        ]
 
 
 viewPageStyle : Style
@@ -120,6 +130,26 @@ logoStyle =
         ]
 
 
+logoLineStyle : Style
+logoLineStyle =
+    batch
+        [ display none
+        , withMediaTablet
+            [ display block
+            ]
+        ]
+
+
+logoStackStyle : Style
+logoStackStyle =
+    batch
+        [ display block
+        , withMediaTablet
+            [ display none
+            ]
+        ]
+
+
 straplineStyle : Style
 straplineStyle =
     batch
@@ -128,6 +158,7 @@ straplineStyle =
         , fontWeight bold
         , padding2 (rem 0.1) (rem 0.5)
         , textAlign center
+        , property "text-wrap" "balance"
         ]
 
 
