@@ -3,12 +3,11 @@ module Theme.View exposing (contentContainer, generateId, markdownToHtml, viewPa
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Css exposing (..)
-import Html.Styled exposing (Html, a, div, footer, h2, header, img, p, text)
+import Html.Styled exposing (Html, a, div, footer, h2, header, img, p, span, text)
 import Html.Styled.Attributes exposing (alt, css, href, id, src)
 import Markdown
 import Msg exposing (Msg)
-import Theme.Style exposing (black, globalStyles, green, pink, white, withMediaTablet)
-import VitePluginHelper
+import Theme.Style exposing (black, globalStyles, green, pink, visuallyHiddenStyles, white, withMediaTablet)
 
 
 viewPageWrapper : String -> Html Msg -> Html Msg
@@ -24,13 +23,28 @@ viewPageWrapper pageTitle pageContent =
 viewPageHeader : Html Msg
 viewPageHeader =
     header [ css [ pageHeaderBackgroundStyle ] ]
-        [ div [ css [ contentContainer ] ]
-            [ div
-                [ css [ pageHeaderStyle ]
+        [ div
+            [ css [ pageHeaderStyle ]
+            ]
+            [ a
+                [ css [ headingStyle ], href "/" ]
+                [ img
+                    [ css
+                        [ logoStyle, logoLineStyle ]
+                    , src "/CookiewolfLogo_Line_Reverse.svg"
+                    , alt ""
+                    ]
+                    []
+                , img
+                    [ css
+                        [ logoStyle , logoStackStyle]
+                    , src "/CookiewolfLogoStack.svg"
+                    , alt ""
+                    ]
+                    []
+                , span [ css [ visuallyHiddenStyles ] ] [ text (t SiteTitle) ]
                 ]
-                [ a [ css [ headingStyle ], href "/" ] [ text (t SiteTitle) ]
-                , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
-                ]
+            , div [ css [ straplineStyle ] ] [ text (t Strapline) ]
             ]
         ]
 
@@ -71,10 +85,8 @@ pageHeaderStyle : Style
 pageHeaderStyle =
     batch
         [ alignItems center
-        , backgroundImage (url (VitePluginHelper.asset "/src/assets/background.jpg"))
-        , backgroundPosition center
-        , backgroundSize cover
         , displayFlex
+        , property "gap" "1rem"
         , flexDirection column
         , justifyContent center
         , padding (rem 3)
@@ -83,7 +95,12 @@ pageHeaderStyle =
 
 pageHeaderBackgroundStyle : Style
 pageHeaderBackgroundStyle =
-    backgroundColor green.dark
+    batch
+        [ backgroundColor green.dark
+        , displayFlex
+        , alignItems center
+        , justifyContent center
+        ]
 
 
 viewPageStyle : Style
@@ -98,20 +115,37 @@ viewPageStyle =
 headingStyle : Style
 headingStyle =
     batch
-        [ borderBottom (px 0)
-        , color white
-        , fontSize (rem 2.6)
-        , fontWeight (int 700)
-        , outline none
-        , padding zero
-        , textAlign center
-        , textDecoration none
-        , textTransform uppercase
-        , withMediaTablet [ fontSize (rem 4.2) ]
+        [ fontSize (rem 1.25)
         , hover
             [ backgroundColor transparent
-            , borderBottom (px 0)
-            , color green.light
+            ]
+        ]
+
+
+logoStyle : Style
+logoStyle =
+    batch
+        [ width (ch 50)
+        , maxWidth (pct 100)
+        ]
+
+
+logoLineStyle : Style
+logoLineStyle =
+    batch
+        [ display none
+        , withMediaTablet
+            [ display block
+            ]
+        ]
+
+
+logoStackStyle : Style
+logoStackStyle =
+    batch
+        [ display block
+        , withMediaTablet
+            [ display none
             ]
         ]
 
@@ -124,6 +158,7 @@ straplineStyle =
         , fontWeight bold
         , padding2 (rem 0.1) (rem 0.5)
         , textAlign center
+        , property "text-wrap" "balance"
         ]
 
 
