@@ -11,14 +11,14 @@
     "test": "elm-test-rs"
   },
   "devDependencies": {
-    "elm-review": "^2.13.2",
-    "elm-tooling": "^1.15.1",
+    "elm-review": "^2.13.5",
+    "elm-tooling": "^1.21.0",
     "netlify-plugin-cache": "^1.0.3",
-    "vite": "^6.3.5",
-    "vite-plugin-elm": "^3.0.1"
+    "vite": "^8.3.8",
+    "vite-plugin-elm": "^3.1.0"
   },
   "dependencies": {
-    "@fontsource/poppins": "^5.2.6",
+    "@fontsource/poppins": "^5.3.0",
     "elm-debug-transformer": "^1.2.1"
   }
 }
