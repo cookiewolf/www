@@ -8,6 +8,7 @@ type CaseStudyKey
     = CodeReadingClub
     | Foyer
     | NewProjectInvite
+    | RoundHere
     | FourZeroFour
 
 
@@ -16,6 +17,9 @@ caseStudyIdFromSlug slug =
     case slug of
         "foyer" ->
             Foyer
+
+        "round-here" ->
+            RoundHere
 
         _ ->
             FourZeroFour
@@ -32,6 +36,9 @@ caseStudyFromId id =
 
         NewProjectInvite ->
             newProjectInvite
+
+        RoundHere ->
+            roundHere
 
         FourZeroFour ->
             fourZeroFour
@@ -107,6 +114,54 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
             , maybeQuote = Nothing
             }
     , metaTitle = "Foyer ticketing"
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
+    }
+
+
+roundHere : Model.CaseStudy
+roundHere =
+    { name = "Round Here"
+    , title = "Round Here"
+    , teaserBackgroundSrc = "/work/crc_project.jpg"
+    , teaserSummary = "[xXx] We helped the Our Future Round Here project"
+    , teaserLinkText = "Read our case study"
+    , teaserHref = Route.toString (Route.CaseStudy "round-here")
+    , maybePageContent =
+        Just
+            { metaDescription = "[xXx] Round Here"
+            , introMarkdown =
+                """
+**[xXx] Round Here**
+
+
+[xXx] Some about Round Here / Our Future
+
+- One
+- Two
+- Three
+        """
+            , maybeIntroImage = Just { src = "/case_studies/foundling_museum.png", alt = "Foundling Museum" }
+            , whatWeDidMarkdown =
+                """
+[xXx] what we did for Round Here
+
+**Our aim:** [xXx] our aim
+
+- One
+- Two
+- Three
+        """
+            , maybeWhatWeDidImage = Just { src = "/case_studies/foyer.png", alt = "Foyer" }
+            , resultsMarkdown =
+                """
+[xXx] Round here results
+
+[Round Here](https://round-here.co.uk/)
+        """
+            , maybeQuote = Nothing
+            }
+    , metaTitle = "Round Here"
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }

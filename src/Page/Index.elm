@@ -15,7 +15,7 @@ import Theme.View exposing (generateId)
 
 featuredCaseStudyList : List Copy.CaseStudy.CaseStudyKey
 featuredCaseStudyList =
-    [ Foyer, CodeReadingClub, NewProjectInvite ]
+    [ RoundHere, Foyer, CodeReadingClub ]
 
 
 view : Html Msg
