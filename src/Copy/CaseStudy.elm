@@ -122,9 +122,9 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
 roundHere : Model.CaseStudy
 roundHere =
     { name = "Round Here"
-    , title = "Round Here"
-    , teaserBackgroundSrc = "/work/crc_project.jpg"
-    , teaserSummary = "[xXx] We helped the Our Future Round Here project"
+    , title = "[xXx] Helping local people share their ideas for the future of the Rochdale Borough"
+    , teaserBackgroundSrc = "/work/round_here.png"
+    , teaserSummary = "[xXx] Helping the people of Rochdale Borough to share their ideas for the future of their area."
     , teaserLinkText = "Read our case study"
     , teaserHref = Route.toString (Route.CaseStudy "round-here")
     , maybePageContent =
@@ -132,32 +132,34 @@ roundHere =
             { metaDescription = "[xXx] Round Here"
             , introMarkdown =
                 """
-**[xXx] Round Here**
+**[xXx] Our Future wanted to collect the views of local people to help shape the future of Rochdale Borough. They needed a way to for feedback to be attached to specific areas of the borough, and for participants to be able to respond to each others views in a safe and moderated environment. We built them the bespoke feedback platform Round Here**
 
-
-[xXx] Some about Round Here / Our Future
+[xXx] More about the project requirements and what made this interesting.
 
 - One
 - Two
 - Three
         """
-            , maybeIntroImage = Just { src = "/case_studies/foundling_museum.png", alt = "Foundling Museum" }
+            , maybeIntroImage = Just { src = "/work/round_here.png", alt = "Round Here" }
             , whatWeDidMarkdown =
                 """
-[xXx] what we did for Round Here
+[xXx] Our approach and problem solving. Choosing tools, working with them to find the correct balance of off-the-shelf products and custom code.
 
-**Our aim:** [xXx] our aim
+Using Pol.is, custom maps and voice notes.
 
-- One
-- Two
-- Three
+Security, accessability and other project concerns.
+
         """
-            , maybeWhatWeDidImage = Just { src = "/case_studies/foyer.png", alt = "Foyer" }
+            , maybeWhatWeDidImage = Nothing
             , resultsMarkdown =
                 """
-[xXx] Round here results
+[xXx] [Round Here](https://round-here.co.uk/) was launched on time and in budget. It received a lot of use when viewed against project expectations. More details about project impact.
 
-[Round Here](https://round-here.co.uk/)
+_Cookiewolf produced a brilliant platform for us that took our initial concept and built on it to deliver something that we and our partners loved. We valued their technical guidance but also their thoughtfulness around usability and accessibility, design, and functionality. They were responsive and project managed the delivery well. Over the summer the platform had more than 500 ideas, 6000 votes, and 135 map ideas from citizens across the area._
+
+**Killian Troy-O'Donovan, Data & Digital Lead at Our Future**
+
+
         """
             , maybeQuote = Nothing
             }
