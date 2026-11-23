@@ -15,7 +15,7 @@ import Theme.View exposing (generateId)
 
 featuredCaseStudyList : List Copy.CaseStudy.CaseStudyKey
 featuredCaseStudyList =
-    [ Foyer, CodeReadingClub, NewProjectInvite ]
+    [ RoundHere, Foyer, CodeReadingClub ]
 
 
 view : Html Msg
@@ -156,6 +156,7 @@ workingOnCardStyle =
         , padding2 zero (rem 1)
         , withMediaTablet
             [ marginBottom zero
+            , flex (int 1)
             ]
         ]
 

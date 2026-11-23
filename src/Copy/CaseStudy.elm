@@ -8,6 +8,7 @@ type CaseStudyKey
     = CodeReadingClub
     | Foyer
     | NewProjectInvite
+    | RoundHere
     | FourZeroFour
 
 
@@ -16,6 +17,9 @@ caseStudyIdFromSlug slug =
     case slug of
         "foyer" ->
             Foyer
+
+        "round-here" ->
+            RoundHere
 
         _ ->
             FourZeroFour
@@ -32,6 +36,9 @@ caseStudyFromId id =
 
         NewProjectInvite ->
             newProjectInvite
+
+        RoundHere ->
+            roundHere
 
         FourZeroFour ->
             fourZeroFour
@@ -107,6 +114,56 @@ Foyer's payment journey for the Foundling Museum has been recognised by Arts Cou
             , maybeQuote = Nothing
             }
     , metaTitle = "Foyer ticketing"
+    , metaUrl = Nothing
+    , metaImageSrc = Nothing
+    }
+
+
+roundHere : Model.CaseStudy
+roundHere =
+    { name = "Round Here"
+    , title = "[xXx] Helping local people share their ideas for the future of the Rochdale Borough"
+    , teaserBackgroundSrc = "/work/round_here.png"
+    , teaserSummary = "[xXx] Helping the people of Rochdale Borough to share their ideas for the future of their area."
+    , teaserLinkText = "Read our case study"
+    , teaserHref = Route.toString (Route.CaseStudy "round-here")
+    , maybePageContent =
+        Just
+            { metaDescription = "[xXx] Round Here"
+            , introMarkdown =
+                """
+**[xXx] Our Future wanted to collect the views of local people to help shape the future of Rochdale Borough. They needed a way to for feedback to be attached to specific areas of the borough, and for participants to be able to respond to each others views in a safe and moderated environment. We built them the bespoke feedback platform Round Here**
+
+[xXx] More about the project requirements and what made this interesting.
+
+- One
+- Two
+- Three
+        """
+            , maybeIntroImage = Just { src = "/work/round_here.png", alt = "Round Here" }
+            , whatWeDidMarkdown =
+                """
+[xXx] Our approach and problem solving. Choosing tools, working with them to find the correct balance of off-the-shelf products and custom code.
+
+Using Pol.is, custom maps and voice notes.
+
+Security, accessability and other project concerns.
+
+        """
+            , maybeWhatWeDidImage = Nothing
+            , resultsMarkdown =
+                """
+[xXx] [Round Here](https://round-here.co.uk/) was launched on time and in budget. It received a lot of use when viewed against project expectations. More details about project impact.
+
+_Cookiewolf produced a brilliant platform for us that took our initial concept and built on it to deliver something that we and our partners loved. We valued their technical guidance but also their thoughtfulness around usability and accessibility, design, and functionality. They were responsive and project managed the delivery well. Over the summer the platform had more than 500 ideas, 6000 votes, and 135 map ideas from citizens across the area._
+
+**Killian Troy-O'Donovan, Data & Digital Lead at Our Future**
+
+
+        """
+            , maybeQuote = Nothing
+            }
+    , metaTitle = "Round Here"
     , metaUrl = Nothing
     , metaImageSrc = Nothing
     }

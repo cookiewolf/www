@@ -1,5 +1,6 @@
 {
   "name": "www-cookiewolf",
+  "type": "module",
   "scripts": {
     "postinstall": "elm-tooling install",
     "dev": "vite",
