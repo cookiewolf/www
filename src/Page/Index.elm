@@ -156,6 +156,7 @@ workingOnCardStyle =
         , padding2 zero (rem 1)
         , withMediaTablet
             [ marginBottom zero
+            , flex (int 1)
             ]
         ]
 
